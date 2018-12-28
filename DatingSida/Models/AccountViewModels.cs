@@ -55,10 +55,10 @@ namespace DatingSida.Models
 
         [Required]
         [DataType(DataType.Password)]
-        [Display(Name = "Password")]
+        [Display(Name = "Lösenord")]
         public string Password { get; set; }
 
-        [Display(Name = "Remember me?")]
+        [Display(Name = "Kom ihåg mig?")]
         public bool RememberMe { get; set; }
     }
 
@@ -70,15 +70,42 @@ namespace DatingSida.Models
         public string Email { get; set; }
 
         [Required]
-        [StringLength(100, ErrorMessage = "The {0} must be at least {2} characters long.", MinimumLength = 6)]
+        [StringLength(100, ErrorMessage = "{0} måste vara minst {2} tecken långt.", MinimumLength = 6)]
         [DataType(DataType.Password)]
-        [Display(Name = "Password")]
+        [Display(Name = "Lösenord")]
         public string Password { get; set; }
 
         [DataType(DataType.Password)]
-        [Display(Name = "Confirm password")]
-        [Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
+        [Display(Name = "Bekräfta lösenord")]
+        [Compare("Lösenord", ErrorMessage = "Lösenorden måste stämma överens")]
         public string ConfirmPassword { get; set; }
+
+        [Required]
+        [Display(Name = "Användarnamn")]
+        [MaxLength(30), MinLength(3)]
+        public string Username { get; set; }
+        
+        [Required]
+        [Display(Name = "Förnamn")]
+        [MaxLength(30), MinLength(3)]
+        public virtual string Firstname { get; set; }
+        
+        [Required]
+        [Display(Name = "Efternamn")]
+        [MaxLength(30), MinLength(3)]
+        public virtual string Lastname { get; set; }
+        
+        [Required]
+        [Display(Name = "Kön")]
+        public virtual string Gender { get; set; }
+
+
+        [Required]
+        [Display(Name = "Beskrivning")]
+        [MaxLength(160), MinLength(40)]
+        public virtual string Description { get; set; }
+
+
     }
 
     public class ResetPasswordViewModel

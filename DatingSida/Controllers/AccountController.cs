@@ -9,6 +9,7 @@ using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 using DatingSida.Models;
+using System.Collections.Generic;
 
 namespace DatingSida.Controllers
 {
@@ -139,6 +140,12 @@ namespace DatingSida.Controllers
         [AllowAnonymous]
         public ActionResult Register()
         {
+            var GenderList = new List<string> {
+                "",
+                "Man",
+                "Kvinna"
+            };
+            ViewBag.Gender = new SelectList(GenderList, GenderList[0]);
             return View();
         }
 
