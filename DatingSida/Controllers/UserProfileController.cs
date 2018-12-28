@@ -16,10 +16,17 @@ namespace DatingSida.Controllers
         // GET: UserProfile
         public ActionResult Index()
         {
-            var viewModel = new UserProfileIndexViewModel();
 
-            var user = db.Users.Single(i => i.Id == User.Identity.GetUserId());
-            return View(user);
+            var userId = User.Identity.GetUserId();
+            var user = db.Users.Single(i => i.Id == userId);
+            var viewModel = new UserProfileIndexViewModel {
+                Username = user.UserName,
+                Firstname = user.Firstname,
+                Lastname = user.Lastname,
+                Image = user.Image,
+                Description = user.Description,
+            };
+            return View(viewModel);
         }
     }
 }
