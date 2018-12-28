@@ -52,5 +52,7 @@ namespace DatingSida.Models
         {
             return new ApplicationDbContext();
         }
+
+        public System.Data.Entity.DbSet<DatingSida.Models.ApplicationUser> ApplicationUsers { get; set; }
     }
 }

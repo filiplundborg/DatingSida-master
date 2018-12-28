@@ -1,0 +1,17 @@
+﻿@model DatingSida.Models.UserProfileIndexViewModel
+
+@{
+    ViewBag.Title = "Min profil";
+}
+
+<h2>Min Profil</h2>
+<div class="row">
+    <div class="col-md-6">
+        <img src=@Model.Image>
+    </div>
+    <div class="col-md-6">
+        <h2>@Model.Firstname @Model.Lastname</h2>
+        <h4>@Model.UserName</h4>
+    </div>
+</div>
+
