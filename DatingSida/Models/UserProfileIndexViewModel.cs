@@ -12,7 +12,7 @@ namespace DatingSida.Models
         public  string Lastname { get; set; }
         public  string Gender { get; set; }
         public  string Description { get; set; }
-        public  string Image { get; set; } = "~/Content/Images/avatar.png";
+        public string Image { get; set; } = @"Images\avatar.png";
        
     }
 }
