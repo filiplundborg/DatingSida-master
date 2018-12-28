@@ -77,7 +77,7 @@ namespace DatingSida.Models
 
         [DataType(DataType.Password)]
         [Display(Name = "Bekräfta lösenord")]
-        [Compare("Lösenord", ErrorMessage = "Lösenorden måste stämma överens")]
+        [Compare("Password", ErrorMessage = "Lösenorden måste stämma överens")]
         public string ConfirmPassword { get; set; }
 
         [Required]
@@ -97,15 +97,19 @@ namespace DatingSida.Models
         
         [Required]
         [Display(Name = "Kön")]
-        public virtual string Gender { get; set; }
+        public virtual Gender Gender { get; set; }
 
 
         [Required]
         [Display(Name = "Beskrivning")]
-        [MaxLength(160), MinLength(40)]
+        [StringLength(400, ErrorMessage = "{0} måste vara minst {2} tecken långt.", MinimumLength = 30)]
         public virtual string Description { get; set; }
 
 
+    }
+    public enum Gender {
+        Man,
+        Kvinna
     }
 
     public class ResetPasswordViewModel

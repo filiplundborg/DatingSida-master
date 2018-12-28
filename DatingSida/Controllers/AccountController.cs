@@ -140,12 +140,7 @@ namespace DatingSida.Controllers
         [AllowAnonymous]
         public ActionResult Register()
         {
-            var GenderList = new List<string> {
-                "",
-                "Man",
-                "Kvinna"
-            };
-            ViewBag.Gender = new SelectList(GenderList, GenderList[0]);
+          
             return View();
         }
 
@@ -158,7 +153,13 @@ namespace DatingSida.Controllers
         {
             if (ModelState.IsValid)
             {
-                var user = new ApplicationUser { UserName = model.Email, Email = model.Email };
+                var user = new ApplicationUser { UserName = model.Username,
+                                                 Email = model.Email,
+                                                 Description = model.Description,
+                                                 Firstname = model.Firstname,
+                                                 Lastname = model.Lastname,
+                                                 Gender = model.Gender.ToString(),
+                                                 };
                 var result = await UserManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
                 {
