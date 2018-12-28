@@ -15,6 +15,7 @@ namespace DatingSida.Models
         public virtual string Lastname { get; set; }
         public virtual string Gender { get; set; }
         public virtual string Description { get; set; }
+        public virtual string Image { get; set; } = "~/Content/Images/avatar.png";
 
         //Foreign keys / Navigation properties
         public virtual ICollection<Message> MessageSent { get; set; }
@@ -40,6 +41,8 @@ namespace DatingSida.Models
 
     public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
     {
+        public virtual DbSet<Message> Messages { get; set; }
+
         public ApplicationDbContext()
             : base("DefaultConnection", throwIfV1Schema: false)
         {
