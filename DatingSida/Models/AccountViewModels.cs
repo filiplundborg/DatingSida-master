@@ -97,6 +97,7 @@ namespace DatingSida.Models
         
         [Required]
         [Display(Name = "Kön")]
+        [Range(1, 2, ErrorMessage = "Du måste välja ett kön")]
         public virtual Gender Gender { get; set; }
 
 
@@ -108,8 +109,8 @@ namespace DatingSida.Models
 
     }
     public enum Gender {
-        Man,
-        Kvinna
+        Man = 1,
+        Kvinna = 2
     }
 
     public class ResetPasswordViewModel
