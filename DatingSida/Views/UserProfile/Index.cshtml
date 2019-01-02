@@ -7,14 +7,17 @@
 <h2>Min Profil</h2>
 <div class="container">
     <div class="col-md-5">
+        
         <img src="@Model.Image" class="img-responsive" style="width: 20%; max-height: 400px; min-height: 200px; max-width: 400px; min-width: 200px; " />
         @using (Html.BeginForm("SetImage", "UserProfile", FormMethod.Post, new { enctype = "multipart/form-data" }))
         {
-            <label class="btn btn-primary"> Byt Bild
+        
+            <label class="btn btn-primary" style="margin-top: 5px;">
+                Byt Bild
                 <input type="file" name="img" id="img" class="btn btn-group-sm" hidden style="display: none !important;">
             </label>
-                <input type="submit" value="Spara" class="btn btn-primary" />
-
+            <input type="submit" value="Spara" class="btn btn-primary" style="margin-top: 5px;" />
+        
          }
 
         </div>
