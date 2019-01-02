@@ -38,10 +38,8 @@ namespace DatingSida.Controllers
 
                 string imgPath = Path.Combine(Server.MapPath("~/Images/"), pic);
                 img.SaveAs(imgPath);
-
-                
-                
                 var profileImagePath = @"Images\" + pic;
+
                 //Hämtar användaren, vi borde dock göra en statisk metod som returnerar användaren då denna kommer att användas ofta.
                 var userId = User.Identity.GetUserId();
 
