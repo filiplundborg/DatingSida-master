@@ -33,18 +33,20 @@ namespace DatingSida.Controllers
         [HttpPost]
         public ActionResult SetImage(HttpPostedFileBase img) {
             if (img != null) {
-                string pic = Path.GetFileName(img.FileName);
-              
-                
+                //för att göra bilden uniken används GUID
+                string pic = Guid.NewGuid().ToString() + "_" + Path.GetFileName(img.FileName);
+
                 string imgPath = Path.Combine(Server.MapPath("~/Images/"), pic);
-             
                 img.SaveAs(imgPath);
 
-                var fileName = Guid.NewGuid().ToString() + "_" + pic;
-                var imagePath = @"Images\" + fileName;
+                
+                
+                var profileImagePath = @"Images\" + pic;
+                //Hämtar användaren, vi borde dock göra en statisk metod som returnerar användaren då denna kommer att användas ofta.
                 var userId = User.Identity.GetUserId();
+
                 var user = db.Users.Single(i => i.Id == userId);
-                user.Image = imgPath;
+                user.Image = profileImagePath;
                 db.SaveChanges();
             }
             return RedirectToAction("Index");
