@@ -48,10 +48,11 @@ namespace DatingSida.Models
 
     public class LoginViewModel
     {
+
         [Required]
-        [Display(Name = "Email")]
-        [EmailAddress]
-        public string Email { get; set; }
+        [Display(Name = "Användarnamn")]
+        [MaxLength(30), MinLength(3)]
+        public string Username { get; set; }
 
         [Required]
         [DataType(DataType.Password)]

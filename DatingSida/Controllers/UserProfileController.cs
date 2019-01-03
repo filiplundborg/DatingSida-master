@@ -33,7 +33,7 @@ namespace DatingSida.Controllers
         [HttpPost]
         public ActionResult SetImage(HttpPostedFileBase img) {
             if (img != null) {
-                //för att göra bilden uniken används GUID
+                //för att göra sökvägen helt unik används GUID
                 string pic = Guid.NewGuid().ToString() + "_" + Path.GetFileName(img.FileName);
 
                 string imgPath = Path.Combine(Server.MapPath("~/Images/"), pic);
@@ -47,6 +47,8 @@ namespace DatingSida.Controllers
                 user.Image = profileImagePath;
                 db.SaveChanges();
             }
+           
+
             return RedirectToAction("Index");
         }
     }
