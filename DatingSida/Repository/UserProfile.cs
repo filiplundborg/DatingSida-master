@@ -23,6 +23,7 @@ namespace DatingSida.Repository
         }
         public List<ApplicationUser> GetAllUsers(string currentUsername) {
             var users = db.Users.ToList();
+            
             var user = users.Find(i => i.UserName == currentUsername);
             users.Remove(user);
             return users;

@@ -16,19 +16,37 @@
     </tr>
     @foreach (var item in Model.Users)
     {
-    <tr>
-        <td><img src=@item.Image class="img-circle" style="width: 10%; max-width: 200px; max-height: 200px;" /></td>
-        <td>@item.UserName</td>
-        <td>@item.Firstname @item.Lastname</td>
-        <td>@item.Description.....</td>
-        <td>@Html.ActionLink("Besök", "FinnsEjÄnnu", new {username = item.UserName }, htmlAttributes: new { @class = "btn btn-primary" })</td>
+    <tr class="removeData">
+        <td class="removeData"><img src=@item.Image class="img-circle" style="width: 10%; max-width: 100px; max-height: 100px; min-width: 50px; min-height: 50px;" /></td>
+        <td class="removeData">@item.UserName</td>
+        <td class="removeData">@item.Firstname @item.Lastname</td>
+        <td class="removeData">@item.Description.....</td>
+        <td class="removeData">@Html.ActionLink("Besök", "ViewProfile", new { username = item.UserName }, htmlAttributes: new { @class = "btn btn-primary" })</td>
     </tr>
     }
 </table>
 
 @section Scripts{
     <script>
-
+        var items = null;
+        $(document).ready(function () {
+            $.get("/api/search/users",
+                   function (data) {
+                       items = data;
+                       //alert(items + data);
+                })
+            $("#srcProfiles").on("keyup", function () {
+                $(".removeData").remove();
+                var text = $("#srcProfiles").val();
+                if (text == "") {
+                    for (var i = 0; i < items.length; i++) {
+                        $("table").append(
+                            "<tr class='removeData'><td class='removeData'><img src=" + items[i].Image + " class='img-circle' style='width: 10%; max-width: 100px; max-height: 100px; min-width: 50px; min-height: 50px;' /></td><td class='removeData'>" + items[i].UserName + "</td><td class='removeData'>" + items[i].Firstname + " " + items[i].Lastname + "</td><td class='removeData'>" + items[i].Description + "...</td><td class='removeData'><button class='btn btn-primary' href=" + "/Search/ViewProfile?username=" + items[i].UserName + "> Besök</button ></td ></tr >"
+                        );
+                    }
+                }
+            });
+        });
 
     </script>
     

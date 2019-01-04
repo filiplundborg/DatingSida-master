@@ -1,4 +1,6 @@
-﻿using System;
+﻿using DatingSida.Repository;
+using Microsoft.AspNet.Identity;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
@@ -7,12 +9,25 @@ using System.Web.Http;
 
 namespace DatingSida.Controllers.api
 {
-    public class SearchController : ApiController
+    [RoutePrefix("api/search")]
+    public class SearchApiController : ApiController
     {
+        public UserProfile profile = new UserProfile();
         // GET: api/Search
-        public IEnumerable<string> Get()
+
+        [Route("users")]
+        [HttpGet]
+        public IHttpActionResult Get()
         {
-            return new string[] { "value1", "value2" };
+            try
+            {
+                var users = profile.GetAllUsers(User.Identity.GetUserName());
+                return Ok(users);
+            }
+            catch {
+                return BadRequest();
+            }
+            
         }
 
         // GET: api/Search/5
