@@ -15,4 +15,5 @@ namespace DatingSida.Models
         public string Image { get; set; } = @"Images\avatar.png";
        
     }
+   
 }

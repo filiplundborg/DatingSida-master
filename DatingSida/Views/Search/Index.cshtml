@@ -1,0 +1,37 @@
+﻿@model DatingSida.Models.ViewModel.AllUsersProfilesViewModel
+
+@{
+    ViewBag.Title = "Visar profiler";
+}
+
+<h2>Visa profiler</h2>
+<input type="text" id="srcProfiles" class="form-control"/>
+
+<table class="table">
+    <tr>
+        <th>Bild</th>
+        <th>Användarnamn</th>
+        <th>För- och Efternamn</th>
+        <th>Beskrivning</th>
+    </tr>
+    @foreach (var item in Model.Users)
+    {
+    <tr>
+        <td><img src=@item.Image class="img-circle" style="width: 10%; max-width: 200px; max-height: 200px;" /></td>
+        <td>@item.UserName</td>
+        <td>@item.Firstname @item.Lastname</td>
+        <td>@item.Description.....</td>
+        <td>@Html.ActionLink("Besök", "FinnsEjÄnnu", new {username = item.UserName }, htmlAttributes: new { @class = "btn btn-primary" })</td>
+    </tr>
+    }
+</table>
+
+@section Scripts{
+    <script>
+
+
+    </script>
+    
+    
+    }
+
