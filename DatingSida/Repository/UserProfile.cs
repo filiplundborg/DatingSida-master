@@ -16,6 +16,11 @@ namespace DatingSida.Repository
             var user = db.Users.Single(i => i.Id == userId);
             return user;
         }
+        public ApplicationUser GetUserByName(string username)
+        {
+            var user = db.Users.Single(i => i.UserName == username);
+            return user;
+        }
         public void SaveImagePath(string imgPath, string userId) {
             var user = this.GetUser(userId);
             user.Image = imgPath;

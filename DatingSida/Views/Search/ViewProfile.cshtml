@@ -1,0 +1,51 @@
+﻿@model DatingSida.Models.UserProfileIndexViewModel
+
+@{
+    ViewBag.Title = "Min profil";
+}
+
+<head>
+    <link href="~/Content/Site.css" rel="stylesheet" type="text/css" />
+</head>
+<div class="container" style="padding-left: 10%;">
+    <h2>Min Profil</h2>
+    <div class="col-md-5">
+        <img src="../@Model.Image" class="img-responsive" style="width: 20%; max-height: 400px; min-height: 200px; max-width: 400px; min-width: 200px; " />
+    </div>
+    <div class="col-md-7 text-center">
+        <h2>@Model.Firstname @Model.Lastname</h2>
+        <h4>Användarnamn: @Model.Username</h4>
+        <div class="row">
+
+            <h4 style="font-weight:bold">Beskrivning</h4>
+            <p>@Model.Description</p>
+
+        </div>
+    </div>
+</div>
+<div class="container">
+    @using (Html.BeginForm("", "", FormMethod.Post, new { enctype = "multipart/form-data" }))
+    {
+        <hr />
+        <h4><b>Gör ett inlägg</b></h4>
+
+
+
+    }
+    <h2 style="padding-left: 42.5%">Min vägg</h2>
+    @if (Model.Messages != null && Model.Messages.Count > 0)
+    {
+        foreach (var item in Model.Messages)
+        {
+            <div class="list-group">
+                <a href="#" class="list-group-item active">
+                    <h4 class="list-group-item-heading">@item.Sender.Firstname @item.Sender.Lastname <b>Datum</b> @item.DateSent</h4>
+                    <p class="list-group-item-text">@item.Post</p>
+                </a>
+            </div>
+        }
+
+    }
+
+</div>
+<hr />

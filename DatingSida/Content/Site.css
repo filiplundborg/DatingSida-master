@@ -7,6 +7,7 @@
 .body-content {
     padding-left: 15px;
     padding-right: 15px;
+    padding-bottom: 3%;
 }
 
 /* Override the default bootstrap behavior where horizontal description lists 
@@ -22,6 +23,7 @@ select,
 textarea {
     max-width: 280px;
 }
+
 
 .searchbar {
     margin-bottom: auto;
@@ -39,13 +41,18 @@ textarea {
     background: none;
     width: 0;
     line-height: 40px;
-    transition: width 0.4s linear;
+   
+}
+
+.searchbar > .search_input {
+    padding: 0 10px;
+    width: 450px;
 }
 
 .searchbar:hover > .search_input {
     padding: 0 10px;
     width: 450px;
-    transition: width 0.4s linear;
+    
 }
 
 .searchbar:hover > .search_icon {
@@ -61,6 +68,7 @@ textarea {
     justify-content: center;
     align-items: center;
     border-radius: 50%;
-    color: brown;
-    
+    color: white;
 }
+
+
