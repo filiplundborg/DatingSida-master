@@ -4,8 +4,9 @@
     ViewBag.Title = "Min profil";
 }
 
-<h2>Min Profil</h2>
-<div class="container">
+
+<div class="container" style="padding-left: 10%;">
+    <h2>Min Profil</h2>
     <div class="col-md-5">
         
         <img src="@Model.Image" class="img-responsive" style="width: 20%; max-height: 400px; min-height: 200px; max-width: 400px; min-width: 200px; " />
@@ -21,15 +22,33 @@
          }
 
         </div>
-    <div class="col-md-7">
+    <div class="col-md-7 text-center">
         <h2>@Model.Firstname @Model.Lastname</h2>
-        <h4>@Model.Username</h4>
+        <h4>Användarnamn: @Model.Username</h4>
+        <div class="row">
+            
+                <h4 style="font-weight:bold">Beskrivning</h4>
+                <p>@Model.Description</p>
+            
+        </div>
+    </div>
+</div>
+<div class="container">
+    <h2 style="padding-left: 42.5%">Min vägg</h2>
+    <div class="list-group">
+        <a href="#" class="list-group-item active">
+            <h4 class="list-group-item-heading">Här ska användarnamnet stå</h4>
+            <p class="list-group-item-text">Öl!?</p>
+        </a>
+        <a href="#" class="list-group-item">
+            <h4 class="list-group-item-heading">Här ska användarnamnet stå</h4>
+            <p class="list-group-item-text">Kul profilbild!</p>
+        </a>
+        <a href="#" class="list-group-item">
+            <h4 class="list-group-item-heading">Här ska användarnamnet stå</h4>
+            <p class="list-group-item-text">Dejt på fredag snygging?</p>
+        </a>
     </div>
 </div>
 <hr />
-<div class="row">
-    <div class="col-md-10 text-center">
-        <h4>Beskrivning</h4>
-        <p>@Model.Description</p>
-    </div>
-</div>
+
