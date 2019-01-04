@@ -5,6 +5,16 @@
     ViewBag.Title = "Ändra uppgifter";
 }
 
+<style>
+    #TheButton{
+        margin-left : 200px;
+        margin-top: 10px;
+       
+    }
+  
+    
+</style>
+
 <h2>@ViewBag.Title.</h2>
 
 @using (Html.BeginForm("EditProfile", "UserProfile", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
@@ -20,15 +30,18 @@
         </div>
     </div>
     <div class="form-group">
-        @Html.LabelFor(m => m.Password, new { @class = "col-md-2 control-label" })
+        @Html.LabelFor(m => m.Password, new { @class = "col-md-2 control-label"})
         <div class="col-md-10">
-            @Html.PasswordFor(m => m.Password, new { @class = "form-control" })
+            @Html.PasswordFor(m => m.Password, new { @class = "form-control", @id = "password1" })
         </div>
     </div>
     <div class="form-group">
         @Html.LabelFor(m => m.ConfirmPassword, new { @class = "col-md-2 control-label" })
         <div class="col-md-10">
-            @Html.PasswordFor(m => m.ConfirmPassword, new { @class = "form-control" })
+            @Html.PasswordFor(m => m.ConfirmPassword, new { @class = "form-control", @id = "password2" })
+        </div>
+        <div class="PasswordButton">
+            <input type="button" class="btn btn-default" id="TheButton" value="Ändra lösenord" />
         </div>
     </div>
     <div class="form-group">
@@ -71,4 +84,16 @@
 
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
+    <script>
+        $(document).ready(function () {
+            $('#password1').attr("disabled", "disabled");
+            $('#password2').attr("disabled", "disabled");
+
+            $('#TheButton').click(function () {
+                $('#password1').removeAttr("disabled");
+                $('#password2').removeAttr("disabled");
+            });
+        });
+    </script>
+    
 }

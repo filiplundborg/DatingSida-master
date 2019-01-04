@@ -8,6 +8,8 @@ using Microsoft.AspNet.Identity;
 using System.IO;
 using DatingSida.Repository;
 
+
+
 namespace DatingSida.Controllers
 {
     [Authorize]
@@ -58,12 +60,23 @@ namespace DatingSida.Controllers
             var profile = new UserProfile();
             var userId = User.Identity.GetUserId().ToString();
             var user = profile.GetUser(userId);
+
+          
+
+            if(user.Gender == "Man") {
+                model.Gender = Gender.Man;
+            }
+
+            else if(user.Gender == "Kvinna")
+            {
+                model.Gender = Gender.Kvinna;
+            }
+            
             
 
             model.Firstname = user.Firstname;
             model.Lastname = user.Lastname;
             model.Username = user.UserName;
-           // model.Gender = 
             model.Description = user.Description;
             model.Email = user.Email;
 

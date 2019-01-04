@@ -26,25 +26,26 @@
 <div class="container">
     @using (Html.BeginForm("", "", FormMethod.Post, new { enctype = "multipart/form-data" }))
     {
-        <h4>Gör ett inlägg</h4>
         <hr />
-    
+        <h4><b>Gör ett inlägg</b></h4>
+
+
 
     }
     <h2 style="padding-left: 42.5%">Min vägg</h2>
-    <div class="list-group">
-        <a href="#" class="list-group-item active">
-            <h4 class="list-group-item-heading">Här ska användarnamnet stå</h4>
-            <p class="list-group-item-text">Öl!?</p>
-        </a>
-        <a href="#" class="list-group-item">
-            <h4 class="list-group-item-heading">Här ska användarnamnet stå</h4>
-            <p class="list-group-item-text">Kul profilbild!</p>
-        </a>
-        <a href="#" class="list-group-item">
-            <h4 class="list-group-item-heading">Här ska användarnamnet stå</h4>
-            <p class="list-group-item-text">Dejt på fredag snygging?</p>
-        </a>
-    </div>
+    @if (Model.Messages != null && Model.Messages.Count > 0)
+    {
+        foreach (var item in Model.Messages)
+        {
+            <div class="list-group">
+                <a href="#" class="list-group-item active">
+                    <h4 class="list-group-item-heading">@item.Sender.Firstname @item.Sender.Lastname <b>Datum</b> @item.DateSent</h4>
+                    <p class="list-group-item-text">@item.Post</p>
+                </a>
+            </div>
+        }
+
+    }
+
 </div>
 <hr />
