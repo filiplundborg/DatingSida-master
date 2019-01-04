@@ -1,5 +1,6 @@
 ﻿@model DatingSida.Models.EditUserProfileViewModel
 
+
 @{
     ViewBag.Title = "Ändra uppgifter";
 }
@@ -9,7 +10,7 @@
 @using (Html.BeginForm("EditProfile", "UserProfile", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
 {
     @Html.AntiForgeryToken()
-    <h4>Skapa en ny användare</h4>
+    <h4>Ändra dina uppgifter</h4>
     <hr />
     @Html.ValidationSummary("", new { @class = "text-danger" })
     <div class="form-group">
@@ -62,6 +63,7 @@
     </div>
     <div class="form-group">
         <div class="col-md-offset-2 col-md-10">
+
             <input type="submit" class="btn btn-default" value="Spara" />
         </div>
     </div>
