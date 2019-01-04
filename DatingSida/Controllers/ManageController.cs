@@ -50,24 +50,7 @@ namespace DatingSida.Controllers
             }
         }
 
-        //
-        // GET: /Manage/Index
-        public async Task<ActionResult> Index(ManageMessageId? message)
-        {
-            ViewBag.StatusMessage =
-                message == ManageMessageId.ChangePasswordSuccess ? "Your password has been changed."
-                : message == ManageMessageId.SetPasswordSuccess ? "Your password has been set."
-                : message == ManageMessageId.SetTwoFactorSuccess ? "Your two-factor authentication provider has been set."
-                : message == ManageMessageId.Error ? "An error has occurred."
-                : message == ManageMessageId.AddPhoneSuccess ? "Your phone number was added."
-                : message == ManageMessageId.RemovePhoneSuccess ? "Your phone number was removed."
-                : "";
 
-            var userId = User.Identity.GetUserId();
-            var model = new EditUserProfileViewModel();
-          
-            return View(model);
-        }
 
         //
         // POST: /Manage/RemoveLogin
@@ -125,7 +108,24 @@ namespace DatingSida.Controllers
             return View(model);
         }
 
-     
+        //
+        // GET: /Manage/Index
+        //public async Task<ActionResult> Index(ManageMessageId? message)
+        //{
+        //    ViewBag.StatusMessage =
+        //        message == ManageMessageId.ChangePasswordSuccess ? "Your password has been changed."
+        //        : message == ManageMessageId.SetPasswordSuccess ? "Your password has been set."
+        //        : message == ManageMessageId.SetTwoFactorSuccess ? "Your two-factor authentication provider has been set."
+        //        : message == ManageMessageId.Error ? "An error has occurred."
+        //        : message == ManageMessageId.AddPhoneSuccess ? "Your phone number was added."
+        //        : message == ManageMessageId.RemovePhoneSuccess ? "Your phone number was removed."
+        //        : "";
+
+        //    var userId = User.Identity.GetUserId();
+        //    var model = new EditUserProfileViewModel();
+
+        //    return View(model);
+        //}
 
         //
         // POST: /Manage/SetPassword
