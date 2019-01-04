@@ -25,7 +25,7 @@
         @foreach (var item in Model.Users)
         {
             <tr class="removeData">
-                <td class="removeData"><img src=@item.Image class="img-circle" style="width: 10%; max-width: 100px; max-height: 100px; min-width: 50px; min-height: 50px;" /></td>
+                <td class="removeData"><img src="@item.Image" class="img-circle" style="width: 10%; max-width: 100px; max-height: 100px; min-width: 50px; min-height: 50px;" /></td>
                 <td class="removeData">@item.UserName</td>
                 <td class="removeData">@item.Firstname @item.Lastname</td>
                 <td class="removeData">@item.Description.Substring(0, 15) .....</td>
