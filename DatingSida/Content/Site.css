@@ -44,6 +44,11 @@ textarea {
    
 }
 
+.searchbar > .search_input {
+    padding: 0 10px;
+    width: 450px;
+}
+
 .searchbar:hover > .search_input {
     padding: 0 10px;
     width: 450px;
@@ -65,3 +70,5 @@ textarea {
     border-radius: 50%;
     color: white;
 }
+
+
