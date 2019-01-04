@@ -51,10 +51,38 @@ namespace DatingSida.Controllers
             return RedirectToAction("Index");
         }
 
-        public ActionResult EditProfile(EditUserProfileViewModel model)
+
+        public ActionResult EditProfile()
         {
+            var model = new EditUserProfileViewModel();
+            var profile = new UserProfile();
+            var userId = User.Identity.GetUserId().ToString();
+            var user = profile.GetUser(userId);
+            
+
+            model.Firstname = user.Firstname;
+            model.Lastname = user.Lastname;
+            model.Username = user.UserName;
+           // model.Gender = 
+            model.Description = user.Description;
+            model.Email = user.Email;
 
             return View(model);
+        }
+
+        [HttpPost]
+        public ActionResult EditProfile(EditUserProfileViewModel model)
+        {   if (0 < 2)
+            {
+                var user = User.Identity.GetUserName();
+                model.Username = user;
+                return RedirectToAction("Index");
+            }
+
+            else
+            {
+                return View(model);
+            }
         }
     }
 }
