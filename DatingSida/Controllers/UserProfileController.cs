@@ -6,6 +6,7 @@ using System.Web;
 using System.Web.Mvc;
 using Microsoft.AspNet.Identity;
 using System.IO;
+using DatingSida.Repository;
 
 namespace DatingSida.Controllers
 {
@@ -14,12 +15,13 @@ namespace DatingSida.Controllers
     {
         ApplicationDbContext db = new ApplicationDbContext();
 
+        public UserProfile profile = new UserProfile();
+
         // GET: UserProfile
         public ActionResult Index()
         {
+            var user = profile.GetUser(User.Identity.GetUserId());
 
-            var userId = User.Identity.GetUserId();
-            var user = db.Users.Single(i => i.Id == userId);
             var viewModel = new UserProfileIndexViewModel {
                 Username = user.UserName,
                 Firstname = user.Firstname,
@@ -41,11 +43,8 @@ namespace DatingSida.Controllers
                 var profileImagePath = @"Images\" + pic;
 
                 //Hämtar användaren, vi borde dock göra en statisk metod som returnerar användaren då denna kommer att användas ofta.
-                var userId = User.Identity.GetUserId();
-
-                var user = db.Users.Single(i => i.Id == userId);
-                user.Image = profileImagePath;
-                db.SaveChanges();
+                var user = profile.GetUser(User.Identity.GetUserId());
+                profile.SaveImagePath(profileImagePath, User.Identity.GetUserId());              
             }
            
 
