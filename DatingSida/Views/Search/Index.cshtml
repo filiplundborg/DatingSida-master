@@ -3,9 +3,19 @@
 @{
     ViewBag.Title = "Visar profiler";
 }
+<head>
+    <link href="~/Content/Site.css" rel="stylesheet" type="text/css" />
+</head>
 
 <h2>Visa profiler</h2>
-<input type="text" id="srcProfiles" class="form-control"/>
+@*<input type="text" id="srcProfiles" class="form-control"/>*@
+<div class="d-flex justify-content-left h-100">
+    <div class="searchbar">
+        <input class="search_input"  id="srcProfiles" type="text" name="" placeholder="Sök efter användarnamn...">
+        <a href="#" class="search_icon"><i class="fas fa-search"></i>Sök</a>
+    </div>
+</div>
+
 
 <table class="table">
     <tr>
@@ -16,13 +26,13 @@
     </tr>
     @foreach (var item in Model.Users)
     {
-    <tr class="removeData">
-        <td class="removeData"><img src=@item.Image class="img-circle" style="width: 10%; max-width: 100px; max-height: 100px; min-width: 50px; min-height: 50px;" /></td>
-        <td class="removeData">@item.UserName</td>
-        <td class="removeData">@item.Firstname @item.Lastname</td>
-        <td class="removeData">@item.Description.Substring(0,15).....</td>
-        <td class="removeData">@Html.ActionLink("Besök", "ViewProfile", new { username = item.UserName }, htmlAttributes: new { @class = "btn btn-primary" })</td>
-    </tr>
+        <tr class="removeData">
+            <td class="removeData"><img src=@item.Image class="img-circle" style="width: 10%; max-width: 100px; max-height: 100px; min-width: 50px; min-height: 50px;" /></td>
+            <td class="removeData">@item.UserName</td>
+            <td class="removeData">@item.Firstname @item.Lastname</td>
+            <td class="removeData">@item.Description.....</td>
+            <td class="removeData">@Html.ActionLink("Besök", "ViewProfile", new { username = item.UserName }, htmlAttributes: new { @class = "btn btn-primary" })</td>
+        </tr>
     }
 </table>
 
@@ -31,9 +41,9 @@
         var items = null;
         $(document).ready(function () {
             $.get("/api/search/users",
-                   function (data) {
-                       items = data;
-                       
+                function (data) {
+                    items = data;
+                    //alert(items + data);
                 })
             $("#srcProfiles").on("keyup", function () {
                 $(".removeData").remove();
@@ -41,25 +51,15 @@
                 if (text == "") {
                     for (var i = 0; i < items.length; i++) {
                         $("table").append(
-                            "<tr class='removeData'><td class='removeData'><img src=" + items[i].Image + " class='img-circle' style='width: 10%; max-width: 100px; max-height: 100px; min-width: 50px; min-height: 50px;' /></td><td class='removeData'>" + items[i].UserName + "</td><td class='removeData'>" + items[i].Firstname + " " + items[i].Lastname + "</td><td class='removeData'>" + items[i].Description.substring(0,15) + "...</td><td class='removeData'><a class='btn btn-primary' href=" + "/Search/ViewProfile?username=" + items[i].UserName + "> Besök</a ></td ></tr >"
+                            "<tr class='removeData'><td class='removeData'><img src=" + items[i].Image + " class='img-circle' style='width: 10%; max-width: 100px; max-height: 100px; min-width: 50px; min-height: 50px;' /></td><td class='removeData'>" + items[i].UserName + "</td><td class='removeData'>" + items[i].Firstname + " " + items[i].Lastname + "</td><td class='removeData'>" + items[i].Description + "...</td><td class='removeData'><button class='btn btn-primary' href=" + "/Search/ViewProfile?username=" + items[i].UserName + "> Besök</button ></td ></tr >"
                         );
                     }
-                } else {
-                    
-                    for (var i = 0; i < items.length; i++) {
-                        if (items[i].UserName.startsWith(text)) {
-                            $("table").append(
-                                "<tr class='removeData'><td class='removeData'><img src=" + items[i].Image + " class='img-circle' style='width: 10%; max-width: 100px; max-height: 100px; min-width: 50px; min-height: 50px;' /></td><td class='removeData'>" + items[i].UserName + "</td><td class='removeData'>" + items[i].Firstname + " " + items[i].Lastname + "</td><td class='removeData'>" + items[i].Description.substring(0, 15) + "...</td><td class='removeData'><a class='btn btn-primary' href=" + "/Search/ViewProfile?username=" + items[i].UserName + "> Besök</a ></td ></tr >"
-                            );
-                        }
-                    }
-                    
                 }
             });
         });
 
     </script>
-    
-    
-    }
+
+
+}
 
