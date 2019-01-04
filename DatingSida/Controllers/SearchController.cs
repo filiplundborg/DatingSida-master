@@ -10,6 +10,7 @@ using System.Web.Mvc;
 
 namespace DatingSida.Controllers
 {
+    [Authorize]
     public class SearchController : Controller
     {
         public UserProfile profile = new UserProfile();
