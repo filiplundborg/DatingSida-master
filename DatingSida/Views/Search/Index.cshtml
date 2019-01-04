@@ -33,7 +33,7 @@
             $.get("/api/search/users",
                    function (data) {
                        items = data;
-                       //alert(items + data);
+                       
                 })
             $("#srcProfiles").on("keyup", function () {
                 $(".removeData").remove();
@@ -44,6 +44,16 @@
                             "<tr class='removeData'><td class='removeData'><img src=" + items[i].Image + " class='img-circle' style='width: 10%; max-width: 100px; max-height: 100px; min-width: 50px; min-height: 50px;' /></td><td class='removeData'>" + items[i].UserName + "</td><td class='removeData'>" + items[i].Firstname + " " + items[i].Lastname + "</td><td class='removeData'>" + items[i].Description + "...</td><td class='removeData'><button class='btn btn-primary' href=" + "/Search/ViewProfile?username=" + items[i].UserName + "> Besök</button ></td ></tr >"
                         );
                     }
+                } else {
+                    
+                    for (var i = 0; i < items.length; i++) {
+                        if (items[i].UserName.startsWith(text)) {
+                            $("table").append(
+                                "<tr class='removeData'><td class='removeData'><img src=" + items[i].Image + " class='img-circle' style='width: 10%; max-width: 100px; max-height: 100px; min-width: 50px; min-height: 50px;' /></td><td class='removeData'>" + items[i].UserName + "</td><td class='removeData'>" + items[i].Firstname + " " + items[i].Lastname + "</td><td class='removeData'>" + items[i].Description + "...</td><td class='removeData'><button class='btn btn-primary' href=" + "/Search/ViewProfile?username=" + items[i].UserName + "> Besök</button ></td ></tr >"
+                            );
+                        }
+                    }
+                    
                 }
             });
         });
