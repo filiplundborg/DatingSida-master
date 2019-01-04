@@ -51,5 +51,11 @@ namespace DatingSida.Controllers
 
             return RedirectToAction("Index");
         }
+
+        public ActionResult EditProfile(EditUserProfileViewModel model)
+        {
+
+            return View(model);
+        }
     }
 }
