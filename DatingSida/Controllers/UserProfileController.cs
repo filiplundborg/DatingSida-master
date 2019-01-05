@@ -30,6 +30,7 @@ namespace DatingSida.Controllers
                 Lastname = user.Lastname,
                 Image = user.Image,
                 Description = user.Description,
+                Messages = user.MessageReceived as List<Message>
             };
             return View(viewModel);
         }

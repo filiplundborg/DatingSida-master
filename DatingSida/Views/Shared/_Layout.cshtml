@@ -53,6 +53,22 @@
             </div>
         </div>
     </div>
+    <div class="modal" tabindex="-1" role="dialog" id="remove">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Ta Bort</h5>
+                </div>
+                <div class="modal-body">
+                    <p id="warning-message" class="text-warning">Vill du verkligen ta bort posten?</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" id="regret" class="btn btn-success">Ångra</button>
+                    <button type="button" id="removePost" class="btn btn-danger">Ta Bort</button>
+                </div>
+            </div>
+        </div>
+    </div>
 
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")

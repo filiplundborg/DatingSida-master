@@ -36,20 +36,55 @@
     </div>
 </div>
 <div class="container">
-    <h2 style="padding-left: 42.5%">Min vägg</h2>
-    <div class="list-group">
-        <a href="#" class="list-group-item active">
-            <h4 class="list-group-item-heading">Här ska användarnamnet stå</h4>
-            <p class="list-group-item-text">Öl!?</p>
-        </a>
-        <a href="#" class="list-group-item">
-            <h4 class="list-group-item-heading">Här ska användarnamnet stå</h4>
-            <p class="list-group-item-text">Kul profilbild!</p>
-        </a>
-        <a href="#" class="list-group-item">
-            <h4 class="list-group-item-heading">Här ska användarnamnet stå</h4>
-            <p class="list-group-item-text">Dejt på fredag snygging?</p>
-        </a>
-    </div>
+
+    @if (Model.Messages != null && Model.Messages.Count > 0)
+    {
+        foreach (var item in Model.Messages)
+        {
+            <div class="list-group-active col-lg-10 center-block" style="border: 2px solid #000; border-radius: 5px; padding: 2%; margin-top: 2%; margin-bottom: 2%;">
+                <h4 class="list-group-item-heading">@item.Sender.UserName</h4>
+                <h6 class="list-group-item-info">@item.Sender.Firstname @item.Sender.Lastname </h6>
+                <h6 class="list-group-item-info">@item.DateSent</h6>
+                <p class="list-group-item-text">@item.Post </p>
+                <p class="col-lg-offset-10"><button class="btn btn-danger customClass" id="@item.MessageId" value="@item.MessageId">Ta Bort</button></p>
+            </div>
+        }
+
+    }
+
 </div>
 <hr />
+@section Scripts{
+    <script>
+        var id = null;
+        $(".customClass").on("click", function (e) {
+            $("#remove").show();
+            id = e.target.getAttribute("id");
+        });
+
+        $("#regret").on("click", function () {
+            $("#remove").hide();
+        })
+      
+        $("#removePost").on("click", function () {
+            $("#remove").hide();
+          
+            $.ajax({
+                url: "/api/message/delete",
+                type: "Post",
+                data: JSON.stringify([id]),
+                contentType: "application/json; charset=utf-8",
+                success: function () {
+                    location.reload();
+                },
+                error: function () {
+                    $("#show").show();
+                    $("#message-id").append("Något har gått fel, prova igen!")
+                    location.reload();
+                }
+            })
+        });
+
+    </script>
+
+}

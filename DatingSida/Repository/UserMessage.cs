@@ -56,5 +56,17 @@ namespace DatingSida.Repository
             db.SaveChanges();
 
         }
+        public void DeleteMessage(int id) {
+            try
+            {
+                var message = db.Messages.Find(id);
+                db.Messages.Remove(message);
+                db.SaveChanges();
+            }
+            catch {
+                throw new Exception();
+            }
+
+        }
     }
 }

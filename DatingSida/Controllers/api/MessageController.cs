@@ -36,6 +36,22 @@ namespace DatingSida.Controllers.api
             }
 
         }
-   
+        [Route("delete")]
+        [HttpPost]
+        public IHttpActionResult DeleteMessage(List<string> id)
+        {
+            try
+            {
+                int messageID = int.Parse(id[0]);
+                usermessage.DeleteMessage(messageID);
+                return Ok();
+            }
+            catch
+            {
+                return BadRequest();
+            }
+
+        }
+
     }
 }
