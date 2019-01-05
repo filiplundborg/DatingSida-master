@@ -13,15 +13,20 @@ namespace DatingSida.Models
         [Display(Name = "Email")]
         public string Email { get; set; }
 
-        
         [StringLength(100, ErrorMessage = "{0} måste vara minst {2} tecken långt.", MinimumLength = 6)]
         [DataType(DataType.Password)]
-        [Display(Name = "Lösenord")]
+        [Display(Name = "Nuvarande lösenord")]
         public string Password { get; set; }
+
+
+        [StringLength(100, ErrorMessage = "{0} måste vara minst {2} tecken långt.", MinimumLength = 6)]
+        [DataType(DataType.Password)]
+        [Display(Name = "Nytt lösenord")]
+        public string newPassword { get; set; }
 
         [DataType(DataType.Password)]
         [Display(Name = "Bekräfta lösenord")]
-        [Compare("Password", ErrorMessage = "Lösenorden måste stämma överens")]
+        [Compare("newPassword", ErrorMessage = "Lösenorden måste stämma överens")]
         public string ConfirmPassword { get; set; }
 
         

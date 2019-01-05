@@ -7,14 +7,17 @@ using System.Web.Mvc;
 using Microsoft.AspNet.Identity;
 using System.IO;
 using DatingSida.Repository;
-
-
+using System.Data.Entity.Migrations;
+using Microsoft.AspNet.Identity.Owin;
+using Microsoft.AspNet.Identity.EntityFramework;
 
 namespace DatingSida.Controllers
 {
     [Authorize]
     public class UserProfileController : Controller
     {
+        private ApplicationUserManager _userManager;
+
         ApplicationDbContext db = new ApplicationDbContext();
 
         public UserProfile profile = new UserProfile();
@@ -54,7 +57,7 @@ namespace DatingSida.Controllers
             return RedirectToAction("Index");
         }
 
-
+        [HttpGet]
         public ActionResult EditProfile()
         {
             var model = new EditUserProfileViewModel();
@@ -72,9 +75,9 @@ namespace DatingSida.Controllers
             {
                 model.Gender = Gender.Kvinna;
             }
-            
-            
 
+
+            
             model.Firstname = user.Firstname;
             model.Lastname = user.Lastname;
             model.Username = user.UserName;
@@ -84,19 +87,86 @@ namespace DatingSida.Controllers
             return View(model);
         }
 
+
+
         [HttpPost]
         public ActionResult EditProfile(EditUserProfileViewModel model)
-        {   if (0 < 2)
+        {
+            var profile = new UserProfile();
+            var userId = User.Identity.GetUserId().ToString();
+            var user = profile.GetUser(userId);
+            
+            
+
+
+            if (ModelState.IsValid)
             {
-                var user = User.Identity.GetUserName();
-                model.Username = user;
+                if (model.Firstname != user.Firstname)
+                {
+                    user.Firstname = model.Firstname;
+
+                }
+
+                else if (model.Lastname != user.Lastname)
+                {
+                    user.Lastname = model.Lastname;
+
+                }
+
+                else if (model.Username != user.UserName)
+                {
+                    user.UserName = model.Username;
+
+                }
+
+                else if (model.Description != user.Description)
+                {
+                    user.Description = model.Description;
+                }
+
+                else if (model.Email != user.Email)
+                {
+                    user.Email = model.Email;
+                }
+
+                else if (model.Gender == Gender.Kvinna)
+                {
+                    if (user.Gender != "Kvinna")
+                    {
+                        user.Gender = "Kvinna";
+                    }
+                }
+
+                else if (model.Gender == Gender.Man)
+                {
+                    if (user.Gender != "Man")
+                    {
+                        user.Gender = "Man";
+                    }
+                }
+
+                //else if (model.newPassword != "" && model.ConfirmPassword != "" && model.Password != "")
+                //{
+                //    if (model.newPassword == model.ConfirmPassword)
+                //    {
+                                                    
+
+                //    }
+
+                //}
+
+                db.Users.AddOrUpdate(user);
+                db.SaveChanges();
                 return RedirectToAction("Index");
             }
-
             else
             {
                 return View(model);
             }
+            
+            
+
+            
         }
     }
 }

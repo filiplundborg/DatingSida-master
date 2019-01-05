@@ -6,13 +6,10 @@
 }
 
 <style>
-    #TheButton{
-        margin-left : 200px;
+    #TheButton {
+        margin-left: 200px;
         margin-top: 10px;
-       
     }
-  
-    
 </style>
 
 <h2>@ViewBag.Title.</h2>
@@ -30,9 +27,15 @@
         </div>
     </div>
     <div class="form-group">
-        @Html.LabelFor(m => m.Password, new { @class = "col-md-2 control-label"})
+        @Html.LabelFor(m => m.Password, new { @class = "col-md-2 control-label" })
         <div class="col-md-10">
-            @Html.PasswordFor(m => m.Password, new { @class = "form-control", @id = "password1" })
+            @Html.PasswordFor(m => m.Password, new { @class = "form-control", @id = "password3" })
+        </div>
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(m => m.newPassword, new { @class = "col-md-2 control-label" })
+        <div class="col-md-10">
+            @Html.PasswordFor(m => m.newPassword, new { @class = "form-control", @id = "password1" })
         </div>
     </div>
     <div class="form-group">
@@ -80,6 +83,8 @@
             <input type="submit" class="btn btn-default" value="Spara" />
         </div>
     </div>
+
+    <a href="~/Manage/ChangePassword">Klicka</a>
 }
 
 @section Scripts {
@@ -88,12 +93,14 @@
         $(document).ready(function () {
             $('#password1').attr("disabled", "disabled");
             $('#password2').attr("disabled", "disabled");
+            $('#password3').attr("disabled", "disabled");
 
             $('#TheButton').click(function () {
                 $('#password1').removeAttr("disabled");
                 $('#password2').removeAttr("disabled");
+                $('#password3').removeAttr("disabled");
             });
         });
     </script>
-    
+
 }
