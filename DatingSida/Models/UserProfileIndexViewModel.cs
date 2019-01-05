@@ -13,6 +13,7 @@ namespace DatingSida.Models
         public string Gender { get; set; }
         public string Description { get; set; }
         public string Image { get; set; } = @"Images\avatar.png";
+
         public List<Message> Messages { get; set; }
 
         public UserProfileIndexViewModel() {

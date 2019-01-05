@@ -38,6 +38,21 @@
             <p>&copy; @DateTime.Now.Year - My </p>
         </footer>
     </div>
+    <div class="modal" tabindex="-1" role="dialog" id="show">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Meddelande</h5>
+                </div>
+                <div class="modal-body">
+                    <p id="message-id"></p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" id="close" class="btn btn-primary">Okej</button>
+                </div>
+            </div>
+        </div>
+    </div>
 
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")

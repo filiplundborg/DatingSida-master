@@ -205,6 +205,7 @@
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\api\MessageController.cs" />
     <Compile Include="Controllers\api\SearchApiController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
@@ -220,7 +221,9 @@
     <Compile Include="Models\Message.cs" />
     <Compile Include="Models\UserProfileIndexViewModel.cs" />
     <Compile Include="Models\ViewModel\AllUsersProfilesViewModel.cs" />
+    <Compile Include="Models\ViewModel\UserMessageViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Repository\UserMessage.cs" />
     <Compile Include="Repository\UserProfile.cs" />
     <Compile Include="Startup.cs" />
   </ItemGroup>
