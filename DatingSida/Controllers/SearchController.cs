@@ -14,6 +14,8 @@ namespace DatingSida.Controllers
     public class SearchController : Controller
     {
         public UserProfile profile = new UserProfile();
+        public UserMessage profileWithMessage = new UserMessage();
+
         // GET: Search
         public ActionResult Index()
         {
@@ -24,17 +26,10 @@ namespace DatingSida.Controllers
 
         [HttpGet]
         public ActionResult ViewProfile(string username) {
-            if (username != null) { 
-            var user = profile.GetUserByName(username);
-            var model = new UserProfileIndexViewModel {
-                Username = user.UserName,
-                Firstname = user.Firstname,
-                Lastname = user.Lastname,
-                Description = user.Description,
-                Image = user.Image,
-                Messages = user.MessageReceived as List<Message>
-            };
-            return View(model);
+            if (username != null) {
+               var user = profileWithMessage.GetUserMessageViewModel(username);
+        
+            return View(user);
             }
             return RedirectToAction("Index");
         }
