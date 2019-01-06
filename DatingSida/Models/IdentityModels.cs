@@ -20,6 +20,8 @@ namespace DatingSida.Models
         //Foreign keys / Navigation properties
         public virtual ICollection<Message> MessageSent { get; set; }
         public virtual ICollection<Message> MessageReceived { get; set; }
+        public virtual ICollection<Request> RequestSent { get; set; }
+        public virtual ICollection<Request> RequestReceived { get; set; }
 
         //Konstruktor för att instansiera främmande nycklar
 
@@ -42,6 +44,7 @@ namespace DatingSida.Models
     public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
     {
         public virtual DbSet<Message> Messages { get; set; }
+        public virtual DbSet<Request> Requests { get; set; }
 
         public ApplicationDbContext()
             : base("DefaultConnection", throwIfV1Schema: false)
