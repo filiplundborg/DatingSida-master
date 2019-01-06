@@ -24,16 +24,16 @@
         }
 
     </div>
-    <div class="col-md-7">
+    <div class="">
         <h2>@Model.Firstname @Model.Lastname</h2>
         <h4>@Model.Username</h4>
         
 
             <p>@Model.Description</p>
-            @Html.ActionLink("Ändra Profil", "EditProfile", null,  htmlAttributes: new {@class="btn btn-primary" })
-            <div id="col-md-7">
-               
-                    <h2>Skickade Meddelanden</h2>
+            @Html.ActionLink("Ändra Profil", "EditProfile", null,  htmlAttributes: new {@class="btn btn-primary" })<br />
+            <button class="btn btn-primary" id="toggleBtn" style="margin-top: 2%;">Visa Skickade Poster</button>
+            <div class="col-md-7" id="hideMessage" style="display: none;">
+              
                     @if (Model.MessagesSent != null && Model.MessagesSent.Count > 0)
                     {
                         foreach (var item in Model.MessagesSent)
@@ -59,7 +59,7 @@
     {
         foreach (var item in Model.Messages)
         {
-            <div class="list-group-active col-lg-10 center-block" style="border: 2px solid #000; border-radius: 5px; padding: 2%; margin-top: 2%; margin-bottom: 2%;">
+            <div class="list-group-active col-lg-10 center-block" style="border:2px solid #000; border-radius: 5px; padding: 2%; margin-top: 2%; margin-bottom: 2%;">
                 <h4 class="list-group-item-heading">@item.Sender.UserName</h4>
                 <h6 class="list-group-item-info">@item.Sender.Firstname @item.Sender.Lastname </h6>
                 <h6 class="list-group-item-info">@item.DateSent</h6>
@@ -104,6 +104,10 @@
                 }
             })
         });
+
+        $("#toggleBtn").on("click", function () {
+            $("#hideMessage").fadeToggle(500);
+        })
 
     </script>
 
