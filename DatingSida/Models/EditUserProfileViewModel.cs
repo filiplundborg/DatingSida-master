@@ -15,7 +15,7 @@ namespace DatingSida.Models
 
         [StringLength(100, ErrorMessage = "{0} måste vara minst {2} tecken långt.", MinimumLength = 6)]
         [DataType(DataType.Password)]
-        [Display(Name = "Nuvarande lösenord")]
+        [Display(Name = "Lösenord")]
         public string Password { get; set; }
 
 

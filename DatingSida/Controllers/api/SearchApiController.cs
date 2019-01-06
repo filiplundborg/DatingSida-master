@@ -13,7 +13,7 @@ namespace DatingSida.Controllers.api
     public class SearchApiController : ApiController
     {
         public UserProfile profile = new UserProfile();
-        // GET: api/Search
+        // GET: api/Search/
 
         [Route("users")]
         [HttpGet]

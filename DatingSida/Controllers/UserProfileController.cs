@@ -107,29 +107,29 @@ namespace DatingSida.Controllers
 
                 }
 
-                else if (model.Lastname != user.Lastname)
+                 if (model.Lastname != user.Lastname)
                 {
                     user.Lastname = model.Lastname;
 
                 }
 
-                else if (model.Username != user.UserName)
+                if (model.Username != user.UserName)
                 {
                     user.UserName = model.Username;
 
                 }
 
-                else if (model.Description != user.Description)
+                if (model.Description != user.Description)
                 {
                     user.Description = model.Description;
                 }
 
-                else if (model.Email != user.Email)
+                if (model.Email != user.Email)
                 {
                     user.Email = model.Email;
                 }
 
-                else if (model.Gender == Gender.Kvinna)
+                 if (model.Gender == Gender.Kvinna)
                 {
                     if (user.Gender != "Kvinna")
                     {
@@ -137,7 +137,7 @@ namespace DatingSida.Controllers
                     }
                 }
 
-                else if (model.Gender == Gender.Man)
+                 if (model.Gender == Gender.Man)
                 {
                     if (user.Gender != "Man")
                     {
@@ -145,15 +145,7 @@ namespace DatingSida.Controllers
                     }
                 }
 
-                //else if (model.newPassword != "" && model.ConfirmPassword != "" && model.Password != "")
-                //{
-                //    if (model.newPassword == model.ConfirmPassword)
-                //    {
-                                                    
 
-                //    }
-
-                //}
 
                 db.Users.AddOrUpdate(user);
                 db.SaveChanges();
