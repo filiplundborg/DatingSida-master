@@ -10,7 +10,7 @@
 <h2>Visa profiler</h2>
 <div class="d-flex justify-content-left h-100" style="max-width:100%">
     <div class="searchbar">
-        <input class="search_input"  id="srcProfiles" type="text" name="" placeholder="Sök efter användarnamn...">
+        <input class="search_input" id="srcProfiles" type="text" name="" placeholder="Sök efter användarnamn...">
     </div>
 </div>
 
@@ -38,25 +38,27 @@
     <script>
         var items = null;
         $(document).ready(function () {
+
             $.get("/api/search/users",
                 function (data) {
                     items = data;
-                    //alert(items + data);
+                    // alert(items + data);
                 })
+
             $("#srcProfiles").on("keyup", function () {
                 $(".removeData").remove();
                 var text = $("#srcProfiles").val();
                 if (text == "") {
                     for (var i = 0; i < items.length; i++) {
                         $("table").append(
-                            "<tr class='removeData'><td class='removeData'><img src='" + items[i].Image + "' class='img-circle' style='width: 10%; max-width: 100px; max-height: 100px; min-width: 50px; min-height: 50px;' /></td><td class='removeData'>" + items[i].UserName + "</td><td class='removeData'>" + items[i].Firstname + " " + items[i].Lastname + "</td><td class='removeData'>" + items[i].Description.substring(0,15) + "...</td><td class='removeData'><a class='btn btn-primary' href=" + "/Search/ViewProfile?username=" + items[i].UserName + "> Besök</a ></td ></tr >"
+                            "<tr class='removeData'><td class='removeData'><img src='" + items[i].Image + "' class='img-circle' style='width: 10%; max-width: 100px; max-height: 100px; min-width: 50px; min-height: 50px;' /></td><td class='removeData'>" + items[i].UserName + "</td><td class='removeData'>" + items[i].Firstname + " " + items[i].Lastname + "</td><td class='removeData'>" + items[i].Description.substring(0, 15) + "...</td><td class='removeData'><a class='btn btn-primary' href=" + "/Search/ViewProfile?username=" + items[i].UserName + "> Besök</a ></td ></tr >"
                         );
                     }
                 } else {
                     for (var i = 0; i < items.length; i++) {
-                        if (items[i].UserName.startsWith(text)) { 
-                        $("table").append(
-                            "<tr class='removeData'><td class='removeData'><img src='" + items[i].Image + "' class='img-circle' style='width: 10%; max-width: 100px; max-height: 100px; min-width: 50px; min-height: 50px;' /></td><td class='removeData'>" + items[i].UserName + "</td><td class='removeData'>" + items[i].Firstname + " " + items[i].Lastname + "</td><td class='removeData'>" + items[i].Description.substring(0, 15) + "...</td><td class='removeData'><a class='btn btn-primary' href=" + "/Search/ViewProfile?username=" + items[i].UserName + "> Besök</a ></td ></tr >"
+                        if (items[i].UserName.startsWith(text)) {
+                            $("table").append(
+                                "<tr class='removeData'><td class='removeData'><img src='" + items[i].Image + "' class='img-circle' style='width: 10%; max-width: 100px; max-height: 100px; min-width: 50px; min-height: 50px;' /></td><td class='removeData'>" + items[i].UserName + "</td><td class='removeData'>" + items[i].Firstname + " " + items[i].Lastname + "</td><td class='removeData'>" + items[i].Description.substring(0, 15) + "...</td><td class='removeData'><a class='btn btn-primary' href=" + "/Search/ViewProfile?username=" + items[i].UserName + "> Besök</a ></td ></tr >"
                             );
                         }
                     }
