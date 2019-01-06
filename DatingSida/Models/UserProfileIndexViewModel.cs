@@ -15,9 +15,10 @@ namespace DatingSida.Models
         public string Image { get; set; } = @"Images\avatar.png";
 
         public List<Message> Messages { get; set; }
-
+        public List<Message> MessagesSent { get; set; }
         public UserProfileIndexViewModel() {
             Messages = new List<Message>();
+            MessagesSent = new List<Message>();
         }
     }
    
