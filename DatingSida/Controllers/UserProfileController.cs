@@ -33,7 +33,8 @@ namespace DatingSida.Controllers
                 Lastname = user.Lastname,
                 Image = user.Image,
                 Description = user.Description,
-                Messages = user.MessageReceived as List<Message>
+                Messages = user.MessageReceived as List<Message>,
+                MessagesSent = user.MessageSent as List<Message>
             };
             return View(viewModel);
         }
@@ -56,6 +57,8 @@ namespace DatingSida.Controllers
 
             return RedirectToAction("Index");
         }
+
+
 
         [HttpGet]
         public ActionResult EditProfile()
@@ -156,9 +159,7 @@ namespace DatingSida.Controllers
                 return View(model);
             }
             
-            
-
-            
         }
+
     }
 }
