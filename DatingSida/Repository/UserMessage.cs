@@ -37,6 +37,7 @@ namespace DatingSida.Repository
                 MessagesReceived = user.MessageReceived as List<Message>,
                 ReceiverId = user.Id
             };
+          
                 return userMessageModel;
             
         }

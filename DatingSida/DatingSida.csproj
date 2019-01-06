@@ -206,6 +206,7 @@
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\api\MessageController.cs" />
+    <Compile Include="Controllers\api\RequestController.cs" />
     <Compile Include="Controllers\api\SearchApiController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
@@ -227,6 +228,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repository\UserMessage.cs" />
     <Compile Include="Repository\UserProfile.cs" />
+    <Compile Include="Repository\UserRequest.cs" />
     <Compile Include="Startup.cs" />
   </ItemGroup>
   <ItemGroup>

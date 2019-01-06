@@ -13,26 +13,28 @@
     <div class="col-md-5">
         <img src="../@Model.Image" class="img-responsive" style="width: 20%; max-height: 400px; min-height: 200px; max-width: 400px; min-width: 200px; " />
     </div>
-    <div class="col-md-7 text-center">
-        <h2>@Model.Firstname @Model.Lastname</h2>
-        <h4>Användarnamn: @Model.Username</h4>
+    <div class="col-md-7">
         <div class="row">
-
-            <h4 style="font-weight:bold">Beskrivning</h4>
+            <h2>@Model.Firstname @Model.Lastname</h2>
+            <h4>@Model.Username</h4>
             <p>@Model.Description</p>
+                @if (!Model.IsFriends)
+                {
+                    <button class="btn btn-success" id="friendRequest">Skicka Vänförfrågan</button>
+                }
 
         </div>
     </div>
 </div>
-<hr />
-<h2 class="text-center"> Min vägg</h2>
+<br />
 
-<div class="form-group-lg center-block">
 
-        <div class="form-group center-block">
-            <textarea id="textarea" cols="50" rows="3" class="form-control center-block" placeholder="Skriv ditt meddelande..." style="width: 500px !important;"></textarea>
-            <button id="send-message" class="btn btn-block btn-primary" style="margin-top: 2%;">Skicka</button>
-        </div>    
+<div class="col-md-10 center-block">
+    <h2 class="text-center"> Min vägg</h2>
+    <div class="form-group center-block">
+        <textarea id="textarea" cols="50" rows="3" class="form-control center-block" placeholder="Skriv ditt meddelande..."></textarea>
+        <button id="send-message" class="btn btn-block btn-primary" style="margin-top: 2%;">Skicka</button>
+    </div>
 </div>
 <hr />
 <div class="container">
@@ -77,7 +79,23 @@
             $("#show").hide();
             location.reload();
         })
-
+        $("#friendRequest").on("click", function () {
+        
+            $.ajax({
+                url: "/api/request/send",
+                type: "Post",
+                data: JSON.stringify(["@User.Identity.GetUserId()", "@Model.ReceiverId"]),
+                contentType: "application/json; charset=utf-8",
+                success: function () {
+                    $("#show").show();
+                    $("#message-id").append("Förfrågan har skickats!")
+                },
+                error: function () {
+                    $("#show").show();
+                    $("#message-id").append("Något har gått fel!")
+                }
+            })
+        });
     </script>
 
 }
