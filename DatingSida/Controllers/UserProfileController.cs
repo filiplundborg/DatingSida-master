@@ -10,6 +10,7 @@ using DatingSida.Repository;
 using System.Data.Entity.Migrations;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.AspNet.Identity.EntityFramework;
+using System.Xml.Serialization;
 
 namespace DatingSida.Controllers
 {
@@ -160,6 +161,32 @@ namespace DatingSida.Controllers
             }
             
         }
-
+        
+        public ActionResult SerializeProfile() {
+            try
+            {
+                var user = profile.GetUser(User.Identity.GetUserId());
+                var viewModel = new UserProfileIndexViewModel
+                {
+                    Username = user.UserName,
+                    Firstname = user.Firstname,
+                    Lastname = user.Lastname,
+                    Image = user.Image,
+                    Description = user.Description,
+                    Messages = user.MessageReceived as List<Message>,
+                    MessagesSent = user.MessageSent as List<Message>
+                };
+                using (var writer = new StreamWriter())
+                {
+                    var serializer = new XmlSerializer(viewModel.GetType());
+                    serializer.Serialize(writer, viewModel);
+                    writer.Flush();
+                }
+                return RedirectToAction("EditProfile");
+            }
+            catch (Exception e) {
+                return RedirectToAction("Index");
+            }
+        }
     }
 }
