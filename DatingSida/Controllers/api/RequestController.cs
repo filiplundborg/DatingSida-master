@@ -1,4 +1,5 @@
 ﻿using DatingSida.Repository;
+using Microsoft.AspNet.Identity;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -15,7 +16,7 @@ namespace DatingSida.Controllers.api
 
         [Route("send")]
         [HttpPost]
-        public IHttpActionResult SaveMessage(List<string> requested)
+        public IHttpActionResult SaveRequest(List<string> requested)
         {
             try
             {
@@ -27,6 +28,20 @@ namespace DatingSida.Controllers.api
                 return BadRequest();
             }
 
+        }
+
+        [Route("get")]
+        [HttpGet]
+        public IHttpActionResult GetFriendRequest()
+        {
+            try {
+                var requests = request.GetFriendRequests(User.Identity.GetUserId());
+                return Ok(requests);
+            }
+            catch {
+                return BadRequest();
+            }
+            
         }
     }
 }

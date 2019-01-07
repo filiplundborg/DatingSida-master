@@ -23,4 +23,8 @@ namespace DatingSida.Models
         [InverseProperty("RequestReceived")]
         public virtual ApplicationUser RequestReceiver { get; set; }
     }
+    public class RequestOptions {
+        public Request Request { get; set; }
+        public bool? IsAccepted { get; set; } = null;
+    }
 }
