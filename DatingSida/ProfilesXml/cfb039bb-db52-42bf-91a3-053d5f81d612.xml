@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<UserProfileIndexViewModel xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <Firstname>Oskar</Firstname>
+  <Username>oggy</Username>
+  <Lastname>Ågren</Lastname>
+  <Description>jpfwoeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee</Description>
+  <Image>Images\avatar.png</Image>
+</UserProfileIndexViewModel>
