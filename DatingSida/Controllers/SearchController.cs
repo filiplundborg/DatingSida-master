@@ -28,7 +28,7 @@ namespace DatingSida.Controllers
         public ActionResult ViewProfile(string username) {
             if (username != null) {
                var user = profileWithMessage.GetUserMessageViewModel(username);
-        
+               
             return View(user);
             }
             return RedirectToAction("Index");

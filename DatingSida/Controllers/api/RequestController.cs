@@ -43,5 +43,36 @@ namespace DatingSida.Controllers.api
             }
             
         }
+
+        [Route("postanswer")]
+        [HttpPost]
+        public IHttpActionResult AnswerFriendRequest(List<string> value)
+        {
+            try
+            {
+                request.AnswerRequest(int.Parse(value[0]), true);
+                return Ok();
+            }
+            catch (Exception exc)
+            {
+                return BadRequest();
+            }
+
+        }
+        [Route("postanswernegative")]
+        [HttpPost]
+        public IHttpActionResult AnswerFriendRequestNegative(List<string> value)
+        {
+            try
+            {
+                request.AnswerRequest(int.Parse(value[0]), false);
+                return Ok();
+            }
+            catch (Exception exc)
+            {
+                return BadRequest();
+            }
+
+        }
     }
 }

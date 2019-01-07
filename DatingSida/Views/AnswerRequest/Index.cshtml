@@ -9,24 +9,72 @@
 <hr />
 
 
-    <h4>Svara på förfrågningar</h4>
-    <hr />
-    <div class="center-block container">
-        @foreach (var item in Model.requests)
-        {
-            <div class="form-group center-block">
+<h4>Svara på förfrågningar</h4>
+<hr />
+<div class="center-block container">
+    @foreach (var item in Model.requests)
+    {
+        <div class="form-group center-block">
 
-                <div class="col-md-8"  style="border: 1px solid #000; border-radius: 5px; padding: 1%; margin-top: 1%; margin-bottom: 1%;">
-                    <h5>
-                        <img src="../@item.Request.RequestSender.Image" style="width: 5%;"/><b>Vänförfrågan skickad från @item.Request.RequestSender.UserName</b>
-                        <span class="col-md-offset-4">
-                            <button class="btn btn-success" id="positive-answer" value="@item.Request.RequestSenderId">Acceptera</button>
-                            <button class="btn btn-danger" id="negative-answer" value="@item.Request.RequestSenderId">Avböj</button>
-                        </span>
-                    </h5>
-                </div>
+            <div class="col-md-8" style="border: 1px solid #000; border-radius: 5px; padding: 1%; margin-top: 1%; margin-bottom: 1%;">
+                <h5 class="col-md-8">
+                    <img src="../@item.Request.RequestSender.Image" style="width: 5%;" /><b>Vänförfrågan skickad från @item.Request.RequestSender.UserName</b>
+                </h5>
+                <span class="col-md-offset-1">
+                    <button class="btn btn-success positive-answer" id="positive-answer" value="@item.Request.RequestId">Acceptera</button>
+                    <button class="btn btn-danger negative-answer" id="negative-answer" value="@item.Request.RequestId">Avböj</button>
+                </span>
+
             </div>
-        }
-    </div>   
+        </div>
+    }
+</div>
+@section Scripts{
+    <script>
+        $(".positive-answer").on("click", function (e) {
+            var value = e.target.getAttribute("value");
+
+            $.ajax({
+                url: "/api/request/postanswer",
+                type: "Post",
+                data: JSON.stringify([value]),
+                contentType: "application/json; charset=utf-8",
+                success: function () {
+                    $("#show").show();
+                    $("#message-id").append("Du har accepterat förfrågningen!")
+                },
+                error: function () {
+                    $("#show").show();
+                    $("#message-id").append("Något har gått fel. Försök igen!")
+                }
+            })
+        });
+        $(".negative-answer").on("click", function (e) {
+            var value = e.target.getAttribute("value");
+
+            $.ajax({
+                url: "/api/request/postanswernegative",
+                type: "Post",
+                data: JSON.stringify([value]),
+                contentType: "application/json; charset=utf-8",
+                success: function () {
+                    $("#show").show();
+                    $("#message-id").append("Du har avböjt förfrågningen!")
+                },
+                error: function () {
+                    $("#show").show();
+                    $("#message-id").append("Något har gått fel. Försök igen!")
+                }
+            })
+        });
+        $("#close").on("click", function () {
+            $("#show").hide();
+            location.reload();
+        })
+
+    </script>
+
+}
+
 
 

@@ -47,8 +47,8 @@ namespace DatingSida.Repository
             }
 
         }
-        public void AnswerRequest(string requestId, bool isAccepted) {
-            var request = db.Requests.Find(requestId);
+        public void AnswerRequest(int requestId, bool isAccepted) {
+            var request = db.Requests.Single(i => i.RequestId == requestId);
             var receiverRequestId = request.RequestReceiverId;
             var senderRequestId = request.RequestSenderId;
 
@@ -56,8 +56,8 @@ namespace DatingSida.Repository
                 case true:
                     var friends = new Friends
                     {
-                        UserId = receiverRequestId,
-                        FriendId = senderRequestId
+                        UserId = senderRequestId,
+                        FriendId = receiverRequestId
                     };
                     db.Friends.Add(friends);
                     db.Requests.Remove(request);
