@@ -9,17 +9,18 @@ namespace DatingSida.Models
 {
     public class Friends
     {
-        [Key, Column(Order = 0)]
-        [Required]
-        public virtual string UserId { get; set; }
 
-        [Key, Column(Order = 1)]
-        [Required]
+        public int FriendsID { get; set; }
+        public virtual string UserId { get; set; }
         public virtual string FriendId { get; set; }
 
+        [ForeignKey("UserId")]
+        [InverseProperty("FriendsReceived")]
+        public virtual ApplicationUser FriendReceived { get; set; }
+
         [ForeignKey("FriendId")]
-        [InverseProperty("Friends")]
-        public virtual ApplicationUser Friend { get; set; }
+        [InverseProperty("FriendsRequested")]
+        public virtual ApplicationUser FriendRequest { get; set; }
 
     }
 }

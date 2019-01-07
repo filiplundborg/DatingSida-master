@@ -22,7 +22,9 @@ namespace DatingSida.Models
         public virtual ICollection<Message> MessageReceived { get; set; }
         public virtual ICollection<Request> RequestSent { get; set; }
         public virtual ICollection<Request> RequestReceived { get; set; }
-        public virtual ICollection<Friends> Friends { get; set; }
+
+        public virtual ICollection<Friends> FriendsReceived { get; set; }
+        public virtual ICollection<Friends> FriendsRequested { get; set; }
 
         //Konstruktor för att instansiera främmande nycklar
 
@@ -32,7 +34,8 @@ namespace DatingSida.Models
             MessageReceived = new List<Message>();
             RequestSent = new List<Request>();
             RequestReceived = new List<Request>();
-            Friends = new List<Friends>();
+            FriendsReceived = new List<Friends>();
+            FriendsRequested = new List<Friends>();
         }
 
 

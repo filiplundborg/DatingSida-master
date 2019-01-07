@@ -299,9 +299,11 @@
     <Content Include="Views\Search\Index.cshtml" />
     <Content Include="Views\Search\ViewProfile.cshtml" />
     <Content Include="Views\AnswerRequest\Index.cshtml" />
+    <Content Include="Views\UserProfile\ManageFriends.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="ProfilesXml\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />

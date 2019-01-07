@@ -25,33 +25,34 @@
 
     </div>
     <div class="row">
-        
-            <h2>@Model.Firstname @Model.Lastname</h2>
-            <h4>@Model.Username</h4>
+
+        <h2>@Model.Firstname @Model.Lastname</h2>
+        <h4>@Model.Username</h4>
 
 
-            <p class="text">@Model.Description </p>
-            @Html.ActionLink("Ändra Profil", "EditProfile", null, htmlAttributes: new { @class = "btn btn-primary" })<br />
-            <button class="btn btn-primary" id="toggleBtn" style="margin-top: 2%;">Visa Skickade Poster</button><br />
-            <div class="col-md-5" id="hideMessage" style="display: none;">
+        <p class="text">@Model.Description </p>
+        @Html.ActionLink("Ändra Profil", "EditProfile", null, htmlAttributes: new { @class = "btn btn-primary" })<br />
+        @Html.ActionLink("Hantera Vänner", "ManageFriends", null, htmlAttributes: new { @class = "btn btn-primary" })<br />
+        <button class="btn btn-primary" id="toggleBtn" style="margin-top: 2%;">Visa Skickade Poster</button><br />
+        <div class="col-md-5" id="hideMessage" style="display: none;">
 
-                @if (Model.MessagesSent != null && Model.MessagesSent.Count > 0)
+            @if (Model.MessagesSent != null && Model.MessagesSent.Count > 0)
+            {
+                foreach (var item in Model.MessagesSent)
                 {
-                    foreach (var item in Model.MessagesSent)
-                    {
-                        <div class="list-group-active col-md-7 center-block" style="border: 1px solid #000; border-radius: 5px; padding: 2%; margin-top: 2%; margin-bottom: 2%;">
-                            <h4 class="list-group-item-heading">@item.Receiver.UserName</h4>
-                            <h6 class="list-group-item-info">@item.Receiver.Firstname @item.Receiver.Lastname </h6>
-                            <h6 class="list-group-item-info">@item.DateSent</h6>
-                            <p class="list-group-item-text">@item.Post </p>
-                        </div>
-                    }
-
+                    <div class="list-group-active col-md-7 center-block" style="border: 1px solid #000; border-radius: 5px; padding: 2%; margin-top: 2%; margin-bottom: 2%;">
+                        <h4 class="list-group-item-heading">@item.Receiver.UserName</h4>
+                        <h6 class="list-group-item-info">@item.Receiver.Firstname @item.Receiver.Lastname </h6>
+                        <h6 class="list-group-item-info">@item.DateSent</h6>
+                        <p class="list-group-item-text">@item.Post </p>
+                    </div>
                 }
 
-            </div>
+            }
 
         </div>
+
+    </div>
     </div>
     <hr />
     <div class="container">

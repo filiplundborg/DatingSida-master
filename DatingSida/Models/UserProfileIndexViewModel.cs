@@ -13,13 +13,16 @@ namespace DatingSida.Models
         public string Gender { get; set; }
         public string Description { get; set; }
         public string Image { get; set; } = @"Images\avatar.png";
-        
+        public List<Friends> FriendsReceived { get; set; }
+        public List<Friends> FriendsRequested { get; set; }
 
         public List<Message> Messages { get; set; }
         public List<Message> MessagesSent { get; set; }
         public UserProfileIndexViewModel() {
             Messages = new List<Message>();
             MessagesSent = new List<Message>();
+            FriendsReceived = new List<Friends>();
+            FriendsRequested = new List<Friends>();
         }
     }
    

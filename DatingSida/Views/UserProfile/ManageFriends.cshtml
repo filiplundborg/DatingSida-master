@@ -1,0 +1,38 @@
+﻿@model DatingSida.Models.UserProfileIndexViewModel
+@{
+    ViewBag.Title = "Mina vänner";
+}
+
+<h2>Hantera vänner</h2>
+
+<div class="container">
+
+
+    @if (Model.FriendsReceived != null && Model.FriendsReceived.Count > 0)
+    {
+        foreach (var item in Model.FriendsReceived)
+        {
+            <div class="list-group-active col-md-10 center-block"  id="test" style="border: 1px solid #000; border-radius: 5px; padding: 2%; margin-top: 2%; margin-bottom: 2%;">
+                <h4 class="list-group-item-heading"> <img src="../@item.FriendRequest.Image" style="width: 5%;" /><b>@item.FriendRequest.UserName</b></h4>
+                <h6 class="list-group-item-info">@item.FriendRequest.Firstname @item.FriendRequest.UserName </h6>
+
+            </div>
+        }
+
+    }
+    @if (Model.FriendsRequested != null && Model.FriendsRequested.Count > 0)
+    {
+        foreach (var item in Model.FriendsRequested)
+        {
+            <div class="list-group-active col-md-10 center-block" style="border: 1px solid #000; border-radius: 5px; padding: 2%; margin-top: 2%; margin-bottom: 2%;">
+                <h4 class="list-group-item-heading"> <img src="../@item.FriendReceived.Image" style="width: 5%;" /><b>@item.FriendReceived.UserName</b></h4>
+                <h6 class="list-group-item-info">@item.FriendReceived.Firstname @item.FriendReceived.UserName </h6>
+
+            </div>
+        }
+
+    }
+</div>
+
+</div>
+
