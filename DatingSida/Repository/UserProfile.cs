@@ -1,10 +1,11 @@
 ﻿using DatingSida.Models;
 using Microsoft.AspNet.Identity;
+using System.Data.Entity.Migrations;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
-
+using System.Xml.Serialization;
 
 namespace DatingSida.Repository
 {
@@ -32,7 +33,6 @@ namespace DatingSida.Repository
             var user = users.Find(i => i.UserName == currentUsername);
             users.Remove(user);
             return users;
-        }
-        
+        }              
     }
 }
