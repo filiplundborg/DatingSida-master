@@ -173,38 +173,27 @@ namespace DatingSida.Controllers
                     Lastname = user.Lastname,
                     Image = user.Image,
                     Description = user.Description,
+
                     Messages = user.MessageReceived as List<Message>,
                     MessagesSent = user.MessageSent as List<Message>
                 };
-                using (var writer = new StreamWriter(""))
+
+                
+                string file = Guid.NewGuid().ToString() + ".xml";
+                string fp = Path.Combine(Server.MapPath("~/ProfilesXml/"), file);
+               
+                var serializer = new XmlSerializer(typeof(UserProfileIndexViewModel));
+                using (var writer = new StreamWriter(fp))
                 {
-                    var serializer = new XmlSerializer(viewModel.GetType());
                     serializer.Serialize(writer, viewModel);
                     writer.Flush();
                 }
                 return RedirectToAction("EditProfile");
             }
             catch (Exception e) {
+                
                 return RedirectToAction("Index");
             }
-        }
-        public ActionResult ManageFriends() {
-            var user = profile.GetUser(User.Identity.GetUserId());
-
-            var viewModel = new UserProfileIndexViewModel
-            {
-                Username = user.UserName,
-                Firstname = user.Firstname,
-                Lastname = user.Lastname,
-                Image = user.Image,
-                Description = user.Description,
-                Messages = user.MessageReceived as List<Message>,
-                MessagesSent = user.MessageSent as List<Message>,
-                FriendsReceived = user.FriendsReceived as List<Friends>,
-                FriendsRequested = user.FriendsRequested as List<Friends>,
-            };
-            
-            return View(viewModel);
         }
     }
 }
