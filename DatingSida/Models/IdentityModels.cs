@@ -30,6 +30,9 @@ namespace DatingSida.Models
         {
             MessageSent = new List<Message>();
             MessageReceived = new List<Message>();
+            RequestSent = new List<Request>();
+            RequestReceived = new List<Request>();
+            Friends = new List<Friends>();
         }
 
 

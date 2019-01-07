@@ -9,6 +9,7 @@ namespace DatingSida.Repository
     public class UserRequest
     {
         public ApplicationDbContext db = new ApplicationDbContext();
+        public UserProfile userprofile = new UserProfile();
 
         public void SaveRequest(string senderId, string receiverId) {
             try
@@ -27,5 +28,60 @@ namespace DatingSida.Repository
                 throw new Exception();
             }
         }
+
+        internal List<Request> FillModel(object p)
+        {
+            throw new NotImplementedException();
+        }
+
+        public List<Request> GetFriendRequests(string userId) {
+            try
+            {
+                
+                var user = userprofile.GetUser(userId);
+
+                return user.RequestReceived as List<Request>;
+            }
+            catch {
+                throw new Exception();
+            }
+
+        }
+        public void AnswerRequest(string requestId, bool isAccepted) {
+            var request = db.Requests.Find(requestId);
+            var receiverRequestId = request.RequestReceiverId;
+            var senderRequestId = request.RequestSenderId;
+
+            switch (isAccepted) {
+                case true:
+                    var friends = new Friends
+                    {
+                        UserId = receiverRequestId,
+                        FriendId = senderRequestId
+                    };
+                    db.Friends.Add(friends);
+                    db.Requests.Remove(request);
+                    db.SaveChanges();
+                    break;
+                default:
+                    db.Requests.Remove(request);
+                    db.SaveChanges();
+                    break;
+            }
+        }
+        public List<RequestOptions> FillModel(string username) {
+            var user = userprofile.GetUserByName(username);
+            var list = user.RequestReceived;
+            var optionlist = new List<RequestOptions>();
+            foreach (var item in list) {
+                var requestOption = new RequestOptions
+                {
+                    Request = item
+                };
+                optionlist.Add(requestOption);
+            }
+            return optionlist;
+        }
+
     }
 }

@@ -1,0 +1,32 @@
+﻿@using DatingSida.Models.ViewModel
+@model AnswerRequestViewModel
+
+@{
+    ViewBag.Title = "Förfrågningar";
+}
+
+<h2>Dina vänförfrågningar</h2>
+<hr />
+
+
+    <h4>Svara på förfrågningar</h4>
+    <hr />
+    <div class="center-block container">
+        @foreach (var item in Model.requests)
+        {
+            <div class="form-group center-block">
+
+                <div class="col-md-8"  style="border: 1px solid #000; border-radius: 5px; padding: 1%; margin-top: 1%; margin-bottom: 1%;">
+                    <h5>
+                        <img src="../@item.Request.RequestSender.Image" style="width: 5%;"/><b>Vänförfrågan skickad från @item.Request.RequestSender.UserName</b>
+                        <span class="col-md-offset-4">
+                            <button class="btn btn-success" id="positive-answer" value="@item.Request.RequestSenderId">Acceptera</button>
+                            <button class="btn btn-danger" id="negative-answer" value="@item.Request.RequestSenderId">Avböj</button>
+                        </span>
+                    </h5>
+                </div>
+            </div>
+        }
+    </div>   
+
+

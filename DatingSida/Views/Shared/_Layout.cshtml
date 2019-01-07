@@ -6,8 +6,7 @@
     <title>@ViewBag.Title - My ASP.NET Application</title>
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
-    
-
+   
 </head>
 <body>
     <div class="navbar navbar-inverse navbar-fixed-top">
@@ -22,10 +21,9 @@
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
-                    <li>@Html.ActionLink("Home", "Index", "Home")</li>
-                    <li>@Html.ActionLink("About", "About", "Home")</li>
                     <li>@Html.ActionLink("Sök", "Index", "Search")</li>
                     <li>@Html.ActionLink("Visa Profil", "Index", "UserProfile")</li>
+                    <li id="setColor">@Html.ActionLink("Vänförfrågningar", "Index", "AnswerRequest", htmlAttributes: new {id= "numberOfRequests" })  </li>
                 </ul>
                 @Html.Partial("_LoginPartial")
             </div>
@@ -73,5 +71,21 @@
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
     @RenderSection("scripts", required: false)
+    <script>
+        
+        $(document).ready(function () {
+
+            $.get("/api/request/get",
+                function (data) {
+                    if (data.length > 0) {
+                        $("#setColor").addClass("active");
+                    }
+                    var count = " " + data.length;
+                    $("#numberOfRequests").append(count);
+                    $("#numberOfRequests").attr("href", "/AnswerRequest"); 
+                })
+        })
+    </script>
+
 </body>
 </html>
