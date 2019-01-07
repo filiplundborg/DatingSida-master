@@ -1,4 +1,5 @@
 ﻿using DatingSida.Models;
+using DatingSida.Models.ViewModel;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -81,6 +82,29 @@ namespace DatingSida.Repository
                 optionlist.Add(requestOption);
             }
             return optionlist;
+        }
+
+        public bool HasRequest (string userId, string username)
+        {
+     
+            var model = new UserMessageViewModel();
+            var user = userprofile.GetUserByName(username);
+
+            var result = from i in db.Requests
+                         where userId == i.RequestSenderId && user.Id == i.RequestReceiverId
+                         select i.RequestId;
+           
+
+            if (result.Count() > 0)
+            {
+                model.HasRequest = true;
+                return true;
+            }
+            else
+            {
+                model.HasRequest = false;
+                return false;
+            }
         }
 
     }

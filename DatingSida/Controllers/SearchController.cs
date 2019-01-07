@@ -15,6 +15,7 @@ namespace DatingSida.Controllers
     {
         public UserProfile profile = new UserProfile();
         public UserMessage profileWithMessage = new UserMessage();
+        public UserRequest userRequest = new UserRequest();
 
         // GET: Search
         public ActionResult Index()
@@ -28,7 +29,7 @@ namespace DatingSida.Controllers
         public ActionResult ViewProfile(string username) {
             if (username != null) {
                var user = profileWithMessage.GetUserMessageViewModel(username);
-        
+               user.HasRequest = userRequest.HasRequest(User.Identity.GetUserId(), username);
             return View(user);
             }
             return RedirectToAction("Index");

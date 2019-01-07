@@ -25,6 +25,7 @@ namespace DatingSida.Models.ViewModel
         [Required]
         public string ReceiverId { get; set; }
         public bool IsFriends { get; set; } = false;
+        public bool HasRequest { get; set; } = false;
 
         public List<Message> MessagesReceived { get; set; }
 
