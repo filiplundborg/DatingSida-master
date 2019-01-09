@@ -13,8 +13,8 @@
         foreach (var item in Model.FriendsReceived)
         {
             <div class="list-group-active col-md-10 center-block"  id="test" style="border: 1px solid #000; border-radius: 5px; padding: 2%; margin-top: 2%; margin-bottom: 2%;">
-                <h4 class="list-group-item-heading"> <img src="../@item.FriendRequest.Image" style="width: 5%;" /><b>@item.FriendRequest.UserName</b></h4>
-                <h6 class="list-group-item-info">@item.FriendRequest.Firstname @item.FriendRequest.UserName </h6>
+                <h4 class="list-group-item-heading"> <img src="../@item.FriendRequest.Image" style="width: 5%;" /><b>@Html.ActionLink(item.FriendRequest.UserName.ToUpper(), "ViewProfile", "Search", new { username = item.FriendRequest.UserName }, htmlAttributes: new { @class = "btn btn-link" })</b></h4>
+                <h6 class="list-group-item-heading">@item.FriendRequest.Firstname.ToUpper() @item.FriendRequest.Lastname.ToUpper() </h6>
 
             </div>
         }
@@ -25,8 +25,8 @@
         foreach (var item in Model.FriendsRequested)
         {
             <div class="list-group-active col-md-10 center-block" style="border: 1px solid #000; border-radius: 5px; padding: 2%; margin-top: 2%; margin-bottom: 2%;">
-                <h4 class="list-group-item-heading"> <img src="../@item.FriendReceived.Image" style="width: 5%;" /><b>@item.FriendReceived.UserName</b></h4>
-                <h6 class="list-group-item-info">@item.FriendReceived.Firstname @item.FriendReceived.UserName </h6>
+                <h4 class="list-group-item-heading"> <img src="../@item.FriendReceived.Image" style="width: 5%;" /><b>@Html.ActionLink(item.FriendReceived.UserName.ToUpper(), "ViewProfile", "Search", new { username = item.FriendReceived.UserName }, htmlAttributes: new { @class = "btn btn-link" })</b></h4>
+                <h5 class="list-group-item-heading">@item.FriendReceived.Firstname.ToUpper() @item.FriendReceived.Lastname.ToUpper() </h5>
 
             </div>
         }
@@ -34,5 +34,5 @@
     }
 </div>
 
-</div>
+
 

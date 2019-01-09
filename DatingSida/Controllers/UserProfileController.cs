@@ -195,5 +195,23 @@ namespace DatingSida.Controllers
                 return RedirectToAction("Index");
             }
         }
+        public ActionResult ManageFriends()
+        {
+            var user = profile.GetUser(User.Identity.GetUserId());
+
+            var viewModel = new UserProfileIndexViewModel
+            {
+                Username = user.UserName,
+                Firstname = user.Firstname,
+                Lastname = user.Lastname,
+                Image = user.Image,
+                Description = user.Description,
+                Messages = user.MessageReceived as List<Message>,
+                MessagesSent = user.MessageSent as List<Message>,
+                FriendsReceived = user.FriendsReceived as List<Friends>,
+                FriendsRequested = user.FriendsRequested as List<Friends>
+            };
+            return View(viewModel);
+        }
     }
 }
