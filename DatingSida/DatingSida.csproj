@@ -206,6 +206,7 @@
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\AnswerRequestController.cs" />
+    <Compile Include="Controllers\api\CategoryController.cs" />
     <Compile Include="Controllers\api\MessageController.cs" />
     <Compile Include="Controllers\api\RequestController.cs" />
     <Compile Include="Controllers\api\SearchApiController.cs" />
@@ -227,8 +228,10 @@
     <Compile Include="Models\UserProfileIndexViewModel.cs" />
     <Compile Include="Models\ViewModel\AllUsersProfilesViewModel.cs" />
     <Compile Include="Models\ViewModel\AnswerRequestViewModel.cs" />
+    <Compile Include="Models\ViewModel\FriendCategoryViewModel.cs" />
     <Compile Include="Models\ViewModel\UserMessageViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Repository\UserCategory.cs" />
     <Compile Include="Repository\UserFriends.cs" />
     <Compile Include="Repository\UserMessage.cs" />
     <Compile Include="Repository\UserProfile.cs" />
@@ -302,6 +305,7 @@
     <Content Include="Views\Search\ViewProfile.cshtml" />
     <Content Include="Views\AnswerRequest\Index.cshtml" />
     <Content Include="Views\UserProfile\ManageFriends.cshtml" />
+    <Content Include="Views\UserProfile\FriendCategory.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -15,5 +15,14 @@ namespace DatingSida.Repository
             friends.AddRange(friendsReceived);
             return friends;
         }
+
+        public List<ApplicationUser> FilterFriendsData(ApplicationUser user, int categoryId)
+        {
+            var friendsRequested = user.FriendsRequested.Where(i => i.CategoryId == categoryId).Select(i => i.FriendReceived).ToList();
+            var friendsReceived = user.FriendsReceived.Where(i => i.CategoryId == categoryId).Select(i => i.FriendRequest).ToList();
+            var friends = friendsRequested;
+            friends.AddRange(friendsReceived);
+            return friends;
+        }
     }
 }

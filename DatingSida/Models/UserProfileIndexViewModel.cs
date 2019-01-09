@@ -16,6 +16,7 @@ namespace DatingSida.Models
         public List<Friends> FriendsReceived { get; set; }
         public List<Friends> FriendsRequested { get; set; }
         public List<ApplicationUser> Friends { get; set; }
+        public List<Category> Categories { get; set; }
 
         public List<Message> Messages { get; set; }
         public List<Message> MessagesSent { get; set; }
@@ -25,6 +26,7 @@ namespace DatingSida.Models
             FriendsReceived = new List<Friends>();
             FriendsRequested = new List<Friends>();
             Friends = new List<ApplicationUser>();
+            Categories = new List<Category>();
         }
     }
    

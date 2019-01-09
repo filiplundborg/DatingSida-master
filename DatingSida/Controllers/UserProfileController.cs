@@ -211,9 +211,28 @@ namespace DatingSida.Controllers
                 MessagesSent = user.MessageSent as List<Message>,
                 FriendsReceived = user.FriendsReceived as List<Friends>,
                 FriendsRequested = user.FriendsRequested as List<Friends>,
-                Friends = washer.WashFriendsData(user)
+                Friends = washer.WashFriendsData(user),
+                Categories = user.Categories as List<Category>
             };
             return View(viewModel);
         }
+
+        public ActionResult FriendCategory(string id)
+        {
+            
+            var helper = new UserCategory();
+            int categoryId;
+
+            var IsNumber = int.TryParse(id, out categoryId);
+            if (helper.IsCategory(categoryId) && IsNumber)
+            {
+                var model = helper.FillModel(User.Identity.GetUserId(), categoryId);
+                return View(model);
+            }
+            return RedirectToAction("Index");
+        }
+
     }
+
+
 }

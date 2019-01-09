@@ -22,5 +22,8 @@ namespace DatingSida.Models
         [InverseProperty("FriendsRequested")]
         public virtual ApplicationUser FriendRequest { get; set; }
 
+        public virtual int? CategoryId { get; set; }
+        public virtual Category Category { get; set; }
+
     }
 }

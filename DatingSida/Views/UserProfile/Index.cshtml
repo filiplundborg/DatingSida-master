@@ -31,9 +31,11 @@
 
 
         <p class="text">@Model.Description </p>
-        @Html.ActionLink("Ändra Profil", "EditProfile", null, htmlAttributes: new { @class = "btn btn-primary" })<br />
-        @Html.ActionLink("Hantera Vänner", "ManageFriends", null, htmlAttributes: new { @class = "btn btn-primary" })<br />
-        <button class="btn btn-primary" id="toggleBtn" style="margin-top: 2%;">Visa Skickade Poster</button><br />
+        <div class="col-sm-offset-5" style="border: 1px solid #000;">
+            @Html.ActionLink("Ändra Profil", "EditProfile", null, htmlAttributes: new { @class = "btn btn-link", @style = "font-size: 110%;" })<br />
+            @Html.ActionLink("Hantera Vänner", "ManageFriends", null, htmlAttributes: new { @class = "btn btn-link", @style = "font-size: 110%;" })<br />
+            <button class="btn btn-link" id="toggleBtn" style="font-size: 110%;" ;">Visa Skickade Poster</button><br />
+        </div>
         <div class="col-md-5" id="hideMessage" style="display: none;">
 
             @if (Model.MessagesSent != null && Model.MessagesSent.Count > 0)

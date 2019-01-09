@@ -17,7 +17,7 @@
         <div class="row">
             <h2>@Model.Firstname @Model.Lastname</h2>
             <h4>@Model.Username</h4>
-            <p>@Model.Description</p>
+            <p class="text">@Model.Description</p>
                 @if (!Model.IsFriends && !Model.HasRequest)
                 {
                     <button class="btn btn-success" id="friendRequest">Skicka Vänförfrågan</button>
