@@ -15,6 +15,7 @@ namespace DatingSida.Models
         public string Image { get; set; } = @"Images\avatar.png";
         public List<Friends> FriendsReceived { get; set; }
         public List<Friends> FriendsRequested { get; set; }
+        public List<ApplicationUser> Friends { get; set; }
 
         public List<Message> Messages { get; set; }
         public List<Message> MessagesSent { get; set; }
@@ -23,6 +24,7 @@ namespace DatingSida.Models
             MessagesSent = new List<Message>();
             FriendsReceived = new List<Friends>();
             FriendsRequested = new List<Friends>();
+            Friends = new List<ApplicationUser>();
         }
     }
    
