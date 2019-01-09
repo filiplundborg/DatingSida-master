@@ -16,6 +16,8 @@ namespace DatingSida.Models
         public virtual string Gender { get; set; }
         public virtual string Description { get; set; }
         public virtual string Image { get; set; } = @"Images\avatar.png";
+        public virtual string InterestedIn { get; set; }
+        public virtual string DateOfBirth { get; set; }
 
         //Foreign keys / Navigation properties
         public virtual ICollection<Message> MessageSent { get; set; }

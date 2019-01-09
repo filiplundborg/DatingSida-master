@@ -3,6 +3,48 @@
     ViewBag.Title = "Registera";
 }
 
+<style>
+    .ui-datepicker {
+        width: 216px;
+        height: auto;
+        margin: 5px auto 0;
+        font: 12pt Arial, sans-serif;
+        background-color: ghostwhite;
+        -webkit-box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, .5);
+        -moz-box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, .5);
+        box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, .5);
+    }
+        .ui-datepicker a {
+            text-decoration: none;
+        }
+        .ui-datepicker table {
+            width: 100%;
+        }
+        .ui-datepicker tbody td {
+            padding: 0;
+            border-right: 1px solid #bbb;
+        }
+        .ui-datepicker tbody tr {
+            border-bottom: 1px solid #bbb;
+        }
+
+            .ui-datepicker tbody tr:last-child {
+                border-bottom: 0px;
+            }
+
+    .ui-datepicker-prev, .ui-datepicker-next {
+        display: inline-block;
+        width: 30px;
+        height: 30px;
+        text-align: center;
+        cursor: pointer;
+        background-image: url('../img/arrow.png');
+        background-repeat: no-repeat;
+        line-height: 600%;
+        overflow: hidden;
+    }
+</style>
+
 <h2>@ViewBag.Title.</h2>
 
 @using (Html.BeginForm("Register", "Account", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
@@ -48,11 +90,25 @@
         </div>
     </div>
     <div class="form-group">
+        @Html.LabelFor(m => m.DateOfBirth, new { @class = "col-md-2 control-label" })
+        <div class="col-md-10">
+            @Html.TextBoxFor(m => m.DateOfBirth, new { @class = "form-control", @id = "datepicker" })
+        </div>
+    </div>
+    <div class="form-group">
         @Html.LabelFor(m => m.Gender, new { @class = "col-md-2 control-label" })
         <div class="col-md-10">
             @Html.EnumDropDownListFor(m => m.Gender, "Välj ditt kön", new { @class = "form-control" })
         </div>
     </div>
+
+    <div class="form-group">
+        @Html.LabelFor(m => m.InterestedIn, new { @class = "col-md-2 control-label" })
+        <div class="col-md-10">
+            @Html.EnumDropDownListFor(m => m.InterestedIn, "Jag är intresserad av...", new { @class = "form-control" })
+        </div>
+    </div>
+
     <div class="form-group">
         @Html.LabelFor(m => m.Description, new { @class = "col-md-2 control-label" })
         <div class="col-md-10">
@@ -67,5 +123,21 @@
 }
 
 @section Scripts {
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('#datepicker').datepicker({
+                dateFormat: "yy-mm-dd",
+                changeMonth: true,
+                changeYear: true,
+                yearRange: "-100:+0"
+            });
+
+        });
+    </script>
+
+    @Scripts.Render("~/bundles/jqueryui")
     @Scripts.Render("~/bundles/jqueryval")
 }
+
+

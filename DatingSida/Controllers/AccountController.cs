@@ -155,12 +155,14 @@ namespace DatingSida.Controllers
             if (ModelState.IsValid)
             {
                 var user = new ApplicationUser { UserName = model.Username,
-                                                 Email = model.Email,
-                                                 Description = model.Description,
-                                                 Firstname = model.Firstname,
-                                                 Lastname = model.Lastname,
-                                                 Gender = model.Gender.ToString(),
-                                                 };
+                    Email = model.Email,
+                    Description = model.Description,
+                    Firstname = model.Firstname,
+                    Lastname = model.Lastname,
+                    Gender = model.Gender.ToString(),
+                    InterestedIn = model.InterestedIn.ToString(),
+                    DateOfBirth = model.DateOfBirth.ToString()
+                       };
                 var result = await UserManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
                 {
