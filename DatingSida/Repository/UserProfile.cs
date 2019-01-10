@@ -6,6 +6,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Xml.Serialization;
+using System.Collections;
+using System.Web.Caching;
+using System.Web.SessionState;
+using System.Web.Security;
+
 
 namespace DatingSida.Repository
 {
@@ -33,6 +38,20 @@ namespace DatingSida.Repository
             var user = users.Find(i => i.UserName == currentUsername);
             users.Remove(user);
             return users;
-        }              
+        }
+        public void ClearCacheItems()
+        {
+            List<string> keys = new List<string>();
+            var cache = new Cache();
+            IDictionaryEnumerator enumerator = cache.GetEnumerator();
+
+            while (enumerator.MoveNext())
+                keys.Add(enumerator.Key.ToString());
+
+            for (int i = 0; i < keys.Count; i++)
+                cache.Remove(keys[i]);
+        }
+
+       
     }
 }

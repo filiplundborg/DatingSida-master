@@ -11,13 +11,17 @@ using System.Data.Entity.Migrations;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.AspNet.Identity.EntityFramework;
 using System.Xml.Serialization;
+using System.Threading.Tasks;
+using System.Web.Security;
+using System.Net;
 
 namespace DatingSida.Controllers
 {
     [Authorize]
     public class UserProfileController : Controller
     {
-        private ApplicationUserManager _userManager;
+       
+        public ApplicationUserManager UserManager;
 
         ApplicationDbContext db = new ApplicationDbContext();
 
@@ -210,8 +214,10 @@ namespace DatingSida.Controllers
                 MessagesSent = user.MessageSent as List<Message>,
                 FriendsReceived = user.FriendsReceived as List<Friends>,
                 FriendsRequested = user.FriendsRequested as List<Friends>
+                
             };
             return View(viewModel);
         }
+        
     }
 }
