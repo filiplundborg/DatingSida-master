@@ -8,8 +8,7 @@ using System.Web;
 using System.Xml.Serialization;
 using System.Collections;
 using System.Web.Caching;
-
-
+using System.IO;
 
 namespace DatingSida.Repository
 {
@@ -50,7 +49,12 @@ namespace DatingSida.Repository
             for (int i = 0; i < keys.Count; i++)
                 cache.Remove(keys[i]);
         }
-
+        public void CheckIfFileExists(string path) {
+            if (File.Exists(path)) {
+                File.Delete(path);
+            }
+           
+        }
        
     }
 }
