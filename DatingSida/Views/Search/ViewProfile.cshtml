@@ -5,6 +5,12 @@
     ViewBag.Title = "Min profil";
 }
 
+<style>
+    #request {
+        color: gray;
+    }
+</style>
+
 <head>
     <link href="~/Content/Site.css" rel="stylesheet" type="text/css" />
 </head>
@@ -17,7 +23,7 @@
         <div class="row">
             <h2>@Model.Firstname @Model.Lastname</h2>
             <h4>@Model.Username</h4>
-            <p>@Model.Description</p>
+            <p class="text">@Model.Description</p>
             @if (!Model.IsFriends && !Model.HasRequest)
             {
                 <button class="btn btn-success" id="friendRequest">Skicka Vänförfrågan</button>
@@ -27,6 +33,9 @@
             {
                 <p id="request"> Väntar svar på vänförfrågan...</p>
             }
+          
+
+            <button class="btn btn-danger" id="goodfit">Passar vi ihop?</button>
 
         </div>
     </div>
