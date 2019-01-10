@@ -13,6 +13,9 @@ namespace DatingSida.Models
         public string Gender { get; set; }
         public string Description { get; set; }
         public string Image { get; set; } = @"Images\avatar.png";
+        public string DateOfBirth { get; set; }
+        public string InsterestedIn { get; set; }
+
         public List<Friends> FriendsReceived { get; set; }
         public List<Friends> FriendsRequested { get; set; }
         public List<ApplicationUser> Friends { get; set; }

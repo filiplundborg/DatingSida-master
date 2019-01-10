@@ -23,6 +23,9 @@
         <div class="row">
             <h2>@Model.Firstname @Model.Lastname</h2>
             <h4>@Model.Username</h4>
+            
+            
+            <h5></h5>
             <p class="text">@Model.Description</p>
             @if (!Model.IsFriends && !Model.HasRequest)
             {
@@ -35,7 +38,7 @@
             }
           
 
-            <button class="btn btn-danger" id="goodfit">Passar vi ihop?</button>
+            <button class="btn btn-danger" id="match">Passar vi ihop?</button>
 
         </div>
     </div>
@@ -72,6 +75,24 @@
 <hr />
 @section Scripts{
     <script>
+                $("#match").on("click", function () {
+           
+            $.ajax({
+                url: "/api/match/matching",
+                type: "Post",
+                data: JSON.stringify(["@User.Identity.GetUserId()", "@Model.Username"]),
+                contentType: "application/json; charset=utf-8",
+                success: function (data) {
+                    $("#show").show();
+                    $("#message-id").append(data + "% matchning!")
+                },
+                error: function () {
+                    $("#show").show();
+                    $("#message-id").append("Ingen matchning har skett!")
+                }
+            })
+        });
+
         $("#send-message").on("click", function () {
             var text = $("#textarea").val();
             $.ajax({
