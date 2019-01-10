@@ -210,6 +210,7 @@
     <Compile Include="Controllers\api\MessageController.cs" />
     <Compile Include="Controllers\api\RequestController.cs" />
     <Compile Include="Controllers\api\SearchApiController.cs" />
+    <Compile Include="Controllers\api\VisitorController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\SearchController.cs" />
@@ -230,12 +231,14 @@
     <Compile Include="Models\ViewModel\AnswerRequestViewModel.cs" />
     <Compile Include="Models\ViewModel\FriendCategoryViewModel.cs" />
     <Compile Include="Models\ViewModel\UserMessageViewModel.cs" />
+    <Compile Include="Models\Visitors.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repository\UserCategory.cs" />
     <Compile Include="Repository\UserFriends.cs" />
     <Compile Include="Repository\UserMessage.cs" />
     <Compile Include="Repository\UserProfile.cs" />
     <Compile Include="Repository\UserRequest.cs" />
+    <Compile Include="Repository\UserVisitor.cs" />
     <Compile Include="Startup.cs" />
   </ItemGroup>
   <ItemGroup>

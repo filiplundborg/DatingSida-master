@@ -63,23 +63,34 @@
 <hr />
 @section Scripts{
     <script>
-        $("#send-message").on("click", function () {
-            var text = $("#textarea").val();
+        $(document).ready(function () {
             $.ajax({
-                url: "/api/message/send",
+                url: "/api/visitor/add",
                 type: "Post",
-                data: JSON.stringify(["@User.Identity.GetUserId()", "@Model.ReceiverId", text]),
+                data: JSON.stringify(["@Model.ReceiverId"]),
                 contentType: "application/json; charset=utf-8",
-                success: function () {
-                    $("#show").show();
-                    $("#message-id").append("Meddelandet har skickats!")
-                },
-                error: function () {
-                    $("#show").show();
-                    $("#message-id").append("Meddelandet måste vara längre än 3 tecken och mindre än 400 tecken")
-                }
+                success: function () { }
             })
         });
+
+        $("#send-message").on("click", function () {
+                var text = $("#textarea").val();
+                $.ajax({
+                    url: "/api/message/send",
+                    type: "Post",
+                    data: JSON.stringify(["@User.Identity.GetUserId()", "@Model.ReceiverId", text]),
+                    contentType: "application/json; charset=utf-8",
+                    success: function () {
+                        $("#show").show();
+                        $("#message-id").append("Meddelandet har skickats!")
+                    },
+                    error: function () {
+                        $("#show").show();
+                        $("#message-id").append("Meddelandet måste vara längre än 3 tecken och mindre än 400 tecken")
+                    }
+                })
+            });
+
         $("#close").on("click", function () {
             $("#show").hide();
             location.reload();
