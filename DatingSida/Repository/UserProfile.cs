@@ -8,8 +8,7 @@ using System.Web;
 using System.Xml.Serialization;
 using System.Collections;
 using System.Web.Caching;
-using System.Web.SessionState;
-using System.Web.Security;
+
 
 
 namespace DatingSida.Repository
