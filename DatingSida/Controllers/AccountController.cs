@@ -434,7 +434,7 @@ namespace DatingSida.Controllers
 
             base.Dispose(disposing);
         }
-        public UserProfile profile = new UserProfile();
+       
 
         //Kära granskare. 
         //Det ligger en instead of delete trigger i databasen som flyttar datan från användaren till en ny tabell.
