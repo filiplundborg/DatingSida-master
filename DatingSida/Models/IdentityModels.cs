@@ -16,13 +16,15 @@ namespace DatingSida.Models
         public virtual string Gender { get; set; }
         public virtual string Description { get; set; }
         public virtual string Image { get; set; } = @"Images\avatar.png";
+        public virtual string InterestedIn { get; set; }
+        public virtual string DateOfBirth { get; set; }
 
         //Foreign keys / Navigation properties
         public virtual ICollection<Message> MessageSent { get; set; }
         public virtual ICollection<Message> MessageReceived { get; set; }
         public virtual ICollection<Request> RequestSent { get; set; }
         public virtual ICollection<Request> RequestReceived { get; set; }
-
+        public virtual ICollection<Category> Categories { get; set; }
         public virtual ICollection<Friends> FriendsReceived { get; set; }
         public virtual ICollection<Friends> FriendsRequested { get; set; }
 
@@ -36,6 +38,7 @@ namespace DatingSida.Models
             RequestReceived = new List<Request>();
             FriendsReceived = new List<Friends>();
             FriendsRequested = new List<Friends>();
+            Categories = new List<Category>();
         }
 
 
@@ -53,6 +56,7 @@ namespace DatingSida.Models
         public virtual DbSet<Message> Messages { get; set; }
         public virtual DbSet<Request> Requests { get; set; }
         public virtual DbSet<Friends> Friends { get; set; }
+        public virtual DbSet<Category> Categories { get; set; }
 
         public ApplicationDbContext()
             : base("DefaultConnection", throwIfV1Schema: false)

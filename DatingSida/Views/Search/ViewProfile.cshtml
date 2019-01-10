@@ -18,10 +18,15 @@
             <h2>@Model.Firstname @Model.Lastname</h2>
             <h4>@Model.Username</h4>
             <p>@Model.Description</p>
-                @if (!Model.IsFriends && !Model.HasRequest)
-                {
-                    <button class="btn btn-success" id="friendRequest">Skicka Vänförfrågan</button>
-                }
+            @if (!Model.IsFriends && !Model.HasRequest)
+            {
+                <button class="btn btn-success" id="friendRequest">Skicka Vänförfrågan</button>
+            }
+
+            @if (!Model.IsFriends && Model.HasRequest)
+            {
+                <p id="request"> Väntar svar på vänförfrågan...</p>
+            }
 
         </div>
     </div>

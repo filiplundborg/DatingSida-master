@@ -107,5 +107,29 @@ namespace DatingSida.Repository
             }
         }
 
+        public bool IsFriends(string userId, string username)
+        {
+
+            var model = new UserMessageViewModel();
+            var user = userprofile.GetUserByName(username);
+
+            var result = from i in db.Friends
+                         where userId == i.UserId && user.Id == i.FriendId
+                         select i.FriendId;
+
+
+            if (result.Count() > 0)
+            {
+                model.IsFriends = true;
+                return true;
+            }
+            else
+            {
+                model.IsFriends = false;
+                return false;
+            }
+        }
+
+
     }
 }

@@ -1,4 +1,6 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 
 
@@ -96,11 +98,21 @@ namespace DatingSida.Models
         [Display(Name = "Efternamn")]
         [MaxLength(30), MinLength(3)]
         public virtual string Lastname { get; set; }
-        
+
+        [Required]
+        [DisplayName("Födelsedatum")]
+        [DataType(DataType.Date), DisplayFormat(DataFormatString = "{0:yyyy/MM/DD}", ApplyFormatInEditMode = true)]
+        public DateTime DateOfBirth { get; set; }
+
         [Required]
         [Display(Name = "Kön")]
         [Range(1, 2, ErrorMessage = "Du måste välja ett kön")]
         public virtual Gender Gender { get; set; }
+
+        [Required]
+        [Display(Name = "Intresserad av")]
+        [Range(1, 3, ErrorMessage = "Du måste välja vad du är intresserad av")]
+        public virtual InterestedIn InterestedIn { get; set; }
 
 
         [Required]
@@ -113,6 +125,13 @@ namespace DatingSida.Models
     public enum Gender {
         Man = 1,
         Kvinna = 2
+    }
+
+    public enum InterestedIn
+    {
+        Män = 1,
+        Kvinnor = 2,
+        Båda = 3
     }
 
     public class ResetPasswordViewModel

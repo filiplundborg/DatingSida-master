@@ -30,6 +30,7 @@ namespace DatingSida.Controllers
             if (username != null) {
                var user = profileWithMessage.GetUserMessageViewModel(username);
                user.HasRequest = userRequest.HasRequest(User.Identity.GetUserId(), username);
+                user.IsFriends = userRequest.IsFriends(User.Identity.GetUserId(), username);
             return View(user);
             }
             return RedirectToAction("Index");
