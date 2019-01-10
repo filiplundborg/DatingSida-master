@@ -434,12 +434,13 @@ namespace DatingSida.Controllers
 
             base.Dispose(disposing);
         }
-        public UserProfile profile = new UserProfile();
+       
 
         //Kära granskare. 
-        //Det ligger en on delete trigger i databasen som flyttar datan från användaren till en ny tabell.
+        //Det ligger en instead of delete trigger i databasen som flyttar datan från användaren till en ny tabell.
         // Användaren tas alltså inte bort helt. Även om man kan tro det om man bara kollar på koden.
         // Triggern heter DeleteUserFromNetUser som ligger på NetUser-tabellen. Den nya tabellen heter DeletedUsers.
+        // Triggern tar även bort alla poster där användaren förekommer som reference key i andra tabeller. 
         public ActionResult LogOffDelete()
         {
             UserProfile profile = new UserProfile();
@@ -458,7 +459,7 @@ namespace DatingSida.Controllers
             }
             catch (Exception e)
             {
-                return View();
+                return RedirectToAction("Index", "UserProfile");
             }
            
         }

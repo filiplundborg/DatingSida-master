@@ -3,20 +3,23 @@
     ViewBag.Title = "Mina vänner";
 }
 <h2>Hantera vänner</h2>
+
 <div class="col-md-4">
-   
-    <p>
+
+    <form class="form-inline">
         <input type="text" id="create-category" class="form-control" placeholder="Lägg till en kategori..." />
-        <button id="create-category-btn" class="btn btn-success" style="margin-top: 1%;">Spara</button>
-    </p>
+        <button id="create-category-btn" class="btn btn-success">Spara</button>
+
+    </form>
 </div>
-<div class="col-md-4">
-    <ul class="list-inline">
+<div class="col-md-6">
+ 
+    <ul class="list-group list-inline">
         @if (Model.Categories != null && Model.Categories.Count > 0)
         {
             foreach (var item in Model.Categories)
             {
-                <li class="list-group-item list-group-item-light col-md-4 text-center">@Html.ActionLink(item.Name.ToUpper(), "FriendCategory", new { id = item.CategoryId }, htmlAttributes: new { @class = "btn btn-link" })</li>
+                <li class="list-group-item">@Html.ActionLink(item.Name.ToUpper(), "FriendCategory", new { id = item.CategoryId }, htmlAttributes: new { @style = "color: black;" })</li>
 
             }
 
@@ -30,17 +33,18 @@
         {
             foreach (var item in Model.Friends)
             {
-                <li class="list-group-active col-md-10 center-block" style="border: 1px solid #000; border-radius: 5px; padding: 2%; margin-top: 2%; margin-bottom: 2%;">
+                <li class="list-group-active col-md-10 center-block" style="border: 1px solid #000; border-radius: 5px; padding: 1%; margin-top: 1%; margin-bottom: 1%;">
                     <div class="col-md-4">
                         <h4 class="list-group-item-heading">
-                            <img src="../@item.Image" style="width: 10%;" /><b class="col-md-offset-1">
+                            <img src="../@item.Image" style="width: 30%;" class="img-thumbnail" /><b class="col-md-offset-1">
                                 @Html.ActionLink(item.UserName.ToUpper(), "ViewProfile", "Search", new { username = item.UserName }, htmlAttributes: new { @class = "btn btn-link", @style = "font-size: 200% !important;" })
                         </h4>
                     </div>
-                    <div class="col-md-4">
+                    <div class="col-md-offset-2 col-md-4">
                         @if (Model.Categories != null && Model.Categories.Count > 0)
                         {
-                            <select class="form-control form-control-sm" id="select-category">
+
+                            <select class="form-control" id="select-category" style="margin-top: 7%;">
                                 <option value="" class="form-group">Lägg till en kategori...</option>
                                 @foreach (var i in Model.Categories)
                                 {
@@ -48,7 +52,7 @@
                                 }
 
                             </select>
-                            <button value="@item.Id" class="btn btn-success" id="save-in-category" style="margin-top: 2%;">Spara</button>
+                            <button value="@item.Id" class="btn btn-block btn-primary" id="save-in-category" style="margin-top: 2%;">Spara</button>
                         }
                     </div>
                 </li>

@@ -57,13 +57,13 @@
     </div>
     </div>
     <hr />
-    <div class="container">
-        <h2 class="col-lg-10 text-center">Min Vägg</h2>
+    <div class="col-lg-8">
+        <h2 class="text-center">Min Vägg</h2>
         @if (Model.Messages != null && Model.Messages.Count > 0)
         {
             foreach (var item in Model.Messages)
             {
-                <div class="list-group-active col-lg-10 center-block" style="border:2px solid #000; border-radius: 5px; padding: 2%; margin-top: 2%; margin-bottom: 2%;">
+                <div class="list-group-active col-lg-12 center-block" style="border:2px solid #000; border-radius: 5px; padding: 2%; margin-top: 2%; margin-bottom: 2%;">
                     <h4 class="list-group-item-heading">@item.Sender.UserName</h4>
                     <h6 class="list-group-item-info">@item.Sender.Firstname @item.Sender.Lastname </h6>
                     <h6 class="list-group-item-info">@item.DateSent</h6>
@@ -75,44 +75,67 @@
         }
 
     </div>
-    <hr />
-    @section Scripts{
-        <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
-        <script src="~/Scripts/jquery.validate.unobtrusive.js"></script>
-        <script>
-            var id = null;
-            $(".customClass").on("click", function (e) {
-                $("#remove").show();
-                id = e.target.getAttribute("id");
-            });
+    <div class="col-lg-4 table-bordered">
+        <h5>Senaste besökta</h5>
+        <ul class="list-group"  id="last-visits">
 
-            $("#regret").on("click", function () {
-                $("#remove").hide();
-            })
+        </ul>
+    </div>
+        <hr />
+        @section Scripts{
+            <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+            <script src="~/Scripts/jquery.validate.unobtrusive.js"></script>
+            <script>
+                $(document).ready(function () {
+                    $.get("/api/visitor/get",
+                        function (data) {
+                            items = data;
+                            var maxlength;
+                            if (data.length > 5) {
+                                maxlength = 5;
+                            } else {
+                                maxlength = data.length;
+                            }
+                            //alert(data.length);
+                            for (var i = 0; i < maxlength; i++) {
+                                $("#last-visits").append("<li class='list-group-item'><a href=" + "/Search/ViewProfile?username=" + items[i].UserName + ">" + items[i].UserName.toUpperCase() + "</a></li>");
+                            }
+                        })
+                });
 
-            $("#removePost").on("click", function () {
-                $("#remove").hide();
+                var id = null;
+                $(".customClass").on("click", function (e) {
+                    $("#remove").show();
+                    id = e.target.getAttribute("id");
+                });
 
-                $.ajax({
-                    url: "/api/message/delete",
-                    type: "Post",
-                    data: JSON.stringify([id]),
-                    contentType: "application/json; charset=utf-8",
-                    success: function () {
-                        location.reload();
-                    },
-                    error: function () {
-                        $("#show").show();
-                        $("#message-id").append("Något har gått fel, prova igen!")
-                        location.reload();
-                    }
+                $("#regret").on("click", function () {
+                    $("#remove").hide();
                 })
-            });
 
-            $("#toggleBtn").on("click", function () {
-                $("#hideMessage").fadeToggle(500);
-            })
+                $("#removePost").on("click", function () {
+                    $("#remove").hide();
 
-        </script>
+                    $.ajax({
+                        url: "/api/message/delete",
+                        type: "Post",
+                        data: JSON.stringify([id]),
+                        contentType: "application/json; charset=utf-8",
+                        success: function () {
+                            location.reload();
+                        },
+                        error: function () {
+                            $("#show").show();
+                            $("#message-id").append("Något har gått fel, prova igen!")
+                            location.reload();
+                        }
+                    })
+                });
 
-    }
+                $("#toggleBtn").on("click", function () {
+                    $("#hideMessage").fadeToggle(500);
+                })
+
+            </script>
+
+        }
