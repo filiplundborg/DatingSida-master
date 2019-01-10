@@ -26,6 +26,7 @@ namespace DatingSida.Controllers
         ApplicationDbContext db = new ApplicationDbContext();
 
         public UserProfile profile = new UserProfile();
+        
 
         // GET: UserProfile
         public ActionResult Index()
@@ -38,9 +39,14 @@ namespace DatingSida.Controllers
                 Lastname = user.Lastname,
                 Image = user.Image,
                 Description = user.Description,
+                Gender = user.Gender,
+                InsterestedIn = user.InterestedIn,
+                DateOfBirth = user.DateOfBirth,
                 Messages = user.MessageReceived as List<Message>,
                 MessagesSent = user.MessageSent as List<Message>
             };
+           
+
             return View(viewModel);
         }
 

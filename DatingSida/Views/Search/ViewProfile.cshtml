@@ -21,9 +21,9 @@
     </div>
     <div class="col-md-7">
         <div class="row">
-            <h2>@Model.Firstname @Model.Lastname</h2>
-            <h4>@Model.Username</h4>
-            <p class="text">@Model.Description</p>
+            <h2>@Model.Firstname.ToUpper() @Model.Lastname.ToUpper()</h2>
+            <h4>@Model.Username.ToUpper()</h4>
+            <p class="text">@Model.Description.ToLower()</p>
             @if (!Model.IsFriends && !Model.HasRequest)
             {
                 <button class="btn btn-success" id="friendRequest">Skicka Vänförfrågan</button>
@@ -35,7 +35,7 @@
             }
           
 
-            <button class="btn btn-danger" id="goodfit">Passar vi ihop?</button>
+            <button class="btn btn-danger" id="match">Passar vi ihop?</button>
 
         </div>
     </div>
@@ -72,23 +72,59 @@
 <hr />
 @section Scripts{
     <script>
-        $("#send-message").on("click", function () {
-            var text = $("#textarea").val();
+
+         $("#match").on("click", function () {
+           
             $.ajax({
-                url: "/api/message/send",
+                url: "/api/match/matching",
                 type: "Post",
-                data: JSON.stringify(["@User.Identity.GetUserId()", "@Model.ReceiverId", text]),
+                data: JSON.stringify(["@User.Identity.GetUserId()", "@Model.Username"]),
                 contentType: "application/json; charset=utf-8",
-                success: function () {
+                success: function (data) {
                     $("#show").show();
-                    $("#message-id").append("Meddelandet har skickats!")
+                    $("#message-id").append(data + "% matchning!")
                 },
                 error: function () {
                     $("#show").show();
-                    $("#message-id").append("Meddelandet måste vara längre än 3 tecken och mindre än 400 tecken")
+                    $("#message-id").append("Ingen matchning har skett!")
                 }
             })
         });
+
+        $(document).ready(function () {
+            $.ajax({
+                url: "/api/visitor/add",
+                type: "Post",
+                data: JSON.stringify(["@Model.ReceiverId"]),
+                contentType: "application/json; charset=utf-8",
+                success: function () {
+                    alert("hej");
+                },
+                error: function () {
+                    $("#show").show();
+                    $("#message-id").append("FEEELLL!!")
+                }
+            })
+        });
+
+        $("#send-message").on("click", function () {
+                var text = $("#textarea").val();
+                $.ajax({
+                    url: "/api/message/send",
+                    type: "Post",
+                    data: JSON.stringify(["@User.Identity.GetUserId()", "@Model.ReceiverId", text]),
+                    contentType: "application/json; charset=utf-8",
+                    success: function () {
+                        $("#show").show();
+                        $("#message-id").append("Meddelandet har skickats!")
+                    },
+                    error: function () {
+                        $("#show").show();
+                        $("#message-id").append("Meddelandet måste vara längre än 3 tecken och mindre än 400 tecken")
+                    }
+                })
+            });
+
         $("#close").on("click", function () {
             $("#show").hide();
             location.reload();

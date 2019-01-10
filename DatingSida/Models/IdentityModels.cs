@@ -28,6 +28,9 @@ namespace DatingSida.Models
         public virtual ICollection<Friends> FriendsReceived { get; set; }
         public virtual ICollection<Friends> FriendsRequested { get; set; }
 
+        public virtual ICollection<Visitors> VisitorsSent { get; set; }
+        public virtual ICollection<Visitors> VisitorsReceived { get; set; }
+
         //Konstruktor för att instansiera främmande nycklar
 
         public ApplicationUser() : base()
@@ -39,10 +42,12 @@ namespace DatingSida.Models
             FriendsReceived = new List<Friends>();
             FriendsRequested = new List<Friends>();
             Categories = new List<Category>();
+            VisitorsSent = new List<Visitors>();
+            VisitorsReceived = new List<Visitors>();
         }
 
 
-        public async Task<ClaimsIdentity> GenerateUserIdentityAsync(UserManager<ApplicationUser> manager)
+    public async Task<ClaimsIdentity> GenerateUserIdentityAsync(UserManager<ApplicationUser> manager)
         {
             // Note the authenticationType must match the one defined in CookieAuthenticationOptions.AuthenticationType
             var userIdentity = await manager.CreateIdentityAsync(this, DefaultAuthenticationTypes.ApplicationCookie);
@@ -57,6 +62,7 @@ namespace DatingSida.Models
         public virtual DbSet<Request> Requests { get; set; }
         public virtual DbSet<Friends> Friends { get; set; }
         public virtual DbSet<Category> Categories { get; set; }
+        public virtual DbSet<Visitors> Visitors { get; set; }
 
         public ApplicationDbContext()
             : base("DefaultConnection", throwIfV1Schema: false)
