@@ -91,13 +91,15 @@ namespace DatingSida.Repository
             var user = userprofile.GetUserByName(username);
 
             var result = from i in db.Requests
-                         where userId == i.RequestSenderId && user.Id == i.RequestReceiverId
+                         where userId == i.RequestSenderId && user.Id == i.RequestReceiverId || userId == i.RequestReceiverId && user.Id == i.RequestSenderId
                          select i.RequestId;
-           
+
+         
 
             if (result.Count() > 0)
             {
                 model.HasRequest = true;
+                
                 return true;
             }
             else
@@ -114,7 +116,7 @@ namespace DatingSida.Repository
             var user = userprofile.GetUserByName(username);
 
             var result = from i in db.Friends
-                         where userId == i.UserId && user.Id == i.FriendId
+                         where userId == i.UserId && user.Id == i.FriendId || userId == i.FriendId && user.Id == i.UserId
                          select i.FriendId;
 
 
