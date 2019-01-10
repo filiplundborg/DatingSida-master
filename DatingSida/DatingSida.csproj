@@ -207,6 +207,7 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\AnswerRequestController.cs" />
     <Compile Include="Controllers\api\CategoryController.cs" />
+    <Compile Include="Controllers\api\MatchController.cs" />
     <Compile Include="Controllers\api\MessageController.cs" />
     <Compile Include="Controllers\api\RequestController.cs" />
     <Compile Include="Controllers\api\SearchApiController.cs" />
