@@ -21,9 +21,9 @@
     </div>
     <div class="col-md-7">
         <div class="row">
-            <h2>@Model.Firstname @Model.Lastname</h2>
-            <h4>@Model.Username</h4>
-            <p class="text">@Model.Description</p>
+            <h2>@Model.Firstname.ToUpper() @Model.Lastname.ToUpper()</h2>
+            <h4>@Model.Username.ToUpper()</h4>
+            <p class="text">@Model.Description.ToLower()</p>
             @if (!Model.IsFriends && !Model.HasRequest)
             {
                 <button class="btn btn-success" id="friendRequest">Skicka Vänförfrågan</button>
@@ -78,7 +78,13 @@
                 type: "Post",
                 data: JSON.stringify(["@Model.ReceiverId"]),
                 contentType: "application/json; charset=utf-8",
-                success: function () { }
+                success: function () {
+                    alert("hej");
+                },
+                error: function () {
+                    $("#show").show();
+                    $("#message-id").append("FEEELLL!!")
+                }
             })
         });
 

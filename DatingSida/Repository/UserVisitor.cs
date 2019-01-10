@@ -11,7 +11,7 @@ namespace DatingSida.Repository
         public ApplicationDbContext db = new ApplicationDbContext();
 
         public void AddVisit(string visitSendId, string visitReceivedId) {
-
+            UserProfile u = new UserProfile();
             var visit = new Visitors
             {
                 VisitSendId = visitSendId,
