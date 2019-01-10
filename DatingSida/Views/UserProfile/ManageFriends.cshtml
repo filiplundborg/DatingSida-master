@@ -2,37 +2,121 @@
 @{
     ViewBag.Title = "Mina vänner";
 }
-
 <h2>Hantera vänner</h2>
+<div class="col-md-4">
+   
+    <p>
+        <input type="text" id="create-category" class="form-control" placeholder="Lägg till en kategori..." />
+        <button id="create-category-btn" class="btn btn-success" style="margin-top: 1%;">Spara</button>
+    </p>
+</div>
+<div class="col-md-4">
+    <ul class="list-inline">
+        @if (Model.Categories != null && Model.Categories.Count > 0)
+        {
+            foreach (var item in Model.Categories)
+            {
+                <li class="list-group-item list-group-item-light col-md-4 text-center">@Html.ActionLink(item.Name.ToUpper(), "FriendCategory", new { id = item.CategoryId }, htmlAttributes: new { @class = "btn btn-link" })</li>
+
+            }
+
+        }
+    </ul>
+</div>
 
 <div class="container">
-
-
-    @if (Model.FriendsReceived != null && Model.FriendsReceived.Count > 0)
-    {
-        foreach (var item in Model.FriendsReceived)
+    <ul>
+        @if (Model.Friends != null && Model.Friends.Count > 0)
         {
-            <div class="list-group-active col-md-10 center-block"  id="test" style="border: 1px solid #000; border-radius: 5px; padding: 2%; margin-top: 2%; margin-bottom: 2%;">
-                <h4 class="list-group-item-heading"> <img src="../@item.FriendRequest.Image" style="width: 5%;" /><b>@Html.ActionLink(item.FriendRequest.UserName.ToUpper(), "ViewProfile", "Search", new { username = item.FriendRequest.UserName }, htmlAttributes: new { @class = "btn btn-link" })</b></h4>
-                <h6 class="list-group-item-heading">@item.FriendRequest.Firstname.ToUpper() @item.FriendRequest.Lastname.ToUpper() </h6>
+            foreach (var item in Model.Friends)
+            {
+                <li class="list-group-active col-md-10 center-block" style="border: 1px solid #000; border-radius: 5px; padding: 2%; margin-top: 2%; margin-bottom: 2%;">
+                    <div class="col-md-4">
+                        <h4 class="list-group-item-heading">
+                            <img src="../@item.Image" style="width: 10%;" /><b class="col-md-offset-1">
+                                @Html.ActionLink(item.UserName.ToUpper(), "ViewProfile", "Search", new { username = item.UserName }, htmlAttributes: new { @class = "btn btn-link", @style = "font-size: 200% !important;" })
+                        </h4>
+                    </div>
+                    <div class="col-md-4">
+                        @if (Model.Categories != null && Model.Categories.Count > 0)
+                        {
+                            <select class="form-control form-control-sm" id="select-category">
+                                <option value="" class="form-group">Lägg till en kategori...</option>
+                                @foreach (var i in Model.Categories)
+                                {
+                                    <option class="form-group" value="@i.CategoryId">@i.Name</option>
+                                }
 
-            </div>
+                            </select>
+                            <button value="@item.Id" class="btn btn-success" id="save-in-category" style="margin-top: 2%;">Spara</button>
+                        }
+                    </div>
+                </li>
+            }
+
         }
-
-    }
-    @if (Model.FriendsRequested != null && Model.FriendsRequested.Count > 0)
-    {
-        foreach (var item in Model.FriendsRequested)
-        {
-            <div class="list-group-active col-md-10 center-block" style="border: 1px solid #000; border-radius: 5px; padding: 2%; margin-top: 2%; margin-bottom: 2%;">
-                <h4 class="list-group-item-heading"> <img src="../@item.FriendReceived.Image" style="width: 5%;" /><b>@Html.ActionLink(item.FriendReceived.UserName.ToUpper(), "ViewProfile", "Search", new { username = item.FriendReceived.UserName }, htmlAttributes: new { @class = "btn btn-link" })</b></h4>
-                <h5 class="list-group-item-heading">@item.FriendReceived.Firstname.ToUpper() @item.FriendReceived.Lastname.ToUpper() </h5>
-
-            </div>
-        }
-
-    }
+    </ul>
 </div>
+
+@section Scripts{
+    <script>
+        $("#create-category-btn").on("click", function () {
+            var text = $("#create-category").val();
+            if (text.length > 0) {
+                $.ajax({
+                    url: "/api/category/add",
+                    type: "Post",
+                    data: JSON.stringify([text]),
+                    contentType: "application/json; charset=utf-8",
+                    success: function () {
+                        $("#show").show();
+                        $("#message-id").append("Kategorin har sparats!")
+                    },
+                    error: function () {
+                        $("#show").show();
+                        $("#message-id").append("Något har gått fel")
+                    }
+                })
+
+            } else {
+                $("#show").show();
+                $("#message-id").append("Du kan inte lägga till en tom kategori!")
+            }
+        });
+        $("#close").on("click", function () {
+            $("#show").hide();
+            location.reload();
+        })
+
+        $("#save-in-category").on("click", function (e) {
+            var userId = e.target.getAttribute("value");
+            var categoryId = $("#select-category").val();
+
+            if (categoryId.length > 0) {
+                $.ajax({
+                    url: "/api/category/addfriend",
+                    type: "Post",
+                    data: JSON.stringify([userId, categoryId]),
+                    contentType: "application/json; charset=utf-8",
+                    success: function () {
+                        $("#show").show();
+                        $("#message-id").append("Din vän har sparats i kategorin!")
+                    },
+                    error: function () {
+                        $("#show").show();
+                        $("#message-id").append("Något har gått fel")
+                    }
+                })
+
+            } else {
+                $("#show").show();
+                $("#message-id").append("Du måste välja en kategori att lägga till!")
+            }
+        });
+
+    </script>
+
+}
 
 
 
