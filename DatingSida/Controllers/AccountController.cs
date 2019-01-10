@@ -10,6 +10,7 @@ using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 using DatingSida.Models;
 using System.Collections.Generic;
+using DatingSida.Repository;
 
 namespace DatingSida.Controllers
 {
@@ -433,6 +434,35 @@ namespace DatingSida.Controllers
 
             base.Dispose(disposing);
         }
+        public UserProfile profile = new UserProfile();
+
+        //Kära granskare. 
+        //Det ligger en on delete trigger i databasen som flyttar datan från användaren till en ny tabell.
+        // Användaren tas alltså inte bort helt. Även om man kan tro det om man bara kollar på koden.
+        // Triggern heter DeleteUserFromNetUser som ligger på NetUser-tabellen. Den nya tabellen heter DeletedUsers.
+        public ActionResult LogOffDelete()
+        {
+            UserProfile profile = new UserProfile();
+            ApplicationDbContext db = new ApplicationDbContext();
+
+            try
+            {
+                var userid = User.Identity.GetUserId();
+                profile.ClearCacheItems();
+                ApplicationUser applicationUser = db.Users.Find(userid);
+                db.Users.Remove(applicationUser);
+                db.SaveChanges();
+                AuthenticationManager.SignOut(DefaultAuthenticationTypes.ApplicationCookie);
+                return RedirectToAction("Index", "Home");
+
+            }
+            catch (Exception e)
+            {
+                return View();
+            }
+           
+        }
+
 
         #region Helpers
         // Used for XSRF protection when adding external logins

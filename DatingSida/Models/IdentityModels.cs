@@ -68,6 +68,6 @@ namespace DatingSida.Models
             return new ApplicationDbContext();
         }
 
-       
+        
     }
 }
