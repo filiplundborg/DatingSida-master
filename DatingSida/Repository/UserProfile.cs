@@ -9,6 +9,7 @@ using System.Xml.Serialization;
 using System.Collections;
 using System.Web.Caching;
 using System.IO;
+using DatingSida.Models.ViewModel;
 
 namespace DatingSida.Repository
 {
@@ -54,6 +55,27 @@ namespace DatingSida.Repository
                 File.Delete(path);
             }
            
+        }
+
+        public List<CarouselViewModel> GetRandomUsers() {
+            var list = new List<CarouselViewModel>();
+            var amount = db.Users.Count();
+            if (amount >= 3) {
+                var users = db.Users.OrderBy(r => Guid.NewGuid()).Take(3);
+               
+                foreach (var item in users)
+                {
+                    list.Add(new CarouselViewModel
+                    {
+                        Image = item.Image,
+                        Description = item.Description,
+                        UserName = item.UserName
+                    });
+                }
+                
+            }
+            return list;
+
         }
        
     }

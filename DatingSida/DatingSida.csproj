@@ -230,7 +230,9 @@
     <Compile Include="Models\UserProfileIndexViewModel.cs" />
     <Compile Include="Models\ViewModel\AllUsersProfilesViewModel.cs" />
     <Compile Include="Models\ViewModel\AnswerRequestViewModel.cs" />
+    <Compile Include="Models\ViewModel\CarouselViewModel.cs" />
     <Compile Include="Models\ViewModel\FriendCategoryViewModel.cs" />
+    <Compile Include="Models\ViewModel\ListCarouselViewModel.cs" />
     <Compile Include="Models\ViewModel\UserMessageViewModel.cs" />
     <Compile Include="Models\Visitors.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
