@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<UserProfileIndexViewModel xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <Firstname>olivia</Firstname>
+  <Username>jonas</Username>
+  <Lastname>forslund</Lastname>
+  <Description>Det höll i ungefär tolv timmar. När Centerns riksdagsgrupp och partistyrelse träffades under söndagseftermiddagen gjorde de tummen ner.</Description>
+  <Image>Images\avatar.png</Image>
+</UserProfileIndexViewModel>

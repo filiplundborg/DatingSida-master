@@ -23,8 +23,15 @@ namespace DatingSida.Repository
         }
         public ApplicationUser GetUserByName(string username)
         {
-            var user = db.Users.Single(i => i.UserName == username);
-            return user;
+            try
+            {
+                var user = db.Users.Single(i => i.UserName == username);
+                return user;
+            }
+            catch {
+                return new ApplicationUser();
+            }
+            
         }
         public void SaveImagePath(string imgPath, string userId) {
             var user = this.GetUser(userId);
@@ -80,7 +87,7 @@ namespace DatingSida.Repository
 
         public List<SearchViewModel> GetSearchUsers(string currentUsername)
         {
-            
+
             var users = db.Users.ToList();
             var user = users.Find(i => i.UserName == currentUsername);
             users.Remove(user);
@@ -99,13 +106,13 @@ namespace DatingSida.Repository
                     DateOfBirth = u.DateOfBirth,
                     InterestedIn = u.InterestedIn,
                     Description = u.Description,
-                    
+
                 });
-                
+
             }
 
             return list;
-            
+
         }
 
     }
