@@ -9,6 +9,7 @@ using System.Xml.Serialization;
 using System.Collections;
 using System.Web.Caching;
 using System.IO;
+using DatingSida.Models.ViewModel;
 
 namespace DatingSida.Repository
 {
@@ -55,20 +56,57 @@ namespace DatingSida.Repository
             }
            
         }
-        public void RemoveAllUserReferences(string id){
-           
-            var user = GetUser(id);
-            db.Requests.RemoveRange(user.RequestReceived);
-            db.Requests.RemoveRange(user.RequestSent);
-            db.Friends.RemoveRange(user.FriendsReceived);
-            db.Friends.RemoveRange(user.FriendsRequested);
-            db.Categories.RemoveRange(user.Categories);
-            db.Visitors.RemoveRange(user.VisitorsSent);
-            db.Visitors.RemoveRange(user.VisitorsReceived);
-            db.Messages.RemoveRange(user.MessageReceived);
-            db.Messages.RemoveRange(user.MessageSent);
-            db.SaveChanges();
+
+        public List<CarouselViewModel> GetRandomUsers() {
+            var list = new List<CarouselViewModel>();
+            var amount = db.Users.Count();
+            if (amount >= 3) {
+                var users = db.Users.OrderBy(r => Guid.NewGuid()).Take(3);
+               
+                foreach (var item in users)
+                {
+                    list.Add(new CarouselViewModel
+                    {
+                        Image = item.Image,
+                        Description = item.Description,
+                        UserName = item.UserName
+                    });
+                }
+                
+            }
+            return list;
+
         }
-       
+
+        public List<SearchViewModel> GetSearchUsers(string currentUsername)
+        {
+            
+            var users = db.Users.ToList();
+            var user = users.Find(i => i.UserName == currentUsername);
+            users.Remove(user);
+
+            var list = new List<SearchViewModel>();
+            foreach (var u in users)
+            {
+
+                list.Add(new SearchViewModel
+                {
+                    UserName = u.UserName,
+                    Image = u.Image,
+                    FirstName = u.Firstname,
+                    LastName = u.Lastname,
+                    Gender = u.Gender,
+                    DateOfBirth = u.DateOfBirth,
+                    InterestedIn = u.InterestedIn,
+                    Description = u.Description,
+                    
+                });
+                
+            }
+
+            return list;
+            
+        }
+
     }
 }

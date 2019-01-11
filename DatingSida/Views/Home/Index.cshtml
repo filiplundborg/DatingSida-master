@@ -1,21 +1,21 @@
-﻿@{
-    ViewBag.Title = "Home Page";
+﻿@model DatingSida.Models.ViewModel.ListCarouselViewModel
+
+@{
+    ViewBag.Title = "Start";
 }
 <head>
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
-    
+
 </head>
 
 <style>
     #myCarousel {
-       height:40vh;
-       max-height: 40vh;
-       width:100%;
-       overflow:hidden ;
+        height: 80vh;
+        max-height: 80vh;
+        width: 100%;
+        overflow: hidden;
     }
-    
-
 </style>
 <div id="myCarousel" class="carousel slide" data-ride="carousel">
     <!-- Indicators -->
@@ -26,19 +26,56 @@
     </ol>
 
     <!-- Wrapper for slides -->
-    <div class="carousel-inner">
-        <div class="item active">
-            <img src="~/Images/förstasidan.png" alt="slide">
+    @if (Model.carousels.Count == 3)
+    {
+        <div class="carousel-inner">
+            <div class="item active">
+                <div>
+                    <div class="center-block" style="cursor: pointer;">
+                        <img src="../@Model.carousels[0].Image" id="@Model.carousels[0].UserName" alt="slide" class="img-responsive center-block view-user" style="width: 30%;"><br />
+                        <h3 class="text-center view-user" id="@Model.carousels[0].UserName">@Model.carousels[0].UserName.ToUpper()</h3>
+                        <h5 class="text-center view-user" id="@Model.carousels[0].UserName">@Model.carousels[0].Description.Substring(0, 30).ToUpper()...</h5>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="item">
+                <div style="cursor: pointer;">
+                    <div class="center-block">
+                        <img src="../@Model.carousels[1].Image" id="@Model.carousels[1].UserName" alt="slide" class="img-responsive center-block view-user" style="width: 30%;"><br />
+                        <h3 class="text-center view-user" id="@Model.carousels[1].UserName">@Model.carousels[1].UserName.ToUpper()</h3>
+                        <h5 class="text-center view-user" id="@Model.carousels[1].UserName">@Model.carousels[1].Description.Substring(0, 30).ToUpper()...</h5>
+                    </div>
+                </div>
+            </div>
+
+            <div class="item">
+                <div style="cursor: pointer;">
+                    <div class="center-block">
+                        <img src="../@Model.carousels[1].Image" id="@Model.carousels[1].UserName" alt="slide" class="img-responsive center-block view-user" style="width: 30%;"><br />
+                        <h3 class="text-center view-user" id="@Model.carousels[1].UserName">@Model.carousels[1].UserName.ToUpper()</h3>
+                        <h5 class="text-center view-user" id="@Model.carousels[1].UserName">@Model.carousels[1].Description.Substring(0, 30).ToUpper()...</h5>
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+    else
+    {
+        <div class="carousel-inner">
+            <div class="item active">
+                <img src="~/Images/förstasidan.png" alt="slide">
+            </div>
+            <div class="item">
+                <img src="~/Images/slide2pic.png" alt="slide2">
+            </div>
+            <div class="item">
+                <img src="~/Images/slide3pic.png" alt="slide3">
+            </div>
         </div>
 
-        <div class="item">
-            <img src="~/Images/slide2pic.png" alt="slide2">
-        </div>
-
-        <div class="item">
-            <img src="~/Images/slide3pic.png" alt="slide3">
-        </div>
-    </div>
+    }
 
     <!-- Left and right controls -->
     <a class="left carousel-control" href="#myCarousel" data-slide="prev">
@@ -50,27 +87,15 @@
         <span class="sr-only">Next</span>
     </a>
 </div>
-<div class="text-center" style="padding-top: 5vh;">
-    <p>Obligatoriska inspirational quotes:</p>
-</div>
-<div class="bottom" style="padding-top: 5vh;">
-    <div class="text-center">
-        <hr />
-        <p>
-            When I say I love you, please believe it's true.
-            When I say forever, know I'll never leave you.
-            <br> When I say goodbye, promise me you won't cry,
-            Because the day I'll be saying that will be the day I die.
 
-        </p>
-        <hr />
-        <p>
-            Love yourself. It is important to stay positive because beauty comes from the inside out.
+@section Scripts {
+    <script>
+        $(".view-user").on("click", function (e) {
+            var id = e.target.getAttribute("id");
+            window.location.href = '../Search/ViewProfile?username=' + id;
+        });
 
-        </p>
-    </div>
-    
-</div>
-
+    </script>
+}
 
 
