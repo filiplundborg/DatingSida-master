@@ -77,6 +77,36 @@ namespace DatingSida.Repository
             return list;
 
         }
-       
+
+        public List<SearchViewModel> GetSearchUsers(string currentUsername)
+        {
+            
+            var users = db.Users.ToList();
+            var user = users.Find(i => i.UserName == currentUsername);
+            users.Remove(user);
+
+            var list = new List<SearchViewModel>();
+            foreach (var u in users)
+            {
+
+                list.Add(new SearchViewModel
+                {
+                    UserName = u.UserName,
+                    Image = u.Image,
+                    FirstName = u.Firstname,
+                    LastName = u.Lastname,
+                    Gender = u.Gender,
+                    DateOfBirth = u.DateOfBirth,
+                    InterestedIn = u.InterestedIn,
+                    Description = u.Description,
+                    
+                });
+                
+            }
+
+            return list;
+            
+        }
+
     }
 }
