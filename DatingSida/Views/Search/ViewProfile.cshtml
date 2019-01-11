@@ -15,7 +15,7 @@
     <link href="~/Content/Site.css" rel="stylesheet" type="text/css" />
 </head>
 <div class="container" style="padding-left: 10%;">
-    <h2>Min Profil</h2>
+    <h2 id="btn-test">Min Profil</h2>
     <div class="col-md-5">
         <img src="../@Model.Image" class="img-responsive" style="width: 20%; max-height: 400px; min-height: 200px; max-width: 400px; min-width: 200px; " />
     </div>
@@ -91,21 +91,7 @@
             })
         });
 
-        $(document).ready(function () {
-            $.ajax({
-                url: "/api/visitor/add",
-                type: "Post",
-                data: JSON.stringify(["@Model.ReceiverId"]),
-                contentType: "application/json; charset=utf-8",
-                success: function () {
-                    alert("hej");
-                },
-                error: function () {
-                    $("#show").show();
-                    $("#message-id").append("FEEELLL!!")
-                }
-            })
-        });
+
 
         $("#send-message").on("click", function () {
                 var text = $("#textarea").val();

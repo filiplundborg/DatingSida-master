@@ -1,6 +1,7 @@
 ﻿using DatingSida.Models;
 using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using System.Web;
 
@@ -10,16 +11,24 @@ namespace DatingSida.Repository
     {
         public ApplicationDbContext db = new ApplicationDbContext();
 
-        public void AddVisit(string visitSendId, string visitReceivedId) {
-            UserProfile u = new UserProfile();
-            var visit = new Visitors
+        public void AddVisit(string visitReceived, string visitSend) {
+            try
             {
-                VisitSendId = visitSendId,
-                VisitReceivedId = visitReceivedId,
-                DateSent = DateTime.Now
-            };
-            db.Visitors.Add(visit);
-            db.SaveChanges();
+               
+                var visit = new Visitors
+                {
+                    VisitSendId = visitSend,
+                    VisitReceivedId = visitReceived,
+                    DateSent = DateTime.Now
+                };
+                
+                db.Visitors.Add(visit);
+                db.SaveChanges();
+            }
+            catch (Exception exc) {
+                throw new Exception();
+            }
+   
         }
 
         public List<ApplicationUser> GetVisits(string userId) {
