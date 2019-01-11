@@ -26,11 +26,11 @@
     </div>
     <div class="row">
 
-        <h2>@Model.Firstname @Model.Lastname</h2>
-        <h4>@Model.Username</h4>
+        <h2>@Model.Firstname.ToUpper() @Model.Lastname.ToUpper()</h2>
+        <h4>@Model.Username.ToUpper()</h4>
 
 
-        <p class="text">@Model.Description </p>
+        <p class="text">@Model.Description.ToLower() </p>
         <div class="col-sm-offset-5" style="border: 1px solid #000;">
             @Html.ActionLink("Ändra Profil", "EditProfile", null, htmlAttributes: new { @class = "btn btn-link", @style = "font-size: 110%;" })<br />
             @Html.ActionLink("Hantera Vänner", "ManageFriends", null, htmlAttributes: new { @class = "btn btn-link", @style = "font-size: 110%;" })<br />
@@ -86,22 +86,30 @@
             <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
             <script src="~/Scripts/jquery.validate.unobtrusive.js"></script>
             <script>
+    
                 $(document).ready(function () {
-                    $.get("/api/visitor/get",
-                        function (data) {
+                    $.ajax({
+                        url: "/api/visitor/getusers",
+                        type: "Post",
+                        data: JSON.stringify([""]),
+                        contentType: "application/json; charset=utf-8",
+                        success: function (data) {
                             items = data;
+                            
                             var maxlength;
                             if (data.length > 5) {
                                 maxlength = 5;
                             } else {
                                 maxlength = data.length;
                             }
-                            //alert(data.length);
+                           
                             for (var i = 0; i < maxlength; i++) {
-                                $("#last-visits").append("<li class='list-group-item'><a href=" + "/Search/ViewProfile?username=" + items[i].UserName + ">" + items[i].UserName.toUpperCase() + "</a></li>");
+                                $("#last-visits").append("<li class='list-group-item'><a href=" + "/Search/ViewProfile?username=" + items[i] + ">" + items[i].toUpperCase() + "</a></li>");
                             }
-                        })
+                        }
+                    })                            
                 });
+
 
                 var id = null;
                 $(".customClass").on("click", function (e) {

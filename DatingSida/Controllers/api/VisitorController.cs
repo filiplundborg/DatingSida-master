@@ -14,29 +14,21 @@ namespace DatingSida.Controllers.api
     {
         public UserVisitor UserVisitor = new UserVisitor();
 
-        [Route("add")]
+    
+
+        [Route("getusers")]
         [HttpPost]
-        public IHttpActionResult SaveVisit(List<string> uservisited) {
-            try
-            {
-                UserVisitor.AddVisit(uservisited[0], User.Identity.GetUserId());
-                return Ok();
-            }
-            catch
-            {
-                return BadRequest();
-
-            }
-        }
-
-        [Route("get")]
-        [HttpGet]
-        public IHttpActionResult GetVisitors()
+        public IHttpActionResult GetVisitorsPost()
         {
             try
             {
                 var users = UserVisitor.GetVisits(User.Identity.GetUserId());
-                return Ok(users);
+                var list = new List<string>();
+                foreach (var item in users) {
+                    list.Add(item.UserName);
+                }
+                
+                return Ok(list);
             }
             catch
             {
@@ -44,6 +36,8 @@ namespace DatingSida.Controllers.api
             }
 
         }
+
+
 
     }
 }

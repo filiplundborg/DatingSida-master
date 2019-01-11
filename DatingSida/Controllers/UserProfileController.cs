@@ -234,15 +234,16 @@ namespace DatingSida.Controllers
                 };
 
                 
-                string file = Guid.NewGuid().ToString() + ".xml";
+                string file = User.Identity.GetUserName().ToString()+ "'" + ".xml";
                 string fp = Path.Combine(Server.MapPath("~/ProfilesXml/"), file);
-               
+                profile.CheckIfFileExists(fp);
                 var serializer = new XmlSerializer(typeof(UserProfileIndexViewModel));
                 using (var writer = new StreamWriter(fp))
                 {
                     serializer.Serialize(writer, viewModel);
                     writer.Flush();
                 }
+               
                 return RedirectToAction("EditProfile");
             }
             catch (Exception e) {
@@ -250,6 +251,9 @@ namespace DatingSida.Controllers
                 return RedirectToAction("Index");
             }
         }
+
+        
+
         public ActionResult ManageFriends()
         {
             var user = profile.GetUser(User.Identity.GetUserId());
