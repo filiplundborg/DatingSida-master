@@ -1,9 +1,53 @@
 ﻿@model DatingSida.Models.EditUserProfileViewModel
-@using Microsoft.AspNet.Identity;
+
 
 @{
     ViewBag.Title = "Ändra uppgifter";
 }
+
+<style>
+    .ui-datepicker {
+        width: 216px;
+        height: auto;
+        margin: 5px auto 0;
+        font: 12pt Arial, sans-serif;
+        background-color: ghostwhite;
+        -webkit-box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, .5);
+        -moz-box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, .5);
+        box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, .5);
+    }
+
+        .ui-datepicker a {
+            text-decoration: none;
+        }
+
+        .ui-datepicker table {
+            width: 100%;
+        }
+
+        .ui-datepicker tbody td {
+            padding: 0;
+            border-right: 1px solid #bbb;
+        }
+
+        .ui-datepicker tbody tr {
+            border-bottom: 1px solid #bbb;
+        }
+
+            .ui-datepicker tbody tr:last-child {
+                border-bottom: 0px;
+            }
+
+    .ui-datepicker-prev, .ui-datepicker-next {
+        display: inline-block;
+        width: 30px;
+        height: 30px;
+        text-align: center;
+        cursor: pointer;
+        line-height: 600%;
+        overflow: hidden;
+    }
+</style>
 
 
 <h2>@ViewBag.Title.</h2>
@@ -46,9 +90,21 @@
         </div>
     </div>
     <div class="form-group">
+        @Html.LabelFor(m => m.DateOfBirth, new { @class = "col-md-2 control-label" })
+        <div class="col-md-10">
+            @Html.TextBoxFor(m => m.DateOfBirth, new { @class = "form-control", @id = "datepicker" })
+        </div>
+    </div>
+    <div class="form-group">
         @Html.LabelFor(m => m.Gender, new { @class = "col-md-2 control-label" })
         <div class="col-md-10">
             @Html.EnumDropDownListFor(m => m.Gender, "Välj ditt kön", new { @class = "form-control" })
+        </div>
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(m => m.InterestedIn, new { @class = "col-md-2 control-label" })
+        <div class="col-md-10">
+            @Html.EnumDropDownListFor(m => m.InterestedIn, "Jag är intresserad av...", new { @class = "form-control" })
         </div>
     </div>
     <div class="form-group">
@@ -64,27 +120,13 @@
         </div>
     </div>
 }
-
-
-@using (Html.BeginForm("SerializeProfile", "UserProfile", FormMethod.Post, new { @class = "form-horizontal", @id = "download-profile", role = "form" }))
+@using (Html.BeginForm("SerializeProfile", "UserProfile", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
 {<div class="form-group">
         <div class="col-md-offset-2 col-md-10">
-            <input type="submit" class="btn btn-default" value="Serialisera profil till XML" id="SerializeButton" />
-            @{string file = User.Identity.GetUserName().ToString() + "'" + ".xml";
-                string fp = Path.Combine(Server.MapPath("~/ProfilesXml/"), file);
-                if (File.Exists(fp))
-                {
-                    <a class="btn btn-default" href="../ProfilesXml/@Model.Username'.xml" download id="DownloadLink">Ladda ner mig</a>
-                }
-            }
-            
+            <input type="submit" class="btn btn-default" value="Serialisera profil till XML" />
         </div>
     </div>
 }
-
-
-
-
 @using (Html.BeginForm("LogOffDelete", "Account", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
 {<div class="form-group">
         <div class="col-md-offset-2 col-md-10">
@@ -96,6 +138,7 @@
 
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
+    @Scripts.Render("~/bundles/jqueryui")
     <script>
 
 
@@ -103,10 +146,16 @@
             window.location.href = '../Manage/ChangePassword';
 
         });
-            //$('#download-profile').on("click", function () {
-            //    $("#DownloadLink").fadeToggle(500);
-            //});
 
+        $(document).ready(function () {
+            $('#datepicker').datepicker({
+                dateFormat: "yy-mm-dd",
+                changeMonth: true,
+                changeYear: true,
+                yearRange: "-100:+0"
+            });
+
+        });
 
     </script>
 
