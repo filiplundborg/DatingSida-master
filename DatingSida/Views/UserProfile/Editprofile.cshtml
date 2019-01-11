@@ -122,9 +122,10 @@
 }
 @using (Html.BeginForm("SerializeProfile", "UserProfile", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
 {<div class="form-group">
-        <div class="col-md-offset-2 col-md-10">
-            <input type="submit" class="btn btn-default" value="Serialisera profil till XML" />
-        </div>
+     <div class="col-md-offset-2 col-md-10">
+         <input type="submit" class="btn btn-default" value="Serialisera profil till XML" />
+         <a class="btn btn-default" href="../ProfilesXml/@Model.Username'.xml" download id="DownloadLink">Ladda ner mig</a>
+     </div>
     </div>
 }
 @using (Html.BeginForm("LogOffDelete", "Account", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
