@@ -107,6 +107,20 @@ namespace DatingSida.Repository
             return list;
             
         }
+        public void RemoveAllUserReferences(string id)
+        {
 
+            var user = GetUser(id);
+            db.Requests.RemoveRange(user.RequestReceived);
+            db.Requests.RemoveRange(user.RequestSent);
+            db.Friends.RemoveRange(user.FriendsReceived);
+            db.Friends.RemoveRange(user.FriendsRequested);
+            db.Categories.RemoveRange(user.Categories);
+            db.Visitors.RemoveRange(user.VisitorsSent);
+            db.Visitors.RemoveRange(user.VisitorsReceived);
+            db.Messages.RemoveRange(user.MessageReceived);
+            db.Messages.RemoveRange(user.MessageSent);
+            db.SaveChanges();
+
+        }
     }
-}
