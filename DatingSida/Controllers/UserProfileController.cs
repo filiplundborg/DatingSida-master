@@ -90,6 +90,21 @@ namespace DatingSida.Controllers
                 model.Gender = Gender.Kvinna;
             }
 
+            if(user.InterestedIn == "Män")
+            {
+                model.InterestedIn = InterestedIn.Män;
+            }
+
+            else if(user.InterestedIn == "Kvinnor")
+            {
+                model.InterestedIn = InterestedIn.Kvinnor;
+            }
+
+            else if(user.InterestedIn == "Båda")
+            {
+                model.InterestedIn = InterestedIn.Båda;
+            }
+
 
             
             model.Firstname = user.Firstname;
@@ -97,6 +112,7 @@ namespace DatingSida.Controllers
             model.Username = user.UserName;
             model.Description = user.Description;
             model.Email = user.Email;
+            model.DateOfBirth = Convert.ToDateTime(user.DateOfBirth);
 
             return View(model);
         }
@@ -157,6 +173,35 @@ namespace DatingSida.Controllers
                     {
                         user.Gender = "Man";
                     }
+                }
+
+                 if(model.InterestedIn == InterestedIn.Män)
+                {
+                    if(user.InterestedIn != "Män")
+                    {
+                        user.InterestedIn = "Män";
+                    }
+                }
+
+                 if(model.InterestedIn == InterestedIn.Kvinnor)
+                {
+                    if(user.InterestedIn != "Kvinnor")
+                    {
+                        user.InterestedIn = "Kvinnor";
+                    }
+                }
+
+                 if(model.InterestedIn == InterestedIn.Båda)
+                 {
+                    if(user.InterestedIn != "Båda")
+                    {
+                        user.InterestedIn = "Båda";
+                    }
+                 }
+
+                 if(model.DateOfBirth.ToString() != user.DateOfBirth)
+                {
+                    user.DateOfBirth = model.DateOfBirth.ToString();
                 }
 
 
