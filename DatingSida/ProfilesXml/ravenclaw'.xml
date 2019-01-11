@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<UserProfileIndexViewModel xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <Firstname>Samuel</Firstname>
+  <Username>ravenclaw</Username>
+  <Lastname>Andersson</Lastname>
+  <Description>Det finns också former av poesi som är helt improviserad och spontan; till exempel automatisk skrift inom surrealism. Avsikten är då att släppa ut känslor och drömmar "direkt ur hjärtat" utan att låta intellektet filtrera innehållet.
+
+</Description>
+  <Image>Images\avatar.png</Image>
+</UserProfileIndexViewModel>
