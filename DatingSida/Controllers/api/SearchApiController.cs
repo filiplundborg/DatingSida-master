@@ -21,7 +21,7 @@ namespace DatingSida.Controllers.api
         {
             try
             {
-                var users = profile.GetAllUsers(User.Identity.GetUserName());
+                var users = profile.GetSearchUsers(User.Identity.GetUserName());
                 return Ok(users);
             }
             catch {

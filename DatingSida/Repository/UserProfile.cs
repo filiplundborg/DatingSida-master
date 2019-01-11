@@ -67,20 +67,24 @@ namespace DatingSida.Repository
             var list = new List<SearchViewModel>();
             foreach (var u in users)
             {
-
-                list.Add(new SearchViewModel
+                if (u.IsActive == true)
                 {
-                    UserName = u.UserName,
-                    Image = u.Image,
-                    FirstName = u.Firstname,
-                    LastName = u.Lastname,
-                    Gender = u.Gender,
-                    DateOfBirth = u.DateOfBirth,
-                    InterestedIn = u.InterestedIn,
-                    Description = u.Description,
-                    
-                });
-                
+
+                    list.Add(new SearchViewModel
+                    {
+                        UserName = u.UserName,
+                        Image = u.Image,
+                        Firstname = u.Firstname,
+                        Lastname = u.Lastname,
+                        Gender = u.Gender,
+                        DateOfBirth = u.DateOfBirth,
+                        InterestedIn = u.InterestedIn,
+                        Description = u.Description,
+                        IsActive = u.IsActive
+                        
+                    });
+
+                }
             }
 
             return list;
