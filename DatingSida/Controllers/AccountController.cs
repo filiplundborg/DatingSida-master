@@ -452,6 +452,7 @@ namespace DatingSida.Controllers
                 profile.ClearCacheItems();
                 ApplicationUser applicationUser = db.Users.Find(userid);
                 applicationUser.IsActive = false;
+                profile.RemoveAllUserReferences(userid);
                 db.SaveChanges();
                 AuthenticationManager.SignOut(DefaultAuthenticationTypes.ApplicationCookie);
                 return RedirectToAction("Index", "Home");
