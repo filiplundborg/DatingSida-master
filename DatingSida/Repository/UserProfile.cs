@@ -23,15 +23,8 @@ namespace DatingSida.Repository
         }
         public ApplicationUser GetUserByName(string username)
         {
-            try
-            {
-                var user = db.Users.Single(i => i.UserName == username);
-                return user;
-            }
-            catch {
-                return new ApplicationUser();
-            }
-            
+            var user = db.Users.Single(i => i.UserName == username);
+            return user;
         }
         public void SaveImagePath(string imgPath, string userId) {
             var user = this.GetUser(userId);
@@ -87,7 +80,7 @@ namespace DatingSida.Repository
 
         public List<SearchViewModel> GetSearchUsers(string currentUsername)
         {
-
+            
             var users = db.Users.ToList();
             var user = users.Find(i => i.UserName == currentUsername);
             users.Remove(user);
@@ -95,25 +88,43 @@ namespace DatingSida.Repository
             var list = new List<SearchViewModel>();
             foreach (var u in users)
             {
-
-                list.Add(new SearchViewModel
+                if (u.IsActive == true)
                 {
-                    UserName = u.UserName,
-                    Image = u.Image,
-                    FirstName = u.Firstname,
-                    LastName = u.Lastname,
-                    Gender = u.Gender,
-                    DateOfBirth = u.DateOfBirth,
-                    InterestedIn = u.InterestedIn,
-                    Description = u.Description,
 
-                });
+                    list.Add(new SearchViewModel
+                    {
+                        UserName = u.UserName,
+                        Image = u.Image,
+                        Firstname = u.Firstname,
+                        Lastname = u.Lastname,
+                        Gender = u.Gender,
+                        DateOfBirth = u.DateOfBirth,
+                        InterestedIn = u.InterestedIn,
+                        Description = u.Description,
+                        IsActive = u.IsActive
+                        
+                    });
 
+                }
             }
 
             return list;
+            
+        }
+        public void RemoveAllUserReferences(string id)
+        {
+
+            var user = GetUser(id);
+            db.Requests.RemoveRange(user.RequestReceived);
+            db.Requests.RemoveRange(user.RequestSent);
+            db.Friends.RemoveRange(user.FriendsReceived);
+            db.Friends.RemoveRange(user.FriendsRequested);
+            db.Categories.RemoveRange(user.Categories);
+            db.Visitors.RemoveRange(user.VisitorsSent);
+            db.Visitors.RemoveRange(user.VisitorsReceived);
+            db.Messages.RemoveRange(user.MessageReceived);
+            db.Messages.RemoveRange(user.MessageSent);
+            db.SaveChanges();
 
         }
-
     }
-}

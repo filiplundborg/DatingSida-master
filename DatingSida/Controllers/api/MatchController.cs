@@ -30,5 +30,22 @@ namespace DatingSida.Controllers.api
                 return BadRequest();
             }
         }
+
+        [Route("searchmatch")]
+        [HttpPost]
+        public IHttpActionResult SearchMatch(List<string> matches)
+        {
+            try
+            {
+                var result = request.SearchMatch(matches[0], matches[1]);
+
+                return Ok(result);
+            }
+            catch
+            {
+                return BadRequest();
+            }
+        }
+
     }
 }

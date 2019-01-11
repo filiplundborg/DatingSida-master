@@ -140,25 +140,10 @@ namespace DatingSida.Repository
             var random = new Random();
             
 
-            //var myBirthday = from i in db.Users
-            //            where i.Id == userId
-            //            select i.DateOfBirth;
-
             var myage = DateTime.Now.Year - Convert.ToDateTime(myuser.DateOfBirth).Year;
-
-            //var yourBirthday = from i in db.Users
-            //                   where i.Id == user.Id
-            //                   select i.DateOfBirth;
 
             var yourAge = DateTime.Now.Year - Convert.ToDateTime(user.DateOfBirth).Year;
 
-            //var myGender = from i in db.Users
-            //               where i.Id == userId
-            //               select i.Gender;
-
-            //var yourGender = from i in db.Users
-            //                 where i.Id == user.Id
-            //                 select i.Gender;
 
             if(myuser.Gender == "Man" && user.InterestedIn == "Kvinnor" || myuser.Gender == "Kvinna" && user.InterestedIn == "Män")
             {
@@ -215,6 +200,79 @@ namespace DatingSida.Repository
             }
 
             
+
+        }
+
+        public string SearchMatch(string userId, string visitedUser)
+        {
+            var myuser = userprofile.GetUser(userId);
+            var model = new SearchViewModel();
+            var user = userprofile.GetUserByName(visitedUser);
+            var random = new Random();
+
+         
+                var myage = DateTime.Now.Year - Convert.ToDateTime(myuser.DateOfBirth).Year;
+
+                var yourAge = DateTime.Now.Year - Convert.ToDateTime(user.DateOfBirth).Year;
+
+
+                if (myuser.Gender == "Man" && user.InterestedIn == "Kvinnor" || myuser.Gender == "Kvinna" && user.InterestedIn == "Män")
+                {
+                    model.Match = "0";
+                }
+
+                if (myuser.Gender == "Man" && user.InterestedIn == "Män" || myuser.Gender == "Man" && user.InterestedIn == "Båda")
+                {
+                    if (myage - yourAge <= 5 && myage - yourAge > 0 || yourAge - myage <= 5 && yourAge - myage > 0)
+                    {
+                        return model.Match = random.Next(75, 100).ToString();
+                    }
+
+                    if (myage - yourAge <= 10 && myage - yourAge > 0 || yourAge - myage <= 10 && yourAge - myage > 0)
+                    {
+                        return model.Match = random.Next(45, 75).ToString();
+                    }
+
+                    if (myage - yourAge <= 20 && myage - yourAge > 0 || yourAge - myage <= 20 && yourAge - myage > 0)
+                    {
+                        return model.Match = random.Next(30, 45).ToString();
+                    }
+                    else
+                    {
+                        return model.Match = random.Next(0, 30).ToString();
+                    }
+                }
+
+                if (myuser.Gender == "Kvinna" && user.InterestedIn == "Kvinnor" || myuser.Gender == "Kvinna" && user.InterestedIn == "Båda")
+                {
+                    if (myage - yourAge <= 5 && myage - yourAge > 0 || yourAge - myage <= 5 && yourAge - myage > 0)
+                    {
+                        return model.Match = random.Next(75, 100).ToString();
+                    }
+
+                    if (myage - yourAge <= 10 && myage - yourAge > 0 || yourAge - myage <= 10 && yourAge - myage > 0)
+                    {
+                        return model.Match = random.Next(45, 75).ToString();
+                    }
+
+                    if (myage - yourAge <= 20 && myage - yourAge > 0 || yourAge - myage <= 20 && yourAge - myage > 0)
+                    {
+                        return model.Match = random.Next(30, 45).ToString();
+                    }
+                    else
+                    {
+                        return model.Match = random.Next(0, 30).ToString();
+                    }
+                }
+
+                else
+                {
+                    return model.Match = "0";
+                }
+            
+            
+
+
 
         }
 

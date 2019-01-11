@@ -20,8 +20,8 @@ namespace DatingSida.Controllers
         // GET: Search
         public ActionResult Index()
         {
-            var allUsers = new AllUsersProfilesViewModel();
-            allUsers.Users = profile.GetAllUsers(User.Identity.GetUserName());
+            var allUsers = new ListSearchViewModel();
+            allUsers.Users = profile.GetSearchUsers(User.Identity.GetUserName());
             return View(allUsers);
         }
 
