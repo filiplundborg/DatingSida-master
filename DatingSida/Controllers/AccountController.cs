@@ -70,7 +70,12 @@ namespace DatingSida.Controllers
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> Login(LoginViewModel model, string returnUrl)
         {
-            
+            var userprofile = new UserProfile();
+            var user = userprofile.GetUserByName(model.Username);
+            if (!user.IsActive) {
+                ModelState.AddModelError("","Du har valt att avsluta ditt konto");
+                return View(model);
+            }
             if (!ModelState.IsValid)
             {
                 return View(model);
@@ -436,22 +441,17 @@ namespace DatingSida.Controllers
         }
        
 
-        //Kära granskare. 
-        //Det ligger en instead of delete trigger i databasen som flyttar datan från användaren till en ny tabell.
-        // Användaren tas alltså inte bort helt. Även om man kan tro det om man bara kollar på koden.
-        // Triggern heter DeleteUserFromNetUser som ligger på NetUser-tabellen. Den nya tabellen heter DeletedUsers.
-        // Triggern tar även bort alla poster där användaren förekommer som reference key i andra tabeller. 
+        
         public ActionResult LogOffDelete()
         {
             UserProfile profile = new UserProfile();
             ApplicationDbContext db = new ApplicationDbContext();
-
             try
             {
                 var userid = User.Identity.GetUserId();
                 profile.ClearCacheItems();
                 ApplicationUser applicationUser = db.Users.Find(userid);
-                db.Users.Remove(applicationUser);
+                applicationUser.IsActive = false;
                 db.SaveChanges();
                 AuthenticationManager.SignOut(DefaultAuthenticationTypes.ApplicationCookie);
                 return RedirectToAction("Index", "Home");
