@@ -9,7 +9,7 @@ using System.Web.Mvc;
 using System.Web.Optimization;
 using System.Web.Routing;
 using DatingSida;
-
+using DatingSida.Models.DBInitilizer;
 
 namespace DatingSida
 {
@@ -18,7 +18,7 @@ namespace DatingSida
         protected void Application_Start()
         {
             Database.SetInitializer(
-            new DropCreateDatabaseIfModelChanges<ApplicationDbContext>()
+            new ApplicationDbContextSeed()
             );
             AreaRegistration.RegisterAllAreas();
             GlobalConfiguration.Configure(WebApiConfig.Register);
