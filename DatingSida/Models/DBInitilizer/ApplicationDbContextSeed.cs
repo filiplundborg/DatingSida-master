@@ -64,7 +64,7 @@ namespace DatingSida.Models.DBInitilizer
                 Description = "min krona hängde på Bielkes värjspets, och att jag näst efter Gud hade min tappre Bielke samt mitt livregemente att tacka för segern",
                 DateOfBirth = "1945-02-12",
                 Image = @"Images\bielke.jpg",
-                InterestedIn = "Kvinna"
+                InterestedIn = "Kvinnor"
             };
             var applicationUser5 = new ApplicationUser
             {
@@ -77,7 +77,7 @@ namespace DatingSida.Models.DBInitilizer
                 Description = "Preussen måste koncentrera och vidmakthålla sin makt för det gynnsamma tillfälle som redan har glidit förbi flera gånger. Preussens gränser i enlighet med Wienkongressens avtal är inte till fördel för ett hälsosamt statsliv.",
                 DateOfBirth = "1929-07-12",
                 Image = @"Images\otto.jpeg",
-                InterestedIn = "Kvinna"
+                InterestedIn = "Kvinnor"
             };
             var applicationUser6 = new ApplicationUser
             {
