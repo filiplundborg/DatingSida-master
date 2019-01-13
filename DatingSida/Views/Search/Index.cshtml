@@ -1,5 +1,5 @@
 ﻿@model DatingSida.Models.ViewModel.ListSearchViewModel
-@using Microsoft.AspNet.Identity
+
 
 @{
     ViewBag.Title = "Visar profiler";
@@ -76,15 +76,20 @@
                     if (text == "") {
                         for (var i = 0; i < items.length; i++) {
                             $("table").append(
-                                "<tr class='removeData'><td class='removeData'><img src='" + items[i].Image + "' class='img-circle' style='width: 10%; max-width: 100px; max-height: 100px; min-width: 50px; min-height: 50px;' /></td><td class='removeData'>" + items[i].UserName + "</td><td class='removeData'>" + items[i].Firstname + " " + items[i].Lastname + "</td><td class='removeData'>" + items[i].Description.substring(0, 15) + "...</td><td class='removeData'><a class='btn btn-primary' href=" + "/Search/ViewProfile?username=" + items[i].UserName + "> Besök</a ></td ></tr >"
+                                "<tr class='removeData'><td class='removeData'><img src='" + items[i].Image + "' class='img-circle' style='width: 10%; max-width: 100px; max-height: 100px; min-width: 50px; min-height: 50px;' /></td><td class='removeData'>" + items[i].UserName + "</td><td class='removeData'>" + items[i].Firstname + " " + items[i].Lastname + "</td><td class='removeData' id='match'>" + items[i].Match + "% matchning" + "</td ><td class='removeData'>" + items[i].Description.substring(0, 15) + "...</td> <td class='removeData'><a class='btn btn-primary' href=" + " /Search/ViewProfile?username=" + items[i].UserName + "> Besök</a ></td ></tr > "
                             );
+                            $('#matchning').hide();
+                         
+                           
                         }
                     } else {
                         for (var i = 0; i < items.length; i++) {
                             if (items[i].UserName.startsWith(text)) {
                                 $("table").append(
-                                    "<tr class='removeData'><td class='removeData'><img src='" + items[i].Image + "' class='img-circle' style='width: 10%; max-width: 100px; max-height: 100px; min-width: 50px; min-height: 50px;' /></td><td class='removeData'>" + items[i].UserName + "</td><td class='removeData'>" + items[i].Firstname + " " + items[i].Lastname + "</td><td class='removeData'>" + items[i].Description.substring(0, 15) + "...</td><td class='removeData'><a class='btn btn-primary' href=" + "/Search/ViewProfile?username=" + items[i].UserName + "> Besök</a ></td ></tr >"
+                                    "<tr class='removeData'><td class='removeData'><img src='" + items[i].Image + "' class='img-circle' style='width: 10%; max-width: 100px; max-height: 100px; min-width: 50px; min-height: 50px;' /></td><td class='removeData'>" + items[i].UserName + "</td><td class='removeData'>" + items[i].Firstname + " " + items[i].Lastname + "</td><td class='removeData' id='match'>" + items[i].Match + "% matchning" + "</td > <td class='removeData'>" + items[i].Description.substring(0, 15) + "...</td> <td class='removeData'><a class='btn btn-primary' href=" + " /Search/ViewProfile?username=" + items[i].UserName + "> Besök</a ></td ></tr > "
                                 );
+                                $('#matchning').hide();
+                                
                             }
                         }
 
