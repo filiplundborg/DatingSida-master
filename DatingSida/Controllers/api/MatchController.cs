@@ -14,7 +14,6 @@ namespace DatingSida.Controllers.api
         public UserRequest request = new UserRequest();
 
 
-
         [Route("matching")]
         [HttpPost]
         public IHttpActionResult Matching(List<string> matches)
