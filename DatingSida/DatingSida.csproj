@@ -230,6 +230,7 @@
     <Compile Include="Models\UserProfileIndexViewModel.cs" />
     <Compile Include="Models\ViewModel\AllUsersProfilesViewModel.cs" />
     <Compile Include="Models\ViewModel\AnswerRequestViewModel.cs" />
+    <Compile Include="Models\ViewModel\CarouselViewModel.cs" />
     <Compile Include="Models\ViewModel\FriendCategoryViewModel.cs" />
     <Compile Include="Models\ViewModel\ListSearchViewModel.cs" />
     <Compile Include="Models\ViewModel\SearchViewModel.cs" />
