@@ -157,7 +157,7 @@ namespace DatingSida.Repository
                 model.Match = "0";
             }
 
-            if(myuser.Gender == "Man" && user.InterestedIn == "Män" || myuser.Gender == "Man" && user.InterestedIn == "Båda")
+            if(myuser.Gender == "Man" && user.InterestedIn == "Män" && myuser.InterestedIn == "Män" || myuser.Gender == "Man" && user.InterestedIn == "Båda")
             {
                 if(myage - yourAge <= 5 && myage - yourAge  > 0 || yourAge - myage <= 5 && yourAge - myage > 0)
                 {
@@ -179,7 +179,7 @@ namespace DatingSida.Repository
                 }
             }
 
-            if(myuser.Gender == "Kvinna" && user.InterestedIn == "Kvinnor" || myuser.Gender == "Kvinna" && user.InterestedIn == "Båda")
+            if(myuser.Gender == "Kvinna" && user.InterestedIn == "Kvinnor" && myuser.InterestedIn == "Kvinnor" || myuser.Gender == "Kvinna" && user.InterestedIn == "Båda")
             {
                 if (myage - yourAge <= 5 && myage - yourAge > 0 || yourAge - myage <= 5 && yourAge - myage > 0)
                 {
@@ -228,7 +228,7 @@ namespace DatingSida.Repository
                     return "0";
                 }
 
-                if (myuser.Gender == "Man" && user.InterestedIn == "Män" || myuser.Gender == "Man" && user.InterestedIn == "Båda")
+                if (myuser.Gender == "Man" && user.InterestedIn == "Män" && myuser.InterestedIn == "Män" || myuser.Gender == "Man" && user.InterestedIn == "Båda")
                 {
                     if (myage - yourAge <= 5 && myage - yourAge > 0 || yourAge - myage <= 5 && yourAge - myage > 0)
                     {
@@ -250,7 +250,7 @@ namespace DatingSida.Repository
                     }
                 }
 
-                if (myuser.Gender == "Kvinna" && user.InterestedIn == "Kvinnor" || myuser.Gender == "Kvinna" && user.InterestedIn == "Båda")
+                if (myuser.Gender == "Kvinna" && user.InterestedIn == "Kvinnor" && myuser.InterestedIn == "Kvinnor" || myuser.Gender == "Kvinna" && user.InterestedIn == "Båda")
                 {
                     if (myage - yourAge <= 5 && myage - yourAge > 0 || yourAge - myage <= 5 && yourAge - myage > 0)
                     {
