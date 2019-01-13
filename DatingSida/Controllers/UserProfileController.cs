@@ -216,7 +216,12 @@ namespace DatingSida.Controllers
             }
             
         }
-        
+        /*
+         Metoden tar in relevant data om en användare från en viewmodel.
+         Sedan skapar den ett únikt filnamn i en map som heter ProfilesXml.
+         Kollar om användaren redan har en serialiserad profil, då skrivs den över. 
+
+             */
         public ActionResult SerializeProfile() {
             try
             {
