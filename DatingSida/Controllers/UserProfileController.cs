@@ -226,7 +226,10 @@ namespace DatingSida.Controllers
                     Username = user.UserName,
                     Firstname = user.Firstname,
                     Lastname = user.Lastname,
+                    Gender = user.Gender,
                     Image = user.Image,
+                    InsterestedIn = user.InterestedIn,
+                    DateOfBirth = user.DateOfBirth,
                     Description = user.Description,
 
                     Messages = user.MessageReceived as List<Message>,
