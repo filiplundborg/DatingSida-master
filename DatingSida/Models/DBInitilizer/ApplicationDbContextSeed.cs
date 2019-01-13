@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNet.Identity;
+﻿using DatingSida.Repository;
+using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
 using System;
 using System.Collections.Generic;
@@ -11,6 +12,7 @@ namespace DatingSida.Models.DBInitilizer
     {
         protected override void Seed(ApplicationDbContext db)
         {
+           
             var passwordhash = new PasswordHasher();
             var manager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(db));
 
@@ -20,7 +22,7 @@ namespace DatingSida.Models.DBInitilizer
                 Lastname = "Nelson",
                 UserName = "LordNelson",
                 Email = "Lord_Nelson@NelsonEnterprises.com",
-                PasswordHash = passwordhash.HashPassword("ZJWv2cKhY7st."),
+                PasswordHash = passwordhash.HashPassword("Samuel22."),
                 Gender = "Man",
                 Description = "Vem är du ? Vad har du för identitet ? Hur väljer du att beskriva dig själv ? Vilken roll väljer du att identifiera dig med först ?",
                 DateOfBirth = "1992-07-12",
@@ -33,7 +35,7 @@ namespace DatingSida.Models.DBInitilizer
                 Lastname = "XII",
                 UserName = "CarolusRex",
                 Email = "CarolusRex@Kungahuset.se",
-                PasswordHash = passwordhash.HashPassword("Martin22llfkffj."),
+                PasswordHash = passwordhash.HashPassword("Samuel22."),
                 Gender = "Man",
                 Description = "Dödade en björn när jag var 8. Spöade skiten ur Danmark, Polen och Ryssen. Samtidigt. Framåt karoliner!",
                 DateOfBirth = "1985-07-12",
@@ -44,11 +46,11 @@ namespace DatingSida.Models.DBInitilizer
             {
                 Firstname = "Marie",
                 Lastname = "Antoinette",
-                UserName = "Marie-Antoinette",
-                Email = "Marie-Antoinette@FranskaRevolutionen.com",
-                PasswordHash = passwordhash.HashPassword("ZJWv2cKhY7st."),
+                UserName = "MarieAntoinette",
+                Email = "MarieAntoinette@FranskaRevolutionen.com",
+                PasswordHash = passwordhash.HashPassword("Samuel22."),
                 Gender = "Kvinna",
-                Description = "Varför äter dem inte bakelser?",
+                Description = "Varför äter dem inte bakelser ?!?!?!?!?!?!",
                 DateOfBirth = "1953-04-27",
                 Image = @"Images\maria.jpg",
                 InterestedIn = "Kvinnor"
@@ -135,7 +137,7 @@ namespace DatingSida.Models.DBInitilizer
             {
                 Firstname = "Alfred",
                 Lastname = "Nobel",
-                UserName = "Dynamit-Alfred",
+                UserName = "DynamitAlfred",
                 Email = "Alfred@Nobel.com",
                 PasswordHash = passwordhash.HashPassword("Samuel22."),
                 Gender = "Man",

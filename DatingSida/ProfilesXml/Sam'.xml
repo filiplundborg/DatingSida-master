@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<UserProfileIndexViewModel xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <Firstname>Sven Christer</Firstname>
+  <Username>Sam</Username>
+  <Lastname>Lindkvist</Lastname>
+  <Gender>Man</Gender>
+  <Description>http://localhost:56073/http://localhost:56073/http://localhost:56073/http://localhost:56073/http://localhost:56073/http://localhost:56073/ http://localhost:56073/</Description>
+  <Image>Images\avatar.png</Image>
+  <DateOfBirth>2003-01-01 00:00:00</DateOfBirth>
+  <InsterestedIn>Båda</InsterestedIn>
+</UserProfileIndexViewModel>

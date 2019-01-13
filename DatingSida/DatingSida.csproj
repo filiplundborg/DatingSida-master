@@ -219,16 +219,16 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Models\AccountViewModels.cs" />
+    <Compile Include="Models\ViewModel\AccountViewModels.cs" />
     <Compile Include="Models\Category.cs" />
     <Compile Include="Models\DBInitilizer\ApplicationDbContextSeed.cs" />
-    <Compile Include="Models\EditUserProfileViewModel.cs" />
+    <Compile Include="Models\ViewModel\EditUserProfileViewModel.cs" />
     <Compile Include="Models\Friends.cs" />
     <Compile Include="Models\IdentityModels.cs" />
-    <Compile Include="Models\ManageViewModels.cs" />
+    <Compile Include="Models\ViewModel\ManageViewModels.cs" />
     <Compile Include="Models\Message.cs" />
     <Compile Include="Models\Request.cs" />
-    <Compile Include="Models\UserProfileIndexViewModel.cs" />
+    <Compile Include="Models\ViewModel\UserProfileIndexViewModel.cs" />
     <Compile Include="Models\ViewModel\AllUsersProfilesViewModel.cs" />
     <Compile Include="Models\ViewModel\AnswerRequestViewModel.cs" />
     <Compile Include="Models\ViewModel\CarouselViewModel.cs" />
@@ -327,14 +327,12 @@
     </Content>
     <Content Include="Views\Web.config" />
     <Content Include="Views\_ViewStart.cshtml" />
-    <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Account\Login.cshtml" />
     <Content Include="Views\Account\Register.cshtml" />
     <Content Include="Views\Manage\ChangePassword.cshtml" />
     <Content Include="Views\UserProfile\Editprofile.cshtml" />
-    <Content Include="Views\Shared\Lockout.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Views\UserProfile\Index.cshtml" />
     <Content Include="Views\Search\Index.cshtml" />
