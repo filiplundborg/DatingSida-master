@@ -29,6 +29,9 @@ namespace DatingSida.Controllers
         public ActionResult ViewProfile(string username) {
             try
             {
+                if (username == User.Identity.Name) {
+                    return RedirectToAction("Index", "UserProfile");
+                }
                 if (username != null)
                 {
                     var visit = new UserVisitor();

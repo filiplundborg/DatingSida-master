@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<UserProfileIndexViewModel xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <Firstname>Otto</Firstname>
+  <Username>VonOtto</Username>
+  <Lastname>Von Bismarck</Lastname>
+  <Gender>Man</Gender>
+  <Description>Preussen måste koncentrera och vidmakthålla sin makt för det gynnsamma tillfälle som redan har glidit förbi flera gånger. Preussens gränser i enlighet med Wienkongressens avtal är inte till fördel för ett hälsosamt statsliv.</Description>
+  <Image>Images\otto.jpeg</Image>
+  <DateOfBirth>1929-07-12</DateOfBirth>
+  <InsterestedIn>Kvinnor</InsterestedIn>
+</UserProfileIndexViewModel>
