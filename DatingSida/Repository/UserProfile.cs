@@ -17,7 +17,8 @@ namespace DatingSida.Repository
     {
         public ApplicationDbContext db = new ApplicationDbContext();
 
-        public ApplicationUser GetUser(string userId) {
+        public ApplicationUser GetUser(string userId)
+        {
             var user = db.Users.Single(i => i.Id == userId);
             return user;
         }
@@ -26,14 +27,16 @@ namespace DatingSida.Repository
             var user = db.Users.Single(i => i.UserName == username);
             return user;
         }
-        public void SaveImagePath(string imgPath, string userId) {
+        public void SaveImagePath(string imgPath, string userId)
+        {
             var user = this.GetUser(userId);
             user.Image = imgPath;
             db.SaveChanges();
         }
-        public List<ApplicationUser> GetAllUsers(string currentUsername) {
+        public List<ApplicationUser> GetAllUsers(string currentUsername)
+        {
             var users = db.Users.ToList();
-            
+
             var user = users.Find(i => i.UserName == currentUsername);
             users.Remove(user);
             return users;
@@ -50,37 +53,41 @@ namespace DatingSida.Repository
             for (int i = 0; i < keys.Count; i++)
                 cache.Remove(keys[i]);
         }
-        public void CheckIfFileExists(string path) {
-            if (File.Exists(path)) {
+        public void CheckIfFileExists(string path)
+        {
+            if (File.Exists(path))
+            {
                 File.Delete(path);
             }
-           
-        }
-
-        public List<CarouselViewModel> GetRandomUsers() {
-            var list = new List<CarouselViewModel>();
-            var amount = db.Users.Count();
-            if (amount >= 3) {
-                var users = db.Users.OrderBy(r => Guid.NewGuid()).Take(3);
-               
-                foreach (var item in users)
-                {
-                    list.Add(new CarouselViewModel
-                    {
-                        Image = item.Image,
-                        Description = item.Description,
-                        UserName = item.UserName
-                    });
-                }
-                
-            }
-            return list;
 
         }
+
+        //public List<CarouselViewModel> GetRandomUsers()
+        //{
+        //    var list = new List<CarouselViewModel>();
+        //    var amount = db.Users.Count();
+        //    if (amount >= 3)
+        //    {
+        //        var users = db.Users.OrderBy(r => Guid.NewGuid()).Take(3);
+
+        //        foreach (var item in users)
+        //        {
+        //            list.Add(new CarouselViewModel
+        //            {
+        //                Image = item.Image,
+        //                Description = item.Description,
+        //                UserName = item.UserName
+        //            });
+        //        }
+
+        //    }
+        //    return list;
+
+        //}
 
         public List<SearchViewModel> GetSearchUsers(string currentUsername)
         {
-            
+
             var users = db.Users.ToList();
             var user = users.Find(i => i.UserName == currentUsername);
             users.Remove(user);
@@ -102,14 +109,14 @@ namespace DatingSida.Repository
                         InterestedIn = u.InterestedIn,
                         Description = u.Description,
                         IsActive = u.IsActive
-                        
+
                     });
 
                 }
             }
 
             return list;
-            
+
         }
         public void RemoveAllUserReferences(string id)
         {
@@ -128,3 +135,4 @@ namespace DatingSida.Repository
 
         }
     }
+}

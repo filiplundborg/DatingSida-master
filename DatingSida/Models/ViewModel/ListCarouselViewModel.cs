@@ -9,8 +9,10 @@ namespace DatingSida.Models.ViewModel
     public class ListCarouselViewModel
     {
         public List<CarouselViewModel> carousels = new List<CarouselViewModel>();
-        public ListCarouselViewModel(bool IsFilled = false) {
-            if (IsFilled) {
+        public ListCarouselViewModel(bool IsFilled = false)
+        {
+            if (IsFilled)
+            {
                 var up = new UserProfile();
                 carousels = up.GetRandomUsers();
             }
