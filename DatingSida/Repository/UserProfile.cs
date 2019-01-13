@@ -24,8 +24,14 @@ namespace DatingSida.Repository
         }
         public ApplicationUser GetUserByName(string username)
         {
-            var user = db.Users.Single(i => i.UserName == username);
-            return user;
+            try
+            {
+                var user = db.Users.Single(i => i.UserName == username);
+                return user;
+            }
+            catch {
+                return null;
+            }
         }
         public void SaveImagePath(string imgPath, string userId)
         {

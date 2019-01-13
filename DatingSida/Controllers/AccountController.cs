@@ -23,6 +23,7 @@ namespace DatingSida.Controllers
         public AccountController()
         {
         }
+       
 
         public AccountController(ApplicationUserManager userManager, ApplicationSignInManager signInManager )
         {
@@ -72,6 +73,10 @@ namespace DatingSida.Controllers
         {
             var userprofile = new UserProfile();
             var user = userprofile.GetUserByName(model.Username);
+            if (user is null) {
+                ModelState.AddModelError("", "Det finns inget konto med det användarnamnet");
+                return View(model);
+            }
             if (!user.IsActive) {
                 ModelState.AddModelError("","Du har valt att avsluta ditt konto");
                 return View(model);

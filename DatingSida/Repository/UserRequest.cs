@@ -71,17 +71,24 @@ namespace DatingSida.Repository
             }
         }
         public List<RequestOptions> FillModel(string username) {
-            var user = userprofile.GetUserByName(username);
-            var list = user.RequestReceived;
-            var optionlist = new List<RequestOptions>();
-            foreach (var item in list) {
-                var requestOption = new RequestOptions
+            try
+            {
+                var user = userprofile.GetUserByName(username);
+                var list = user.RequestReceived;
+                var optionlist = new List<RequestOptions>();
+                foreach (var item in list)
                 {
-                    Request = item
-                };
-                optionlist.Add(requestOption);
+                    var requestOption = new RequestOptions
+                    {
+                        Request = item
+                    };
+                    optionlist.Add(requestOption);
+                }
+                return optionlist;
             }
-            return optionlist;
+            catch {
+                return null;
+            }
         }
 
         public bool HasRequest (string userId, string username)
