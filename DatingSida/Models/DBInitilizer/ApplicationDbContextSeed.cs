@@ -35,7 +35,7 @@ namespace DatingSida.Models.DBInitilizer
                 Email = "CarolusRex@Kungahuset.se",
                 PasswordHash = passwordhash.HashPassword("Martin22llfkffj."),
                 Gender = "Man",
-                Description = "historiens största erövrare, behöver det sägas något mer?",
+                Description = "Dödade en björn när jag var 8. Spöade skiten ur Danmark, Polen och Ryssen. Samtidigt. Framåt karoliner!",
                 DateOfBirth = "1985-07-12",
                 Image = @"Images\karltolv.jpg",
                 InterestedIn = "Båda"
