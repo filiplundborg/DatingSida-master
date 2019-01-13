@@ -9,6 +9,7 @@ using System.Web.Mvc;
 
 namespace DatingSida.Controllers
 {
+    [Authorize]
     public class AnswerRequestController : Controller
     {
         // GET: AnswerRequest

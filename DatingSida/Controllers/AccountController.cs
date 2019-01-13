@@ -23,6 +23,7 @@ namespace DatingSida.Controllers
         public AccountController()
         {
         }
+       
 
         public AccountController(ApplicationUserManager userManager, ApplicationSignInManager signInManager )
         {
