@@ -27,16 +27,25 @@ namespace DatingSida.Controllers
 
         [HttpGet]
         public ActionResult ViewProfile(string username) {
-            if (username != null) {
-               var visit = new UserVisitor();
-               var user = profileWithMessage.GetUserMessageViewModel(username);
-               visit.AddVisit(user.ReceiverId, User.Identity.GetUserId());
-               user.HasRequest = userRequest.HasRequest(User.Identity.GetUserId(), username);
-               user.IsFriends = userRequest.IsFriends(User.Identity.GetUserId(), username);
-                
-                return View(user);
+            try
+            {
+                if (username != null)
+                {
+                    var visit = new UserVisitor();
+                    var user = profileWithMessage.GetUserMessageViewModel(username);
+                    visit.AddVisit(user.ReceiverId, User.Identity.GetUserId());
+                    user.HasRequest = userRequest.HasRequest(User.Identity.GetUserId(), username);
+                    user.IsFriends = userRequest.IsFriends(User.Identity.GetUserId(), username);
+
+                    return View(user);
+                }
+                throw new Exception();
             }
-            return RedirectToAction("Index");
+            catch {
+
+                return RedirectToAction("Index");
+
+            }
         }
     }
 }
