@@ -23,6 +23,18 @@
         <div class="row">
             <h2>@Model.Firstname.ToUpper() @Model.Lastname.ToUpper()</h2>
             <h4>@Model.Username.ToUpper()</h4>
+            @if (Model.InterestedIn == "Män")
+            {
+                <h5>Jag är intresserad av män</h5>
+            }
+            else if (Model.InterestedIn == "Kvinnor")
+            {
+                <h5>Jag är intresserad av kvinnor</h5>
+            }
+            else
+            {
+                <h5>Jag är intresserad av både kvinnor och män</h5>
+            }
             <p class="text">@Model.Description.ToLower()</p>
             @if (!Model.IsFriends && !Model.HasRequest)
             {
@@ -33,7 +45,7 @@
             {
                 <p id="request"> Väntar svar på vänförfrågan...</p>
             }
-          
+
 
             <button class="btn btn-danger" id="match">Passar vi ihop?</button>
 

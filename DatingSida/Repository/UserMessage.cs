@@ -35,7 +35,8 @@ namespace DatingSida.Repository
                 Image = user.Image,
                 Description = user.Description,
                 MessagesReceived = user.MessageReceived as List<Message>,
-                ReceiverId = user.Id
+                ReceiverId = user.Id,
+                InterestedIn = user.InterestedIn
             };
           
                 return userMessageModel;
