@@ -213,7 +213,7 @@ namespace DatingSida.Repository
         public string SearchMatch(string userId, string visitedUser)
         {
             var myuser = userprofile.GetUser(userId);
-            var model = new SearchViewModel();
+            
             var user = userprofile.GetUserByName(visitedUser);
             var random = new Random();
 
@@ -225,28 +225,28 @@ namespace DatingSida.Repository
 
                 if (myuser.Gender == "Man" && user.InterestedIn == "Kvinnor" || myuser.Gender == "Kvinna" && user.InterestedIn == "Män")
                 {
-                    model.Match = "0";
+                    return "0";
                 }
 
                 if (myuser.Gender == "Man" && user.InterestedIn == "Män" || myuser.Gender == "Man" && user.InterestedIn == "Båda")
                 {
                     if (myage - yourAge <= 5 && myage - yourAge > 0 || yourAge - myage <= 5 && yourAge - myage > 0)
                     {
-                        return model.Match = random.Next(75, 100).ToString();
+                        return  random.Next(75, 100).ToString();
                     }
 
                     if (myage - yourAge <= 10 && myage - yourAge > 0 || yourAge - myage <= 10 && yourAge - myage > 0)
                     {
-                        return model.Match = random.Next(45, 75).ToString();
+                        return random.Next(45, 75).ToString();
                     }
 
                     if (myage - yourAge <= 20 && myage - yourAge > 0 || yourAge - myage <= 20 && yourAge - myage > 0)
                     {
-                        return model.Match = random.Next(30, 45).ToString();
+                        return random.Next(30, 45).ToString();
                     }
                     else
                     {
-                        return model.Match = random.Next(0, 30).ToString();
+                        return random.Next(0, 30).ToString();
                     }
                 }
 
@@ -254,27 +254,27 @@ namespace DatingSida.Repository
                 {
                     if (myage - yourAge <= 5 && myage - yourAge > 0 || yourAge - myage <= 5 && yourAge - myage > 0)
                     {
-                        return model.Match = random.Next(75, 100).ToString();
+                        return random.Next(75, 100).ToString();
                     }
 
                     if (myage - yourAge <= 10 && myage - yourAge > 0 || yourAge - myage <= 10 && yourAge - myage > 0)
                     {
-                        return model.Match = random.Next(45, 75).ToString();
+                        return random.Next(45, 75).ToString();
                     }
 
                     if (myage - yourAge <= 20 && myage - yourAge > 0 || yourAge - myage <= 20 && yourAge - myage > 0)
                     {
-                        return model.Match = random.Next(30, 45).ToString();
+                        return random.Next(30, 45).ToString();
                     }
                     else
                     {
-                        return model.Match = random.Next(0, 30).ToString();
+                        return random.Next(0, 30).ToString();
                     }
                 }
 
                 else
                 {
-                    return model.Match = "0";
+                    return "0";
                 }
             
             

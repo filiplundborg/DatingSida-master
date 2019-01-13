@@ -51,28 +51,14 @@
     <hr />
     @section Scripts{
         <script>
-
             $("#matchning").on("click", function () {
                 for (var i = 0; i < items.length; i++) {
-                    $.ajax({
-
-                        url: "/api/match/searchmatch",
-                        type: "Post",
-                        data: JSON.stringify(["@User.Identity.GetUserId()", items[i].UserName]),
-                        contentType: "application/json; charset=utf-8",
-                        success: function (data) {
-
-                            $('#match').attr("id", "match" + i).append(data + "% matchning");
-                            
-
-                        },
-                        error: function () {
-                            $("#show").show();
-                            $("#message-id").append("Ingen matchning har skett!")
-                        }
-                    })
+                    
+                    $('#match').attr("id", "match" + i).append(items[i].Match + "% matchning");
                 }
             });
+
+
 
             var items = null;
             $(document).ready(function () {
@@ -80,7 +66,8 @@
                 $.get("/api/search/users",
                     function (data) {
                         items = data;
-                        // alert(items + data);
+                        
+
                     })
 
                 $("#srcProfiles").on("keyup", function () {

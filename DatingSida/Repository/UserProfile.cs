@@ -93,7 +93,7 @@ namespace DatingSida.Repository
 
         public List<SearchViewModel> GetSearchUsers(string currentUsername)
         {
-
+            var request = new UserRequest();
             var users = db.Users.ToList();
             var user = users.Find(i => i.UserName == currentUsername);
             users.Remove(user);
@@ -114,8 +114,8 @@ namespace DatingSida.Repository
                         DateOfBirth = u.DateOfBirth,
                         InterestedIn = u.InterestedIn,
                         Description = u.Description,
-                        IsActive = u.IsActive
-
+                        IsActive = u.IsActive,
+                        Match = request.SearchMatch(user.Id, u.UserName)
                     });
 
                 }
