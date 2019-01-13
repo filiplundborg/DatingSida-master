@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<UserProfileIndexViewModel xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <Firstname>Jörgen</Firstname>
+  <Username>Samme22</Username>
+  <Lastname>Lindkvist</Lastname>
+  <Gender>Kvinna</Gender>
+  <Description>DatingUsers DatingUsers DatingUsersDatingUsers DatingUsers DatingUsers</Description>
+  <Image>Images\34f0bdac-c412-4119-82c8-18e5369c6edc_elpris.png</Image>
+  <DateOfBirth>2019-01-07 00:00:00</DateOfBirth>
+  <InsterestedIn>Män</InsterestedIn>
+</UserProfileIndexViewModel>
