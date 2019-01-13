@@ -62,28 +62,28 @@ namespace DatingSida.Repository
 
         }
 
-        //public List<CarouselViewModel> GetRandomUsers()
-        //{
-        //    var list = new List<CarouselViewModel>();
-        //    var amount = db.Users.Count();
-        //    if (amount >= 3)
-        //    {
-        //        var users = db.Users.OrderBy(r => Guid.NewGuid()).Take(3);
+        public List<CarouselViewModel> GetRandomUsers()
+        {
+            var list = new List<CarouselViewModel>();
+            var amount = db.Users.Count();
+            if (amount >= 3)
+            {
+                var users = db.Users.OrderBy(r => Guid.NewGuid()).Take(3);
 
-        //        foreach (var item in users)
-        //        {
-        //            list.Add(new CarouselViewModel
-        //            {
-        //                Image = item.Image,
-        //                Description = item.Description,
-        //                UserName = item.UserName
-        //            });
-        //        }
+                foreach (var item in users)
+                {
+                    list.Add(new CarouselViewModel
+                    {
+                        Image = item.Image,
+                        Description = item.Description,
+                        UserName = item.UserName
+                    });
+                }
 
-        //    }
-        //    return list;
+            }
+            return list;
 
-        //}
+        }
 
         public List<SearchViewModel> GetSearchUsers(string currentUsername)
         {
