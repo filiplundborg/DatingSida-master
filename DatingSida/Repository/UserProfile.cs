@@ -77,7 +77,7 @@ namespace DatingSida.Repository
             var amount = db.Users.Count();
             if (amount >= 3)
             {
-                var users = db.Users.OrderBy(r => Guid.NewGuid()).Take(3);
+                var users = db.Users.Where(i => i.IsActive == true).OrderBy(r => Guid.NewGuid()).Take(3);
 
                 foreach (var item in users)
                 {
