@@ -446,7 +446,13 @@ namespace DatingSida.Controllers
         }
        
 
-        
+        /*
+         Metoden körs när användaren trycker på "Ta bort min profil"
+         Den tömmer cachen, hittar den inloggade användarens Id och sätter deras status till IsActive = false.
+         Sedan hänvisar den dig tillbaka till startsidan utloggad. 
+         Misslyckas detta stannar du kvar på sidan. Den kallar också på RemoveAllUserReferences som du kan se
+         kommentarerna om i UserProfile.cs
+             */
         public ActionResult LogOffDelete()
         {
             UserProfile profile = new UserProfile();

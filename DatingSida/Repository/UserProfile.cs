@@ -47,6 +47,7 @@ namespace DatingSida.Repository
             users.Remove(user);
             return users;
         }
+        // Tar bort all lagrad data som webbläsaren har. Körs när en användare tar bort in profil. 
         public void ClearCacheItems()
         {
             List<string> keys = new List<string>();
@@ -59,6 +60,8 @@ namespace DatingSida.Repository
             for (int i = 0; i < keys.Count; i++)
                 cache.Remove(keys[i]);
         }
+
+        // Kollar om en fil existerar. Om den gör det så tar den bort den. Körs av SerializeXml metoden. 
         public void CheckIfFileExists(string path)
         {
             if (File.Exists(path))
@@ -124,6 +127,13 @@ namespace DatingSida.Repository
             return list;
 
         }
+
+        /* 
+        Metoden tar in ett användar id.
+        Sedan använder den IDt för att ta bort alla gånger som en användare förekommer i någon referenstabell.
+        Detta gör alltså att användaren försvinner från andra användares vännlistor, saker som användaren skrivit
+        på väggar försvinner etc.
+             */
         public void RemoveAllUserReferences(string id)
         {
 
