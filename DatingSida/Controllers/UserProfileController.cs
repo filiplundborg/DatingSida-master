@@ -257,6 +257,7 @@ namespace DatingSida.Controllers
         public ActionResult ManageFriends()
         {
             var user = profile.GetUser(User.Identity.GetUserId());
+            var userfriend = new UserFriends();
 
             var viewModel = new UserProfileIndexViewModel
             {
@@ -267,12 +268,19 @@ namespace DatingSida.Controllers
                 Description = user.Description,
                 Messages = user.MessageReceived as List<Message>,
                 MessagesSent = user.MessageSent as List<Message>,
-                FriendsReceived = user.FriendsReceived as List<Friends>,
-                FriendsRequested = user.FriendsRequested as List<Friends>
+                Friends = userfriend.WashFriendsData(user),
+                Categories = user.Categories as List<Category>
                 
             };
             return View(viewModel);
         }
-        
+
+        public ActionResult FriendCategory(int id) {
+            var usercategory = new UserCategory();
+            var model = usercategory.FillModel(User.Identity.GetUserId(), id);
+            return View(model);
+        }
+
+
     }
 }
