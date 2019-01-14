@@ -14,6 +14,7 @@ namespace DatingSida.Repository
         public UserFriends Friends = new UserFriends();
         public UserProfile User = new UserProfile();
 
+        //Lägger till en kategori
         public void SaveCategory(string name, string userId) {
             var userprofile = new UserProfile();
             var user = userprofile.GetUser(userId);
@@ -26,9 +27,11 @@ namespace DatingSida.Repository
             db.SaveChanges();
         }
 
+        //Lägger till en vän i en kategori.
         public void SaveFriend(string userId, string currentUser, string categoryId) {
 
             Friends friend;
+
             try
             {
                 friend = db.Friends.Single(i => i.FriendId == userId && i.UserId == currentUser);
@@ -57,6 +60,8 @@ namespace DatingSida.Repository
 
             return model;
         }
+
+        //Kontrollerar att kategorin finns.
         public bool IsCategory(int categoryId) {
             return db.Categories.Any(i => i.CategoryId == categoryId);
         }
