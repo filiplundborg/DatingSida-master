@@ -3,7 +3,7 @@ using DatingSida.Models.ViewModel;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Web;
+
 
 namespace DatingSida.Repository
 {
@@ -12,6 +12,7 @@ namespace DatingSida.Repository
         public ApplicationDbContext db = new ApplicationDbContext();
         public UserProfile userprofile = new UserProfile();
 
+        // Sparar vänförfrågan som skickas.
         public void SaveRequest(string senderId, string receiverId) {
             try
             {
@@ -30,11 +31,7 @@ namespace DatingSida.Repository
             }
         }
 
-        internal List<Request> FillModel(object p)
-        {
-            throw new NotImplementedException();
-        }
-
+        // Hämtar alla mottagna vänförfrågningar.
         public List<Request> GetFriendRequests(string userId) {
             try
             {
@@ -48,6 +45,10 @@ namespace DatingSida.Repository
             }
 
         }
+
+        // Hanterar svar på vänförfrågan. Om den accepteras läggs mottagare
+        // och avsändare till i tabellen friends och förfrågan tas bort ur 
+        // sin tabell. Nekas den tas bara förfrågan bort.
         public void AnswerRequest(int requestId, bool isAccepted) {
             var request = db.Requests.Single(i => i.RequestId == requestId);
             var receiverRequestId = request.RequestReceiverId;
@@ -70,6 +71,8 @@ namespace DatingSida.Repository
                     break;
             }
         }
+
+        // Hämtar förfrågningar och fyller i egenskaperna i modellen RequestOptions
         public List<RequestOptions> FillModel(string username) {
             try
             {
@@ -91,6 +94,7 @@ namespace DatingSida.Repository
             }
         }
 
+        // Kontrollerar om den nuvarande har fått en vänförfrågan från en specifik person.
         public bool HasRequest (string userId, string username)
         {
      
@@ -116,6 +120,7 @@ namespace DatingSida.Repository
             }
         }
 
+        // Kontrollerar om två användare är vänner.
         public bool IsFriends(string userId, string username)
         {
 
@@ -139,6 +144,8 @@ namespace DatingSida.Repository
             }
         }
 
+        /* Matchar två profiler med varandra. Matchningen baseras på vilka kön de
+         * två användarna har, vilket kön de är intresserade av samt åldersspannet. */
         public string Match(string userId, string visitedUser)
         {
             var myuser = userprofile.GetUser(userId);
@@ -209,7 +216,8 @@ namespace DatingSida.Repository
             
 
         }
-
+        /*Denna metod används på söksidan för att matcha din användare med resten av användarna.
+         * Resultatet baseras på samma uppgifter som den föregående.*/
         public string SearchMatch(string userId, string visitedUser)
         {
             var myuser = userprofile.GetUser(userId);
