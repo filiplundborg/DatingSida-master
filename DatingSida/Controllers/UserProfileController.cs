@@ -1,19 +1,13 @@
 ﻿using DatingSida.Models;
 using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using Microsoft.AspNet.Identity;
 using System.IO;
 using DatingSida.Repository;
 using System.Data.Entity.Migrations;
-using Microsoft.AspNet.Identity.Owin;
-using Microsoft.AspNet.Identity.EntityFramework;
 using System.Xml.Serialization;
-using System.Threading.Tasks;
-using System.Web.Security;
-using System.Net;
 
 namespace DatingSida.Controllers
 {
@@ -49,7 +43,9 @@ namespace DatingSida.Controllers
 
             return View(viewModel);
         }
-
+        /*
+         * Låter användaren sätta en profilbild. 
+         */
         [HttpPost]
         public ActionResult SetImage(HttpPostedFileBase img) {
             if (img != null) {
@@ -60,7 +56,7 @@ namespace DatingSida.Controllers
                 img.SaveAs(imgPath);
                 var profileImagePath = @"Images\" + pic;
 
-                //Hämtar användaren, vi borde dock göra en statisk metod som returnerar användaren då denna kommer att användas ofta.
+              
                 var user = profile.GetUser(User.Identity.GetUserId());
                 profile.SaveImagePath(profileImagePath, User.Identity.GetUserId());              
             }
@@ -70,7 +66,9 @@ namespace DatingSida.Controllers
         }
 
 
-
+        /*
+         * Fyller raderna på redigera min profil-sidan med den användardata som finns i databasen. 
+         */
         [HttpGet]
         public ActionResult EditProfile()
         {
@@ -118,7 +116,9 @@ namespace DatingSida.Controllers
         }
 
 
-
+        /*
+         * Koden känner av ändringar du gör när du ändrar profilen. Samt sparar dessa ändringar.
+         */
         [HttpPost]
         public ActionResult EditProfile(EditUserProfileViewModel model)
         {
@@ -220,7 +220,6 @@ namespace DatingSida.Controllers
          Metoden tar in relevant data om en användare från en viewmodel.
          Sedan skapar den ett únikt filnamn i en map som heter ProfilesXml.
          Kollar om användaren redan har en serialiserad profil, då skrivs den över. 
-
              */
         public ActionResult SerializeProfile() {
             try
@@ -283,6 +282,9 @@ namespace DatingSida.Controllers
             return View(viewModel);
         }
 
+        /*
+         * Lägger till en användare i en av dina kategorier. 
+         */
         public ActionResult FriendCategory(int id) {
             var usercategory = new UserCategory();
             var model = usercategory.FillModel(User.Identity.GetUserId(), id);
