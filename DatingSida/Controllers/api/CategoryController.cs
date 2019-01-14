@@ -14,6 +14,7 @@ namespace DatingSida.Controllers.api
     {
         public UserCategory userCategory = new UserCategory();
 
+        //Skapar en kategori
         [Route("add")]
         [HttpPost]
         public IHttpActionResult SaveCategory(List<string> values)
@@ -30,6 +31,7 @@ namespace DatingSida.Controllers.api
 
         }
 
+        //Lägger till en vän i en kategori.
         [Route("addfriend")]
         [HttpPost]
         public IHttpActionResult AddFriend(List<string> values)

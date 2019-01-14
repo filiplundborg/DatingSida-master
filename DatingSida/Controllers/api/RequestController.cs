@@ -14,6 +14,7 @@ namespace DatingSida.Controllers.api
     {
         public UserRequest request = new UserRequest();
 
+        //Lägger till en vänförfrågning
         [Route("send")]
         [HttpPost]
         public IHttpActionResult SaveRequest(List<string> requested)
@@ -30,6 +31,7 @@ namespace DatingSida.Controllers.api
 
         }
 
+        //Hämtar vänförfrågningar
         [Route("get")]
         [HttpGet]
         public IHttpActionResult GetFriendRequest()
@@ -44,6 +46,7 @@ namespace DatingSida.Controllers.api
             
         }
 
+        //Svarar ja på en kontaktförfrågan
         [Route("postanswer")]
         [HttpPost]
         public IHttpActionResult AnswerFriendRequest(List<string> value)
@@ -59,6 +62,8 @@ namespace DatingSida.Controllers.api
             }
 
         }
+
+        //Svara nej på en kontaktförfrågan
         [Route("postanswernegative")]
         [HttpPost]
         public IHttpActionResult AnswerFriendRequestNegative(List<string> value)

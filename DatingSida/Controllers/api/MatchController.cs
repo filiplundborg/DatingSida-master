@@ -13,7 +13,7 @@ namespace DatingSida.Controllers.api
     {
         public UserRequest request = new UserRequest();
 
-
+        //Matchar användare
         [Route("matching")]
         [HttpPost]
         public IHttpActionResult Matching(List<string> matches)

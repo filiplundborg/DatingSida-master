@@ -15,6 +15,7 @@ namespace DatingSida.Controllers.api
         public UserProfile profile = new UserProfile();
         // GET: api/Search/
 
+        //Hämtar alla användare.
         [Route("users")]
         [HttpGet]
         public IHttpActionResult Get()

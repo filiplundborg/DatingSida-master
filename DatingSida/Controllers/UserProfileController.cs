@@ -260,12 +260,12 @@ namespace DatingSida.Controllers
         }
 
         
-
+        //Returnerar vyn för att hantera vänner och lägga till dessa i kategorier.
         public ActionResult ManageFriends()
         {
             var user = profile.GetUser(User.Identity.GetUserId());
             var userfriend = new UserFriends();
-
+      
             var viewModel = new UserProfileIndexViewModel
             {
                 Username = user.UserName,
@@ -283,7 +283,7 @@ namespace DatingSida.Controllers
         }
 
         /*
-         * Lägger till en användare i en av dina kategorier. 
+         * Vy som visar användare efter kategori.
          */
         public ActionResult FriendCategory(int id) {
             var usercategory = new UserCategory();

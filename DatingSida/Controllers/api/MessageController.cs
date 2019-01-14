@@ -14,6 +14,7 @@ namespace DatingSida.Controllers.api
     {
         public UserMessage usermessage = new UserMessage();
 
+        //Sparar ett meddelande.
         [Route("send")]
         [HttpPost]
         public IHttpActionResult SaveMessage(List<string> message) {
@@ -36,6 +37,7 @@ namespace DatingSida.Controllers.api
             }
 
         }
+        //Tar bort ett meddelande
         [Route("delete")]
         [HttpPost]
         public IHttpActionResult DeleteMessage(List<string> id)

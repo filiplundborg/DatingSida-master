@@ -15,7 +15,7 @@ namespace DatingSida.Controllers.api
         public UserVisitor UserVisitor = new UserVisitor();
 
     
-
+        //Hämtar senaste besöken
         [Route("getusers")]
         [HttpPost]
         public IHttpActionResult GetVisitorsPost()
