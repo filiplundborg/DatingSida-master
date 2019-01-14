@@ -11,6 +11,7 @@ namespace DatingSida.Repository
     {
         public ApplicationDbContext db = new ApplicationDbContext();
 
+        //Lägger till ett besök
         public void AddVisit(string visitReceived, string visitSend) {
             try
             {
@@ -31,6 +32,7 @@ namespace DatingSida.Repository
    
         }
 
+        //Hämtar de senaste besöken. Tar bara distinkta värden och sorterar efter datum.
         public List<ApplicationUser> GetVisits(string userId) {
             var users = db.Visitors.Where(i => i.VisitReceivedId == userId).OrderByDescending(i => i.DateSent).Select(i => i.VisitSender).ToList().Distinct();
             List<ApplicationUser> DistinctUser = new List<ApplicationUser>();
