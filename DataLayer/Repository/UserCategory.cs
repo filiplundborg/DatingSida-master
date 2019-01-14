@@ -47,6 +47,7 @@ namespace DatingSida.Repository
 
         }
 
+        //Används för att visa de vänner en användare har i respektive kategori.
         public FriendCategoryViewModel FillModel(string userId, int categoryId) {
             var user = User.GetUser(userId);
             var friends = Friends.FilterFriendsData(user, categoryId);

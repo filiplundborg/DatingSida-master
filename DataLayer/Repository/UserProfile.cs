@@ -17,11 +17,14 @@ namespace DatingSida.Repository
     {
         public ApplicationDbContext db = new ApplicationDbContext();
 
+        //Returnerar en användare efter Id.
         public ApplicationUser GetUser(string userId)
         {
             var user = db.Users.Single(i => i.Id == userId);
             return user;
         }
+
+        //Returnerar en användare efter username
         public ApplicationUser GetUserByName(string username)
         {
             try
@@ -33,12 +36,16 @@ namespace DatingSida.Repository
                 return null;
             }
         }
+
+        //Sparar sökvägen till användarens nya bild.
         public void SaveImagePath(string imgPath, string userId)
         {
             var user = this.GetUser(userId);
             user.Image = imgPath;
             db.SaveChanges();
         }
+
+        //Returnerar alla användare som är registrerade utom den som är inloggad
         public List<ApplicationUser> GetAllUsers(string currentUsername)
         {
             var users = db.Users.ToList();
@@ -47,6 +54,7 @@ namespace DatingSida.Repository
             users.Remove(user);
             return users;
         }
+
         // Tar bort all lagrad data som webbläsaren har. Körs när en användare tar bort in profil. 
         public void ClearCacheItems()
         {
@@ -71,6 +79,7 @@ namespace DatingSida.Repository
 
         }
 
+        //Hämtar 3 random användare till startsidan.
         public List<CarouselViewModel> GetRandomUsers()
         {
             var list = new List<CarouselViewModel>();
@@ -94,6 +103,7 @@ namespace DatingSida.Repository
 
         }
 
+        //Hämtar en lista med användare. Används vid sökning
         public List<SearchViewModel> GetSearchUsers(string currentUsername)
         {
             var request = new UserRequest();
