@@ -5,12 +5,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.ModelBinding;
-using System.Globalization;
-using System.Security.Claims;
-using System.Threading.Tasks;
-using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
-using Microsoft.Owin.Security;
+
 
 
 namespace DatingSida.Repository
@@ -19,6 +15,7 @@ namespace DatingSida.Repository
     {
         public ApplicationDbContext db = new ApplicationDbContext();
 
+        //Tar fram de meddelanden en användare har mottagit samt en del andra egenskaper.
         public UserMessageViewModel GetUserMessageViewModel(string username) {
            
             var user = db.Users.Single(i => i.UserName == username);
@@ -38,6 +35,7 @@ namespace DatingSida.Repository
             
         }
 
+        //Sparar ett inlägg som en användare har skickat
         public void SaveMessage(UserMessageViewModel user) {
             if (user.Post.Length < 3 || user.Post.Length > 400) {
                 throw new ArgumentException();
@@ -53,6 +51,7 @@ namespace DatingSida.Repository
             db.SaveChanges();
 
         }
+        //Tar bort ett meddelande.
         public void DeleteMessage(int id) {
             try
             {

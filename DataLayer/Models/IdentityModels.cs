@@ -20,7 +20,7 @@ namespace DatingSida.Models
         public virtual string DateOfBirth { get; set; }
         public virtual bool IsActive { get; set; } = true;
 
-        //Foreign keys / Navigation properties
+        // Navigation properties
         public virtual ICollection<Message> MessageSent { get; set; }
         public virtual ICollection<Message> MessageReceived { get; set; }
         public virtual ICollection<Request> RequestSent { get; set; }
@@ -32,7 +32,7 @@ namespace DatingSida.Models
         public virtual ICollection<Visitors> VisitorsSent { get; set; }
         public virtual ICollection<Visitors> VisitorsReceived { get; set; }
 
-        //Konstruktor för att instansiera främmande nycklar
+        //Konstruktor för att instansiera främmande nycklar och undvika exceptions.
 
         public ApplicationUser() : base()
         {
